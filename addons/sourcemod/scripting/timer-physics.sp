@@ -2255,6 +2255,8 @@ public Action:Command_ReloadConfig(client, args)
 
 public Action:Command_NoclipMe(client, args)
 {
+	new style = Timer_GetStyle(client);
+	if(g_Physics[style][StylePvP]) return Plugin_Handled;
 	if(client<1||!IsClientInGame(client)||!IsPlayerAlive(client))
 	{
 		CPrintToChat(client, "%t", "You need to be alive to use noclip");
