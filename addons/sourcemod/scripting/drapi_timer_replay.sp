@@ -428,11 +428,11 @@ public int OnTimerWorldRecord(int client, int track, int style, float time, floa
 {
 	if(BotMimic_IsPlayerRecording(client))
 	{
-		char Query[2048], S_mapname[64];
+		//char Query[2048], S_mapname[64];
 		
-		GetCurrentMap(S_mapname, 64);
-		Format(Query, sizeof(Query), Sql_SelectWrReplay, S_mapname, style, 1);
-		SQL_TQuery(g_hSQL, Sql_BackupWrReplayCallback, Query, _, DBPrio_High);
+		//GetCurrentMap(S_mapname, 64);
+		//Format(Query, sizeof(Query), Sql_SelectWrReplay, S_mapname, style, 1);
+		//SQL_TQuery(g_hSQL, Sql_BackupWrReplayCallback, Query, _, DBPrio_High);
 	
 		Handle dataPackHandle;
 		CreateDataTimer(0.5, TimerData_OnTimerWorldRecord, dataPackHandle);

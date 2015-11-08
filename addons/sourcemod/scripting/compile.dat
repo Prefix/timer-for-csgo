@@ -365,7 +365,7 @@ Age=1197360875
 [drapi_timer_hud_csgo.sp]
 Age=1190176044
 [drapi_timer_replay.sp]
-Age=1197360875
+Age=1198028114
 [drapi_timer_skins.sp]
 Age=1191605479
 [drapi_timer_wolrdrecord_player.sp]
@@ -486,3 +486,5 @@ Age=1197360875
 Age=1191624061
 [sourcecomms.sp]
 Age=1191677137
+[drapi_timer_replay_cleaner.sp]
+Age=1198028327
