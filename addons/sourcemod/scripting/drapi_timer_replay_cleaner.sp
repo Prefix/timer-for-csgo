@@ -273,6 +273,8 @@ public void Sql_DeleteFileRecCallback(Handle hOwner, Handle hQuery, const char[]
 								}
 							}
 						}
+						
+						ClearArray(Array_File);
 					}
 				}
 			}
