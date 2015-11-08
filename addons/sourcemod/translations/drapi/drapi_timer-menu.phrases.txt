@@ -1,0 +1,306 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"MenuTitle"
+	{
+		"en"			"Menu: Help"
+		"fr"			"Menu: Aide"
+	}
+	"back"
+	{
+		"en"			"Back"
+		"fr"			"Précédent"
+	}
+	"next"
+	{
+		"en"			"Next"
+		"fr"			"Suivant"
+	}
+	"exit"
+	{
+		"en"			"Exit"
+		"fr"			"Sortir"
+	}
+
+
+
+	"MainMenuTitle"
+	{
+		"en"			"Menu: Main"
+		"fr"			"Menu: Général"
+	}
+	"Style"
+	{
+		"en"			"Change style"
+		"fr"			"Changer le style"
+	}
+	"Styleinfo"
+	{
+		"en"			"Styles Information"
+		"fr"			"Information sur les styles"
+	}
+	"Challenge"
+	{
+		"en"			"Challenge"
+		"fr"			"Défie"
+	}
+	"Teleport"
+	{
+		"en"			"Teleport menu"
+		"fr"			"Menu téléportation"
+	}
+	"World Record Menu"
+	{
+		"en"			"World Record Menu"
+		"fr"			"Menu des records du monde"
+	}
+	"HUD"
+	{
+		"en"			"Custom HUD Settings"
+		"fr"			"Paramètres de personnalistion du HUD"
+	}
+
+
+	"WRMenuTitle"
+	{
+		"en"			"Menu: World records"
+		"fr"			"Menu: Records du monde"
+	}
+	"WR"
+	{
+		"en"			"World Record"
+		"fr"			"Records du monde"
+	}
+	"BWR"
+	{
+		"en"			"Bonus World Record"
+		"fr"			"Records du monde bonus"
+	}
+	"Main"
+	{
+		"en"			"Back"
+		"fr"			"Retour"
+	}
+
+
+	"TPMenuTitle"
+	{
+		"en"			"Menu: Teleport"
+		"fr"			"Menu: Téléportation"
+	}
+	"Teleme"
+	{
+		"en"			"Teleport to Player"
+		"fr"			"Se téléporter à un joueur"
+	}
+	"Levels"
+	{
+		"en"			"Teleport to Level"
+		"fr"			"Se téléporter à un niveau"
+	}
+	"Checkpoints"
+	{
+		"en"			"Teleport to Checkpoint"
+		"fr"			"Se téléporter à un checkpoint"
+	}
+
+
+	"!timer"
+	{
+		"en"			"!timer - Displays this menu"
+		"fr"			"!timer - Affiche ce menu"
+	}
+	"!menu"
+	{
+		"en"			"!menu - Displays a main menu"
+		"fr"			"!menu - Affiche le menu général"
+	}
+	"!style"
+	{
+		"en"			"!style - Displays style selection menu"
+		"fr"			"!style - Affiche le menu de sélection de style"
+	}
+	"!start"
+	{
+		"en"			"!start - Teleport to startzone (or !s)"
+		"fr"			"!start - Se téléporter à la zone de départ (ou !s)"
+	}
+	"!restart"
+	{
+		"en"			"!restart - Teleport to startzone (or !r)"
+		"fr"			"!restart - Se téléporter à la zone de départ (ou !r)"
+	}
+	"!bonusstart"
+	{
+		"en"			"!bonusstart - Teleport to bonus startzone (or !b)"
+		"fr"			"!bonusstart - Se téléporter à la zone de départ bonus (ou !b)"
+	}
+	"!pause"
+	{
+		"en"			"!pause - Pause the timer"
+		"fr"			"!pause - Mettre le temps en pause"
+	}
+	"!resume"
+	{
+		"en"			"!resume - Resume the timer"
+		"fr"			"!resume - Remer le temps en route"
+	}
+	"!tauto"
+	{
+		"en"			"!tauto - Toggle auto bhop"
+		"fr"			"!tauto - Basculer en auto bhop"
+	}
+	"!stage"
+	{
+		"en"			"!stage - Teleport to any stage"
+		"fr"			"!stage - Se téléporter au stage voulu"
+	}
+	"!tpto"
+	{
+		"en"			"!tpto - Teleport to another player"
+		"fr"			"!tpto - Se téléporter à un joueur"
+	}
+	"!stuck"
+	{
+		"en"			"!stuck - Teleport to previous stage (penalty time)"
+		"fr"			"!stuck - Se téléporter au stage précédent (penalité de temps)"
+	}
+	"!hide"
+	{
+		"en"			"!hide - Hide other players"
+		"fr"			"!hide - Cacher les autres joueurs"
+	}
+	"!nc"
+	{
+		"en"			"!nc - Turn On/Off noclip mode"
+		"fr"			"!nc - Dés/Activer le mode noclip"
+	}
+	"!hud"
+	{
+		"en"			"!hud - Customize your HUD"
+		"fr"			"!hud - Personnaliser votre HUD"
+	}
+	"!challenge"
+	{
+		"en"			"!challenge - Challenge anothers players"
+		"fr"			"!challenge - Défier d'autres joueurs"
+	}
+	"!coop"
+	{
+		"en"			"!coop - Do it together"
+		"fr"			"!coop - Faite le ensemble"
+	}
+	"!rank"
+	{
+		"en"			"!rank - Displays your rank"
+		"fr"			"!rank - Affiche votre classement"
+	}
+	"!top"
+	{
+		"en"			"!top - Displays top10 of this map (or !wr)"
+		"fr"			"!top - Affiche les meilleurs joueurs de la map (or !wr)"
+	}
+	"!btop"
+	{
+		"en"			"btop - Displays bonus top10 of this map (or !bwr)"
+		"fr"			"btop - Affiche les meilleurs joueurs de la map bonus (or !bwr)"
+	}
+	"!mtop"
+	{
+		"en"			"!mtop <mapname> - Displays a maps top10"
+		"fr"			"!mtop <mapname> - Affiche les meilleurs joueurs de la map"
+	}
+	"!mbtop"
+	{
+		"en"			"!mbtop <mapname> - Displays a maps bonus top10"
+		"fr"			"!mbtop <mapname> - Affiche les meilleurs joueurs de la map bonus"
+	}
+	"!ranks"
+	{
+		"en"			"!ranks - Displays available chatranks"
+		"fr"			"!ranks - Affiche les options chat du classement"
+	}
+	"!next"
+	{
+		"en"			"!next - Displays next players"
+		"fr"			"!next - Affiche les prochains joueurs"
+	}
+	"!prank"
+	{
+		"en"			"!prank - Displays your point rank"
+		"fr"			"!prank - Affiche vos points de classement"
+	}
+	"!ptop"
+	{
+		"en"			"!ptop - Displays top10 by pointrank"
+		"fr"			"!ptop - Affiche les meilleurs joueurs par points"
+	}
+	"!points"
+	{
+		"en"			"!points - Displays how much points you can get"
+		"fr"			"!points - Affiche combien vous pouvez gagner de points"
+	}
+	"!latest"
+	{
+		"en"			"!latest - Displays latest records"
+		"fr"			"!latest - Affiche les derniers records"
+	}
+	"!playerinfo"
+	{
+		"en"			"!playerinfo - Displays ALL your stats"
+		"fr"			"!playerinfo - Affiche toutes vos stats"
+	}
+	"!playerinfo2"
+	{
+		"en"			"!playerinfo - <partial playername> - Displays ALL stats for a player (or !pi)"
+		"fr"			"!playerinfo - <nom partiel> - Affiche toutes les stats du joueur (ou !pi)"
+	}
+	"!styleinfo"
+	{
+		"en"			"!styleinfo - Displays Styleinfo"
+		"fr"			"!styleinfo - Affiche les détails du style"
+	}
+	"!mapinfo"
+	{
+		"en"			"!mapinfo - Displays info about current map"
+		"fr"			"!mapinfo - Affiche les infos de la map"
+	}
+	"!spec"
+	{
+		"en"			"!spec - Switch to spectators"
+		"fr"			"!spec - Aller en spectateurs"
+	}
+	"!specfar"
+	{
+		"en"			"!specfar - Spectate player with highest level progress"
+		"fr"			"!specfar - Regarder le joueur avec le plus de progrès"
+	}
+	"!specmost"
+	{
+		"en"			"!specmost - Spectate player with most spectators"
+		"fr"			"!specmost - Regarder le joueur le plus regardé"
+	}
+	"!speclist"
+	{
+		"en"			"!speclist - List players spectating you"
+		"fr"			"!speclist - Affiche une liste de vos spectateurs"
+	}
+	"!georank"
+	{
+		"en"			"!georank - Displays Top countries"
+		"fr"			"!georank - Affiche les meilleurs pays"
+	}
+	""
+	{
+		"en"			""
+	}
+}
+

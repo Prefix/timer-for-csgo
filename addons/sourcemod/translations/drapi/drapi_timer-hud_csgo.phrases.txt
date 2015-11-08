@@ -1,0 +1,453 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"HUD disabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] HUD {RED}disabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] HUD {RED}désactivé{NORMAL}."
+	}
+
+	"HUD enabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] HUD {GREEN}enabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] HUD {GREEN}activé{NORMAL}."
+	}
+
+	"Hide My Ass: Enabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Hide My Ass {GREEN}enabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Cacher mon cul {GREEN}activé{NORMAL}."
+	}
+
+	"Hide My Ass: Disabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Hide My Ass {RED}disabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Cacher mon cul {RED}désactivé{NORMAL}."
+	}
+
+
+	"Custom Hud Menu"
+	{
+		"en"			"Menu: Custom HHUD"
+		"fr"			"Menu: HUD personnalisé"
+	}
+
+	"Enable HUD Master Switch"
+	{
+		"en"			"Enable Master Switch"
+		"fr"			"Activer le changement principale"
+	}
+	"Disable HUD Master Switch"
+	{
+		"en"			"Disable HUD Master Switch"
+		"fr"			"Désactiver le changement principale"
+	}
+	"Enable Center HUD"
+	{
+		"en"			"Enable HUD"
+		"fr"			"Activer le HUD"
+	}
+	"Disable Center HUD"
+	{
+		"en"			"Disable HUD"
+		"fr"			"Désactiver le HUD"
+	}
+	"Enable Side HUD"
+	{
+		"en"			"Enable side HUD"
+		"fr"			"Activer le HUD de côté"
+	}
+	"Disable Side HUD"
+	{
+		"en"			"Disable side HUD"
+		"fr"			"Désactiver le HUD de côté"
+	}
+	"Enable Time"
+	{
+		"en"			"Enable time"
+		"fr"			"Activer le temps"
+	}
+	"Disable Time"
+	{
+		"en"			"Disable time"
+		"fr"			"Désactiver le temps"
+	}
+	"Enable Jumps"
+	{
+		"en"			"Enable jumps"
+		"fr"			"Activer les sauts"
+	}
+	"Disable Jumps"
+	{
+		"en"			"Disable jumps"
+		"fr"			"Désactiver les sauts"
+	}
+	"Enable Speed"
+	{
+		"en"			"Enable speed"
+		"fr"			"Activer la vitesse"
+	}
+	"Disable Speed"
+	{
+		"en"			"Disable speed"
+		"fr"			"Désactiver la vitesse"
+	}
+	"Enable Max Speed"
+	{
+		"en"			"Enable max speed"
+		"fr"			"Activer la vitesse max"
+	}
+	"Disable Max Speed"
+	{
+		"en"			"Disable max speed"
+		"fr"			"Désactiver la vitesse max"
+	}
+	"Enable Spectators"
+	{
+		"en"			"Enable spectators"
+		"fr"			"Activer les spéctateurs"
+	}
+	"Disable Spectators"
+	{
+		"en"			"Disable spectators"
+		"fr"			"Désactiver les spéctateurs"
+	}
+	"Enable Jump Accuracy"
+	{
+		"en"			"Enable jump accuracy"
+		"fr"			"Activer les sauts de précision"
+	}
+	"Disable Jump Accuracy"
+	{
+		"en"			"Disable jump accuracy"
+		"fr"			"Désactiver les sauts de précision"
+	}
+	"Enable Spec List[SideHUD]"
+	{
+		"en"			"Enable spec list on hud side"
+		"fr"			"Activer la liste des spectateurs"
+	}
+	"Disable Spec List[SideHUD]"
+	{
+		"en"			"Disable spec list on hud side"
+		"fr"			"Désactiver la liste des spectateurs"
+	}
+	"Enable Points[SideHUD]"
+	{
+		"en"			"Enable points on hude side"
+		"fr"			"Activer les points"
+	}
+	"Disable Points[SideHUD]"
+	{
+		"en"			"Disable points on hude side"
+		"fr"			"Désactiver les points"
+	}
+	"Enable Map Display [SideHUD]"
+	{
+		"en"			"Enable map on hud side"
+		"fr"			"Activer la map"
+	}
+	"Disable Map Display [SideHUD]"
+	{
+		"en"			"Disable map on hud side"
+		"fr"			"Désactiver la map"
+	}
+	"Enable Style Display [SideHUD]"
+	{
+		"en"			"Enable style on hud side"
+		"fr"			"Activer le style"
+	}
+	"Disable Style Display [SideHUD]"
+	{
+		"en"			"Disable style on hud side"
+		"fr"			"Désactiver le style"
+	}
+	"Enable WR Display [SideHUD]"
+	{
+		"en"			"Enable world record on hud side"
+		"fr"			"Activer le record du monde"
+	}
+	"Disable WR Display [SideHUD]"
+	{
+		"en"			"Disable world record on hud side"
+		"fr"			"Désactiver le record du monde"
+	}
+	"Enable Rank Display [SideHUD]"
+	{
+		"en"			"Enable rank on hud side"
+		"fr"			"Activer les classements"
+	}
+	"Disable Rank Display [SideHUD]"
+	{
+		"en"			"Disable rank on hud side"
+		"fr"			"Désactiver les classements"
+	}
+	"Enable Level Display [SideHUD]"
+	{
+		"en"			"Enable level on hud side"
+		"fr"			"Activer le niveau"
+	}
+	"Disable Level Display [SideHUD]"
+	{
+		"en"			"Disable level on hud side"
+		"fr"			"Désactiver le niveau"
+	}
+	"Enable Personal Best [SideHUD]"
+	{
+		"en"			"Enable personal best time on hud side"
+		"fr"			"Activer le meilleur temps personnel"
+	}
+	"Disable Personal Best [SideHUD]"
+	{
+		"en"			"Disable personal best time on hud side"
+		"fr"			"Désactiver le meilleur temps personnel"
+	}
+	"Enable TTWR Display [SideHUD]"
+	{
+		"en"			"Enable time to world record on hud side"
+		"fr"			"Activer le temps du record du monde"
+	}
+	"Disable TTWR Display [SideHUD]"
+	{
+		"en"			"Disable time to world record on hud side"
+		"fr"			"Désactiver le temps du record du monde"
+	}
+	"Enable Timeleft Display [SideHUD]"
+	{
+		"en"			"Enable timeleft on hud side"
+		"fr"			"Activer le temps restant"
+	}
+	"Disable Timeleft Display [SideHUD]"
+	{
+		"en"			"Disable timeleft on hud side"
+		"fr"			"Désactiver le temps restant"
+	}
+	"Enable Keys Display [SideHUD/Spec only]"
+	{
+		"en"			"Enable keys on hud side"
+		"fr"			"Activer les touches"
+	}
+	"Disable Keys Display [SideHUD/Spec only]"
+	{
+		"en"			"Disable keys on hud side"
+		"fr"			"Désactiver les touches"
+	}
+	"Enable Steam [SideHUD/Spec only]"
+	{
+		"en"			"Enable steam on hud side"
+		"fr"			"Activer le steam"
+	}
+	"Disable Steam [SideHUD/Spec only]"
+	{
+		"en"			"Disable steam on hud side"
+		"fr"			"Désactiver le steam"
+	}
+
+
+
+	"Stage: Linear"
+	{
+		"en"			"Stage: Linear"
+		"fr"			"Niveau: Linéaire"
+	}
+	"Stage"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Stage: {1}/{2}"
+		"fr"			"Niveau: {1}/{2}"
+	}
+	"Time: Pause"
+	{
+		"#format"		"{1:s}"
+		"en"			"{1}Time: <font color='#FF8A00'>Pause</font>"
+		"fr"			"{1}Temps: <font color='#FF8A00'>Pause</font>"
+	}
+	"Time: RecordTime"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1}Time: <font color='#00ff00'>{2}</font>"
+		"fr"			"{1}Temps: <font color='#00ff00'>{2}</font>"
+	}
+	"Time: RecordTime2"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1}Time: <font color='#ff0000'>{2}</font>"
+		"fr"			"{1}Temps: <font color='#ff0000'>{2}</font>"
+	}
+	"Time: Stop"
+	{
+		"#format"		"{1:s}"
+		"en"			"{1}Time: <font color='#ff0000'>Stop</font>"
+		"fr"			"{1}Temps: <font color='#ff0000'>Stop</font>"
+	}
+	"Jumps"
+	{
+		"en"			"Jumps"
+		"fr"			"Sauts"
+	}
+	"Rank"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1}Rank: -/{2}"
+		"fr"			"{1}Classé: -/{2}"
+	}
+	"Rank2"
+	{
+		"#format"		"{1:s},{2:i},{3:s}"
+		"en"			"{1}Rank: {2}/{3}"
+		"fr"			"{1}Classé: {2}/{3}"
+	}
+	"Record"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1}Record: <font color='#990ECB'>{2}</font>"
+		"fr"			"{1}Record: <font color='#990ECB'>{2}</font>"
+	}
+	"Unranked"
+	{
+		"#format"		"{1:s}"
+		"en"			"{1}Unranked\n"
+		"fr"			"{1}Non classé\n"
+	}
+	"Style"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1}Style: {2}"
+		"fr"			"{1}Style: {2}"
+	}
+	"Stage: Linear2"
+	{
+		"#format"		"{1:s}"
+		"en"			"{1}Stage: Linear"
+		"fr"			"{1}Niveau: Linéaire"
+	}
+	"Stage2"
+	{
+		"#format"		"{1:s},{2:i},{3:i}"
+		"en"			"{1}Stage: {2}/{3}"
+		"fr"			"{1}Niveau: {2}/{3}"
+	}
+	"Speed"
+	{
+		"#format"		"{1:s},{2:5.2f}"
+		"en"			"{1}Speed: {2}"
+		"fr"			"{1}Vitesse: {2}"
+	}
+	"Spec"
+	{
+		"#format"		"{1:s},{2:i}"
+		"en"			"{1}\nSpec: {2}"
+		"fr"			"{1}\nSpec: {2}"
+	}
+	"Spec2"
+	{
+		"#format"		"{1:s},{2:i}"
+		"en"			"{1}Spec: {2}"
+		"fr"			"{1}Spec: {2}"
+	}
+
+	"HeaderPlayer"
+	{
+		"en"			"---- Ranks ----"
+		"fr"			"---- Classement ----"
+	}
+	"Rankside"
+	{
+		"#format"		"{1:i},{2:s}"
+		"en"			"Rank: {1}/{2}"
+		"fr"			"Classé: {1}/{2}"
+	}
+	"Pointsside"
+	{
+		"#format"		"{1:i}"
+		"en"			"Points: {1}"
+		"fr"			"Points: {1}"
+	}
+	"Styleside"
+	{
+		"#format"		"{1:s}"
+		"en"			"Style: {1}"
+		"fr"			"Style: {1}"
+	}
+
+	"HeaderTime"
+	{
+		"en"			"---- Time ----"
+		"fr"			"---- Temps ----"
+	}
+	"WRside"
+	{
+		"#format"		"{1:s}"
+		"en"			"WR: {1}"
+		"fr"			"RM: {1}"
+	}
+	"PBside"
+	{
+		"#format"		"{1:s}"
+		"en"			"PB: {1}"
+		"fr"			"MT: {1}"
+	}
+	"Timetowrside"
+	{
+		"#format"		"{1:s}"
+		"en"			"Time to WR: +{1}"
+		"fr"			"Temps - MT: +{1}"
+	}
+	"Timetowrside2"
+	{
+		"#format"		"{1:s}"
+		"en"			"Time→WR: -{1}"
+		"fr"			"Temps→RM: -{1}"
+	}
+
+	"HeaderMap"
+	{
+		"en"			"---- Map ----"
+		"fr"			"---- Carte ----"
+	}
+	"Mapside"
+	{
+		"#format"		"{1:s}"
+		"en"			"Map: {1}"
+		"fr"			"Carte: {1}"
+	}
+	"Stageside"
+	{
+
+		"en"			"Stage: Linear"
+		"fr"			"Niveau: Linéaire"
+	}
+	"Stageside2"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Stage:: {1}/{2}"
+		"fr"			"Niveau: {1}/{2}"
+	}
+	"Timeleftside"
+	{
+		"#format"		"{1:i},{2:02i}"
+		"en"			"Timeleft:: {1}:{2}"
+		"fr"			"Temps restant: {1}:{2}"
+	}
+
+	"HeaderKeys"
+	{
+		"en"			"---- Keys ----"
+		"fr"			"---- Touches ----"
+	}
+
+	"HeaderSpec"
+	{
+		"en"			"---- Spectators ----"
+		"fr"			"---- Spectateurs ----"
+	}
+}
+

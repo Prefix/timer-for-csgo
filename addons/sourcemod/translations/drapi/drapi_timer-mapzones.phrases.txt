@@ -1,0 +1,218 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+
+	"Force Mode"
+	{
+		"en"			 "[{GREEN}TIMER{NORMAL}] You need to pick a style first! Type {RED}!style{NORMAL} into chat and choose wise."
+		"en"			 "[{GREEN}TIMER{NORMAL}] Vous devez choisir un style! Tapez {RED}!style{NORMAL}."
+	}
+
+	"Map Zone Delete"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Map zone {RED}deleted{NORMAL} successfully."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Map zone {RED}supprimée{NORMAL}."
+	}
+
+	"Already inside start zone"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already inside a start zone."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà à l'intérieur d'une zone de départ."
+	}
+
+	"Already inside bonus start zone"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already inside a bonus start zone."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà à l'intérieur d'une zone de départ de bonus."
+	}
+	
+	"Already inside bonus2 start zone"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already inside a bonus 2 start zone."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà à l'intérieur d'une zone de départ de bonus 2."
+	}
+	
+	"Already inside bonus3 start zone"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already inside a bonus 3 start zone."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà à l'intérieur d'une zone de départ de bonus 3."
+	}
+	
+	"Already inside bonus4 start zone"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already inside a bonus 4 start zone."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà à l'intérieur d'une zone de départ de bonus 4."
+	}
+	
+	"Already inside bonus5 start zone"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already inside a bonus 5 start zone."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà à l'intérieur d'une zone de départ de bonus 5."
+	}
+
+	"Adminmode Enabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Zoneadminmode {GREEN}enabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Zoneadminmode {GREEN}activée{NORMAL}."
+	}
+	
+	"Adminmode Disabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Zoneadminmode {RED}disabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Zoneadminmode {RED}désactivée{NORMAL}."
+	}
+
+	"Zones Reloaded"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Zones {YELLOW}reloaded{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Zones {YELLOW}rechargées{NORMAL}."
+	}
+
+	"Stuck"
+	{
+		"#format"		"{1:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You have used {RED}!stuck{NORMAL} and got an {RED}{1}s{NORMAL} penalty time."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous avez utilisé {RED}!stuck{NORMAL} et reçu {RED}{1}s{NORMAL} de pénalité."
+	}
+
+	"There is no bonus in this map"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There is no bonus in this map."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de bonus cette map."
+	}
+	
+	"There is no bonus2 in this map"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There is no bonus 2 in this map."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de bonus 2 cette map."
+	}
+	
+	"There is no bonus3 in this map"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There is no bonus 3 in this map."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de bonus 3 cette map."
+	}
+	
+	"There is no bonus4 in this map"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There is no bonus 4 in this map."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de bonus 4 cette map."
+	}
+	
+	"There is no bonus5 in this map"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There is no bonus 5 in this map."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de bonus 5 cette map."
+	}
+
+	"Current Map"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] Current map: {BLUE}{1}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Carte actuelle: {BLUE}{1}"
+	}
+
+	"Time Remaining"
+	{
+		"#format"		"{1:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] Time remaining: {PINK}{1} minutes"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Temps restant: {PINK}{1} minutes"
+	}
+	"Time Remaining2"
+	{
+		"#format"		"{1:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] Time remaining: {PINK}{1} seconds"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Temps restant: {PINK}{1} secondes"
+	}
+
+
+
+
+
+
+
+
+	"Stage Teleport Selection"
+	{
+		"en"			"Menu: Teleport"
+		"fr"			"Menu: Téléportation"
+	}
+
+	"Adjust zone"
+	{
+		"en"			"Adjust zone:"
+		"fr"			"Ajuster la zone:"
+	}
+	
+	"Select zone type"
+	{
+		"en"			"Select zone type:"
+		"fr"			"Sélectionnez le type de zone:"
+	}
+
+	"FIRST"
+	{
+		"en"			"FIRST"
+		"fr"			"PREMIER"
+	}
+	
+	"SECOND"
+	{
+		"en"			"SECOND"
+		"fr"			"DEUXIEME"
+	}
+
+	"Point Select Panel"
+	{
+		"#format"		"{1:s}"
+		"en"			"Please stand in the {1} point of the zone,\nand click Mouse2."
+		"fr"			"Veuillez restez immobile dans le {1} point,\net appuyez sur TIR SECONDAIRE (Défaut : Clique droit de la souris)."
+	}
+
+	"Cancel"
+	{
+		"en"			"Cancel"
+		"fr"			"Annuler"
+	}
+
+	"Please wait"
+	{
+		"en"			"Please wait..."
+		"fr"			"Patientez..."
+	}
+
+	"Are you sure to quit the Challenge"
+	{
+		"en"			"Menu: Are you sure to quit the Challenge?"
+		"fr"			"Menu: Etes vous sur de vouloir quitter le défi?"
+	}
+	"Are you sure to quit the Coop"
+	{
+		"en"			"Menu: Are you sure to quit the Coop?"
+		"fr"			"Menu: Etes vous sur de vouloir quitter la coopération?"
+	}
+	"Are you sure to quit"
+	{
+		"en"			"Menu: Are you sure to quit?"
+		"fr"			"Menu: Etes vous sur de vouloir quitter?"
+	}
+	"Yes"
+	{
+		"en"			"Yes"
+		"fr"			"Oui"
+	}
+	"No"
+	{
+		"en"			"No"
+		"fr"			"Non"
+	}
+}
+

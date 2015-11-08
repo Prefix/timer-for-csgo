@@ -1,0 +1,33 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Confirmed"
+	{
+		"#format"		"{1:N},{2:N},{3:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} has confirmed a challenge with {RED}{2}{NORMAL} for {PINK}{3}{NORMAL} points."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a confirmé le défi avec {RED}{2}{NORMAL} pour {PINK}{3}{NORMAL} points."
+	}
+
+	"Beaten"
+	{
+		"#format"		"{1:N},{2:N},{3:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} has beaten {RED}{2}{NORMAL} and has taken {PINK}{3}{NORMAL} points."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a battu {RED}{2}{NORMAL} et a gagné {PINK}{3}{NORMAL} points."
+	}
+	
+	"ForceEnd"
+	{
+		"#format"		"{1:N},{2:N},{3:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} has surrendered this challenge with {RED}{2}{NORMAL} and has loose {PINK}{3}{NORMAL} points."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a abandoné le défi avec {RED}{2}{NORMAL} et a perdu {PINK}{3}{NORMAL} points."
+	}
+}
+

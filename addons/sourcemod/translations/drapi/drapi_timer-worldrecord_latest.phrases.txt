@@ -1,0 +1,88 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"LatestMenuTitle"
+	{
+		"en"			"Menu: Latest records"
+		"fr"			"Menu: Derniers records"
+	}
+	"Any"
+	{
+		"en"			"Any"
+		"fr"			"Quelconque"
+	}
+	"Top10"
+	{
+		"en"			"Top10"
+		"fr"			"Top10"
+	}
+	"World"
+	{
+		"en"			"World"
+		"fr"			"Mondiaux"
+	}
+	"Latest Top 10 Records"
+	{
+		"en"			"Menu: Top 10 records"
+		"fr"			"Menu Top 10 des records"
+	}
+	"Latest World Records"
+	{
+		"en"			"Menu: World records"
+		"fr"			"Menu: Records du monde"
+	}
+	"Latest Records"
+	{
+		"en"			"Menu: Latest records"
+		"fr"			"Menu: Derniers records"
+	}
+	"No records available"
+	{
+		"en"			"No records available"
+		"fr"			"Aucun record valable"
+	}
+	"Details"
+	{
+		"en"			"Details"
+		"fr"			"Détails"
+	}
+	"Map"
+	{
+		"#format"		"{1:s}"
+		"en"			"Map: {1}"
+		"fr"			"Carte: {1}"
+	}
+	"Style"
+	{
+		"#format"		"{1:s}"
+		"en"			"Style: {1}"
+		"fr"			"Style: {1}"
+	}
+	"Name"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Name: {1} [{2}]"
+		"fr"			"Nom: {1} [{2}]"
+	}
+	"Time"
+	{
+		"#format"		"{1:s},{2:i}"
+		"en"			"Time: {1} (#{2})"
+		"fr"			"Temps: {1} (#{2})"
+	}
+	"Date"
+	{
+		"#format"		"{1:s}"
+		"en"			"Date: {1}"
+		"fr"			"Date: {1}"
+	}
+}
+

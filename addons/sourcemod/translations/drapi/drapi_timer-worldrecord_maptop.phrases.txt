@@ -1,0 +1,59 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Usage"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Usage: sm_mtop <mapname> <style>."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Usage: sm_mtop <carte> <style>."
+	}
+	"Usage2"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Usage: sm_mtop <mapname>."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Usage: sm_mtop <carte>."
+	}
+
+	"StyleMenuTitle"
+	{
+		"en"			"Menu: Style"
+		"fr"			"Menu: Style"
+	}
+	"Map"
+	{
+		"#format"		"{1:s}"
+		"en"			"Map: {1}"
+		"fr"			"Carte: {1}"
+	}
+
+	"Map"
+	{
+		"#format"		"{1:s}"
+		"en"			"Map: {1}"
+		"fr"			"Carte: {1}"
+	}
+	"Maptop"
+	{
+		"#format"		"{1:i},{2:s}"
+		"en"			"Menu: Map top %d\nMap: %s\n"
+		"fr"			"Menu: Top carte %d\nCarte: %s\n"
+	}
+	"Maptopbonus"
+	{
+		"#format"		"{1:i},{2:s}"
+		"en"			"Menu: Map bonus top %d\nMap: %s\n"
+		"fr"			"Menu: Top carte bonus %d\nCarte: %s\n"
+	}
+	"No record found"
+	{
+		"en"			"No record found..."
+		"fr"			"Aucun record trouvé"
+	}
+}
+

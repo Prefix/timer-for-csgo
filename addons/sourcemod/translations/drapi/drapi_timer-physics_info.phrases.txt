@@ -1,0 +1,116 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"StyleMenuTitle"
+	{
+		"en"			"Menu: Style info"
+		"fr"			"Menu: Information de style"
+	}
+
+
+	"SettingsMenuTitle"
+	{
+		"#format"		"{1:s}"
+		"en"			"Menu: Settings for {1}"
+		"fr"			"Menu: Paramètres pour {1}"
+	}
+	"Default Mode"
+	{
+		"en"			"Default Mode"
+		"fr"			"Mode par défaut"
+	}
+	"ChatCommand"
+	{
+		"#format"		"{1:s}"
+		"en"			"ChatCommand: {1}"
+		"fr"			"Commande: {1}"
+	}
+	"Category: Fun"
+	{
+		"en"			"Category: Fun"
+		"fr"			"Categorie: Fun"
+	}
+	"Category: Ranked"
+	{
+		"en"			"Category: Ranked"
+		"fr"			"Categorie: Classé"
+	}
+	"Category: Practise"
+	{
+		"en"			"Category: Practise"
+		"fr"			"Category: Entrainement"
+	}
+	"Category: Unknown"
+	{
+		"en"			"Category: Unknown"
+		"fr"			"Category: Inconnu"
+	}
+	"Boost"
+	{
+		"#format"		"{1:0.1f}"
+		"en"			"Boost: {1}"
+		"fr"			"Augmentation: {1}"
+	}
+	"Auto: Enabled"
+	{
+		"en"			"Auto: Enabled"
+		"fr"			"Auto: Activé"
+	}
+	"Auto: Disabled"
+	{
+		"en"			"Auto: Disabled"
+		"fr"			"Auto: Désactivé"
+	}
+	"Stamina"
+	{
+		"#format"		"{1:0.1f}"
+		"en"			"Stamina: {1}"
+		"fr"			"Endurance: {1}"
+	}
+	"Gravity"
+	{
+		"#format"		"{1:0.1f}"
+		"en"			"Gravity: {1}"
+		"fr"			"Gravité: {1}"
+	}
+	"PrespeedMax"
+	{
+		"#format"		"{1:0.1f}"
+		"en"			"Prespeed max: {1}"
+		"fr"			"Prévitesse max: {1}"
+	}
+	"PrespeedMax: Unlimited"
+	{
+		"en"			"Prespeed max: Unlimited"
+		"fr"			"Prévitesse max: Illimitéé"
+	}
+	"Multimode: Map Default"
+	{
+		"en"			"Multimode: Map Default"
+		"fr"			"Multimode: Map par défaut"
+	}
+	"Multimode: Multihop"
+	{
+		"en"			"Multimode: Multihop"
+		"fr"			"Multimode: Multihop"
+	}
+	"Multimode: Nohop"
+	{
+		"en"			"Multimode: Nohop"
+		"fr"			"Multimode: Nohop"
+	}
+	"Multimode: Unknown"
+	{
+		"en"			"Multimode: Unknown"
+		"fr"			"Multimode: Inconnu"
+	}
+}
+

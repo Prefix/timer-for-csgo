@@ -1,0 +1,156 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"No Target found"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] No Target found."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Aucune cible trouvée."
+	}
+
+	"No Records"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There are no records."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de records."
+	}
+	
+	"No Difficulty Records"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There are no records for this difficulty."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de records pour cette difficulté."
+	}
+
+	"World Record Cache Loaded"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] World record cache has been loaded."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Cache des records du monde a été chargé."
+	}
+
+
+
+	"TopMenuTitle"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Menu: Top players on %s [%d total]"
+		"fr"			"Menu: Meilleurs joueurs sur %s [%d total]"
+	}
+	"TopBonusMenuTitle"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Menu: Top players bonus on %s [%d total]"
+		"fr"			"Menu: Meilleurs joueurs bonus  sur %s [%d total]"
+	}
+	"TopBonus2MenuTitle"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Menu: Top players bonus2  on %s [%d total]"
+		"fr"			"Menu: Meilleurs joueurs bonus2  sur %s [%d total]"
+	}
+	"TopBonus3MenuTitle"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Menu: Top players bonus3 on %s [%d total]"
+		"fr"			"Menu: Meilleurs joueurs bonus3 sur %s [%d total]"
+	}
+	"TopBonus4MenuTitle"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Menu: Top players bonus4 on %s [%d total]"
+		"fr"			"Menu: Meilleurs joueurs bonus4 sur %s [%d total]"
+	}
+	"TopBonus5MenuTitle"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Menu: Top players bonus5 on %s [%d total]"
+		"fr"			"Menu: Meilleurs joueurs bonus5 sur %s [%d total]"
+	}
+
+	"World Record Menu Title"
+	{
+		"en"			"World Records"
+		"fr"			"Les records du monde"
+	}
+
+	"Bonus World Record Menu Title"
+	{
+		"en"			"Bonus World Records"
+		"fr"			"Les records du monde de bonus"
+	}
+
+	"Jumps"
+	{
+		"en"			"Jumps"
+		"fr"			"Sauts"
+	}
+
+	"RankMenuTitle"
+	{
+		"#format"		"{1:i}"
+		"en"			"Menu: Record info [ID: {1}]\n \n"
+		"fr"			"Menu: Info record [ID: {1}]\n \n"
+	}
+	"Date"
+	{
+		"#format"		"{1:s}"
+		"en"			"Date: {1}"
+		"fr"			"Date: {1}"
+	}
+	"Player"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Player: {1} | {2}"
+		"fr"			"Joueur: {1} | {2}"
+	}
+	"Rank"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Rank: {1} - Finished: {2} times"
+		"fr"			"Classement: {1} - Terminé: {2} fois"
+	}
+	"Time"
+	{
+		"#format"		"{1:s}"
+		"en"			"Time: {1}"
+		"fr"			"Temps: {1}"
+	}
+	"Speed"
+	{
+		"#format"		"{1:0.2f},{2:0.2f},{3:0.2f}"
+		"en"			"Speed [Avg: {1} | Max: {2} | Fin: {3}]"
+		"fr"			"Vitesse [Moy: {1} | Max: {2} | Fin: {3}]"
+	}
+	"Jump2"
+	{
+		"#format"		"{1:i},{2:0.2f}"
+		"en"			"Jumps: {1} [{2} ⁰⁄₀]"
+		"fr"			"Sauts: {1} [{2} ⁰⁄₀]"
+	}
+	"Strafes"
+	{
+		"#format"		"{1:i},{2:0.2f}"
+		"en"			"Strafes: {1} [{1} ⁰⁄₀]"
+		"fr"			"Movements: {1} [{2} ⁰⁄₀]"
+	}
+	"Style"
+	{
+		"#format"		"{1:s}"
+		"en"			"Style: {1}"
+		"fr"			"Style: {1}"
+	}
+
+
+	"DeleteRecordMenuTitle"
+	{
+		"en"			"Menu: Delete records"
+		"fr"			"Menu: Supprimer des records"
+	}
+
+}
+

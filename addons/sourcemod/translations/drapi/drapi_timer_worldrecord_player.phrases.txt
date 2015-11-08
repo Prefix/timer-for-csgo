@@ -1,0 +1,177 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Select Style"
+	{
+		"en"			"Menu: Select style"
+		"fr"			"Menu: Selectionner un style"
+	}
+
+	"Playersearch"
+	{
+		"en"			"Menu: Player search"
+		"fr"			"Menu: Recherche d'un joueur"
+	}
+
+	"pts"
+	{
+		"#format"		"{1:s},{2:i}"
+		"en"			"{1} [{2}pts]"
+		"fr"			"{1} [{2}pts]"
+	}
+
+	"Not Found"
+	{
+		"en"			"No Player found..."
+		"fr"			"Aucun joueur trouvé"
+	}
+
+	"More100"
+	{
+		"en"			"More than 100 Players found."
+		"fr"			"Plus de 100 joueurs trouvés"
+	}
+
+	"Specific"
+	{
+		"en"			"Please be more specific."
+		"fr"			"Soyez plus spécifique dans votre recherche"
+	}
+
+	"Loading  Statistics"
+	{
+		"en"			"---Loading  statistics---"
+		"fr"			"---Chargement des statistiques---"
+	}
+
+	"Total WR"
+	{
+		"#format"		"{1:i}"
+		"en"			"Total WRs: {1}"
+		"fr"			"Total RM: {1}"
+	}
+
+	"View Incomplete Maps"
+	{
+		"en"			"View Incomplete Maps"
+		"fr"			"Voir les cartes incompletées"
+	}
+
+	"View Incomplete Maps (Bonus)"
+	{
+		"en"			"View Incomplete Maps (Bonus)"
+		"fr"			"Voir les cartes incompletées (Bonus)"
+	}
+
+	"Change style"
+	{
+		"en"			"Change style [current: %s]"
+		"fr"			"Changer de style [actuel: %s]"
+	}
+
+	"Rang1"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Global server rank: {1}st [{2}pts]"
+		"fr"			"Rang mondial du serveur: {1}er [{2}pts]"
+	}
+
+	"Rang2"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Global server rank: {1}nd [{2}pts]"
+		"fr"			"Rang mondial du serveur: {1}eme [{2}pts]"
+	}
+
+	"Rang3"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Global server rank: {1}rd [{2}pts]"
+		"fr"			"Rang mondial du serveur: {1}eme [{2}pts]"
+	}
+
+	"Rang4"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Global server rank: {1}th [{2}pts]"
+		"fr"			"Rang mondial du serveur: {1}eme [{2}pts]"
+	}
+
+	"Maps completed"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Maps completed: {1}/{2}"
+		"fr"			"Cartes complétées: {1}/{2}"
+	}
+
+	"Bonuses completed"
+	{
+		"#format"		"{1:i},{2:i}"
+		"en"			"Bonuses completed: {1}/{2}"
+		"fr"			"Bonus complétées: {1}/{2}"
+	}
+
+	"All maps completed"
+	{
+		"en"			"All maps completed"
+		"fr"			"Toutes les cartes completées"
+	}
+
+	"Bonus Maps incomplete"
+	{
+		"#format"		"{1:i},{2:i},{3:0.2f}"
+		"en"			"{1} of {2} ({3}%%) Bonus Maps incomplete\n"
+		"fr"			"{1} of {2} ({3}%%) Cartes bonus imcomplètes\n"
+	}
+
+	"Bonus Maps incomplete style"
+	{
+		"#format"		"{1:i},{2:i},{3:0.2f},{4:s}"
+		"en"			"{1} of {2} ({3}%%) Bonus Maps incomplete\nStyle: {4}\n"
+		"fr"			"{1} of {2} ({3}%%) Cartes bonus imcomplètes\nStyle: {4}\n"
+	}
+
+	"Maps incomplete"
+	{
+		"#format"		"{1:i},{2:i},{3:0.2f}"
+		"en"			"{1} of {2} ({3}%%) Maps incomplete\n"
+		"fr"			"{1} of {2} ({3}%%) Cartes imcomplètes\n"
+	}
+
+	"Maps incomplete style"
+	{
+		"#format"		"{1:i},{2:i},{3:0.2f},{4:s}"
+		"en"			"{1} of {2} ({3}%%) Maps incomplete\nStyle: {4}\n"
+		"fr"			"{1} of {2} ({3}%%) Cartesimcomplètes\nStyle: {4}\n"
+	}
+
+	"Map WR"
+	{
+		"#format"		"{1:i}"
+		"en"			"Map WRs: {1}"
+		"fr"			"Cartes RM: {1}"
+	}
+
+	"Bonus WR"
+	{
+		"#format"		"{1:i}"
+		"en"			"Bonus WRs: {1}"
+		"fr"			"Bonus RM: {1}"
+	}
+
+	"Stage WR"
+	{
+		"#format"		"{1:i}"
+		"en"			"Stage WRs: {1}"
+		"fr"			"Niveau RM: {1}"
+	}
+}
+

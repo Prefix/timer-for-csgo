@@ -1,0 +1,39 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+
+	"Style PVP"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL}, has changed his style in {RED}PVP{NORMAL}. Type {RED}!pvp{NORMAL} to fight him or help him!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL}, a changé son style en PVP. Tapez {RED}!pvp{NORMAL} pour le tuer ou pour l'aider!"
+	}
+
+	"Menu_TITLE"
+	{
+		"en"			"Menu: Choose a Team"
+		"fr"			"Menu: Choississez une équipe"
+	}
+
+	"Menu_T_MENU_TITLE"
+	{
+		"en"			"Terrorist"
+		"fr"			"Terroriste"
+	}
+
+	"Menu_CT_MENU_TITLE"
+	{
+		"en"			"Counter terrorist"
+		"fr"			"Contre terroriste"
+	}
+	
+}
+

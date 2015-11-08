@@ -1,0 +1,35 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+
+	"Add points"
+	{
+		"#format"		"{1:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You won {GREEN}+{1}{NORMAL} for finishing the track."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous avez gagné {GREEN}+{1}{NORMAL} pour avoir fini la course."
+	}
+
+	"Remove points"
+	{
+		"#format"		"{1:i},{2:s},{3:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You stole {GREEN}{1}{NORMAL} from {BLUE}{2}{NORMAL}[{RED}↓{NORMAL}{3}]."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous avez dérobé {GREEN}+{1}{NORMAL} à {BLUE}{2}{NORMAL}[{RED}↓{NORMAL}{3}]."
+	}
+	
+	"Stole points"
+	{
+		"#format"		"{1:N},{2:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} stole you {RED}{2}{NORMAL}pts."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} vous a dérobé {RED}{2}{NORMAL}pts."
+	}
+	
+}
+

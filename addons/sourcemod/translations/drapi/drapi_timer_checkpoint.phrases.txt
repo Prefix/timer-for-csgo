@@ -1,0 +1,262 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Enabled"
+	{
+		"en"			"{GREEN}enabled{NORMAL}."
+		"fr"			"{GREEN}activé{NORMAL}."
+	}
+
+	"Disabled"
+	{
+		"en"			"{RED}disabled{NORMAL}."
+		"fr"			"{RED}désactivé{NORMAL}."
+	}
+
+	"CPS chat"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] CPS chat %s"
+		"fr"			"[{GREEN}TIMER{NORMAL}] CPS chat %s"
+	}
+
+	"Title PI"
+	{
+		"#format"		"{1:N},{2:s},{3:s}"
+		"en"			"{1} vs WR | Style: {2} | WR holder: {3}"
+		"fr"			"{1} vs RM | Style: {2} | Détenteur du RM: {3}"
+	}
+
+	"PI-"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"CP #{1}: {2} (-{3}) PB: {4}"
+		"fr"			"CP #{1}: {2} (-{3}) MT: {4}"
+	}
+	"PI+"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"CP #{1}: {2} (+{3}) PB: {4}"
+		"fr"			"CP #{1}: {2} (+{3}) MT: {4}"
+	}
+	"PI"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"CP #{1}: {2} ({3}) PB: {4}"
+		"fr"			"CP #{1}: {2} ({3}) MT: {4}"
+	}
+
+	"Title PI Bonus"
+	{
+		"#format"		"{1:N},{2:i},{3:s},{4:s}"
+		"en"			"{1} vs WR BONUS{2} | Style: {3} | WR holder: {4}"
+		"fr"			"{1} vs RM BONUS{2} | Style: {3} | Détenteur du RM: {4}"
+	}
+
+	"PI- Bonus"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"CP #{1}: {2} (-{3}) PB: {4}"
+		"fr"			"CP #{1}: {2} (-{3}) MT: {4}"
+	}
+	"PI+ Bonus"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"CP #{1}: {2} (+{3}) PB: {4}"
+		"fr"			"CP #{1}: {2} (+{3}) MT: {4}"
+	}
+	"PI Bonus"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"CP #{1}: {2} ({3}) PB: {4}"
+		"fr"			"CP #{1}: {2} ({3}) MT: {4}"
+	}
+
+	"No Data"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] No data found..."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Aucune donnée trouvée..."
+	}
+
+	"sm_cprb"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] usage: {RED}sm_cprb <num bonus>"
+		"fr"			"[{GREEN}TIMER{NORMAL}] utilisation: {RED}sm_cprb <num bonus>"
+	}
+
+	"ChatInsertCP"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | WR: {3}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | RM: {3}"
+	}
+
+	"ChatInsertCP2"
+	{
+		"#format"		"{1:i},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL}"
+	}
+
+	"ChatInsertStage"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | WR: {3}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | RM: {3}"
+	}
+
+	"ChatInsertStage2"
+	{
+		"#format"		"{1:i},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL}"
+	}
+
+	"ChatInsertBonus"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | WR: {3}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | RM: {3}"
+	}
+
+	"ChatInsertBonus2"
+	{
+		"#format"		"{1:i},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL}"
+	}
+
+	"ChatInsertCPSpec"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | WR: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | RM: {4}"
+	}
+
+	"ChatInsertCPSpec2"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL}"
+	}
+
+	"ChatInsertStageSpec"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | WR: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | RM: {4}"
+	}
+
+	"ChatInsertStageSpec2"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL}"
+	}
+
+	"ChatInsertBonusSpec"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | WR: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | RM: {4}"
+	}
+
+	"ChatInsertBonusSpec2"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL}"
+	}
+
+	"ChatUpdateCP"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | WR: {3} | PB: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | RM: {3} | MT: {4}"
+	}
+
+	"ChatUpdateCP2"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | PB: {3}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | MT: {3}"
+	}
+
+	"ChatUpdateStage"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | WR: {3} | PB: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | RM: {3} | MT: {4}"
+	}
+
+	"ChatUpdateStage2"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | PB: {3}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | MT: {3}"
+	}
+
+	"ChatUpdateBonus"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | WR: {3} | PB: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | RM: {3} | MT: {4}"
+	}
+
+	"ChatUpdateBonus2"
+	{
+		"#format"		"{1:i},{2:s},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} Time: {YELLOW}{2}{NORMAL} | PB: {3}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} Temps: {YELLOW}{2}{NORMAL} | MT: {3}"
+	}
+
+	"ChatUpdateCPSpec"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s},{5:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | WR: {4} | PB: {5}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | RM: {4} | MT: {5}"
+	}
+
+	"ChatUpdateCPSpec2"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | PB: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | MT: {4}"
+	}
+
+	"ChatUpdateStageSpec"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s},{5:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | WR: {4} | PB: {5}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | RM: {4} | MT: {5}"
+	}
+
+	"ChatUpdateStageSpec2"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | PB: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | MT: {4}"
+	}
+
+	"ChatUpdateBonusSpec"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s},{5:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | WR: {4} | PB: {5}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | RM: {4} | MT: {5}"
+	}
+
+	"ChatUpdateBonusSpec2"
+	{
+		"#format"		"{1:i},{2:s},{3:s},{4:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Time: {YELLOW}{3}{NORMAL} | PB: {4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] #{1} {BLUE}{2}{NORMAL} Temps: {YELLOW}{3}{NORMAL} | MT: {4}"
+	}
+}
+

@@ -1,0 +1,38 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"New player"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Welcome! You can type {RED}!help{NORMAL} to see all usefull commands."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Bienvenue! Vous pouvez taper {RED}!help{NORMAL} pour voir toutes les commandes utiles."
+	}
+
+	"New player2"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] Welcome to {BLUE}{1}{NORMAL}, a new bhoper in the place!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Bienvenue à {BLUE}{1}{NORMAL}, un nouveau bhoper sur la place!"
+	}
+
+	"Level up player"
+	{
+		"#format"		"{1:s}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Bravo! Tu es monté d'un niveau dans le rank du serveur!"
+		"en"			"[{GREEN}TIMER{NORMAL}] Congrat! You levelup on rank server!"
+	}
+	"Level up player2"
+	{
+		"#format"		"{1:N},{2:s}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Bravo à {BLUE}{1}{NORMAL}! Pour être monté d'un niveau {PINK}{2}{NORMAL} dans le rank du serveur!"
+		"en"			"[{GREEN}TIMER{NORMAL}] Congrat to {BLUE}{1}{NORMAL}! For levelup {PINK}{2}{NORMAL} on rank server!"
+	}
+}
+

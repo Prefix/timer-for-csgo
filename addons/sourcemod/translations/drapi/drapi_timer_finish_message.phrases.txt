@@ -1,0 +1,56 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Header"
+	{
+		"#format"		"{1:s}"
+		"en"			"-------- [{BLUE}NEW WORLD RECORD{NORMAL}{1}] --------"
+		"fr"			"-------- [{BLUE}NOUVEAU RECORD MONDIAL{NORMAL}{1}] --------"
+	}
+	"Name"
+	{
+		"#format"		"{1:s}"
+		"en"			"Name:         {BLUE}{1}{NORMAL}"
+		"fr"			"Nom:                           {BLUE}{1}{NORMAL}"
+	}
+	"Style"
+	{
+		"#format"		"{1:s}"
+		"en"			"Style:          {YELLOW}{1}{NORMAL}"
+		"fr"			"Style:                          {YELLOW}{1}{NORMAL}"
+	}
+	"Time"
+	{
+		"#format"		"{1:s}"
+		"en"			"Time:          {GREEN}{1}{NORMAL}"
+		"fr"			"Temps:                       {GREEN}{1}{NORMAL}"
+	}
+	"OldTime"
+	{
+		"#format"		"{1:s}"
+		"en"			"Old Time:   {RED}{1}{NORMAL}"
+		"fr"			"Temps précédent:   {RED}{1}{NORMAL}"
+	}
+	"Header2"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"-------- [{BLUE}{1}{NORMAL}{2}] --------"
+		"fr"			"-------- [{BLUE}{1}{NORMAL}{2}] --------"
+	}
+	"Header3"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"-------- [{BLUE}{1}{NORMAL} | {RED}UNRANKED{NORMAL}{2}] --------"
+		"fr"			"-------- [{BLUE}{1}{NORMAL} | {RED}NON CLASSE{NORMAL}{2}] --------"
+	}
+
+}
+

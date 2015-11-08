@@ -1,0 +1,31 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"CT"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {BLUE}CT Team{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a rejoint les {BLUE}CT{NORMAL}."
+	}
+	"T"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {RED}Terro Team{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a rejoint les {RED}Terro{NORMAL}."
+	}
+	"SPEC"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {YELLOW}spectators Team{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a rejoint les {YELLOW}spectateurs{NORMAL}."
+	}
+}
+

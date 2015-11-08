@@ -1,0 +1,206 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Multi bhop not available"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Multihop and Nohop are not available on this map."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Multihop et Nohop ne sont pas disponible sur cette map."
+	}
+
+	"Style Desc"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] Style description: {1}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Description du style: {1}."
+	}
+
+	"You failed vegas mission"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You failed vegas mission. You need to restart to collect all vegas platforms."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous avez échoué la mission vegas. Vous devez redémarrer pour recueillir toutes les plateformes vegas."
+	}
+
+	"No styles enabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] No styles enabled."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Aucun style activé."
+	}
+
+	"Settings reloaded"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Settings reloaded."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Paramètres rechargés."
+	}
+
+	"You need to be alive to use noclip"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You need to be alive to use noclip."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous devez être en vie pour utiliser noclip."
+	}
+
+	"Noclip Enabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Noclip {GREEN}enabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Noclip {GREEN}activé{NORMAL}."
+	}
+
+	"Noclip Disabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Noclip {RED}Disabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Noclip {RED}désactivé{NORMAL}."
+	}
+
+	"You have not access to this command"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You have not access to this command."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous n'avez pas accèss à cette commande."
+	}
+
+	"Automode Enabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Automode {GREEN}enabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Automode {GREEN}activé{NORMAL}."
+	}
+
+	"Automode Disabled"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Automode {RED}Disabled{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Automode {RED}désactivé{NORMAL}."
+	}
+
+
+	"Styles"
+	{
+		"en"			"Menu: Styles"
+		"fr"			"Menu: Styles"
+	}
+	"MenuRanked"
+	{
+		"en"			"Menu: Ranked styles"
+		"fr"			"Menu: Styles classés"
+	}
+	"Ranked"
+	{
+		"en"			"Ranked styles"
+		"fr"			"Styles classés"
+	}
+	"Fun"
+	{
+		"en"			"Fun Styles"
+		"fr"			"Styles fun"
+	}
+	"Practise"
+	{
+		"en"			"Practise Styles"
+		"fr"			"Styles d'entrainement"
+	}
+	"Back"
+	{
+		"en"			"Back"
+		"fr"			"Retour"
+	}
+
+
+	"Timer Settings"
+	{
+		"en"			"Menu: Timer settings"
+		"fr"			"Menu: Paramètres du timer"
+	}
+	"Enable Auto-Jump"
+	{
+		"en"			"Enable auto jump"
+		"fr"			"Activer l'auto saut"
+	}
+	"Disable Auto-Jump"
+	{
+		"en"			"Disable auto jump"
+		"fr"			"Désactiver l'auto saut"
+	}
+	"Enable Auto-Bhop"
+	{
+		"en"			"Enable auto bhop"
+		"fr"			"Activer l'auto bhop"
+	}
+	"Disable Auto-Bhop"
+	{
+		"en"			"Disable auto bhop"
+		"fr"			"Désactiver l'auto bhop"
+	}
+	"Enable Auto-Restart"
+	{
+		"en"			"Enable auto restart"
+		"fr"			"Activer auto le recommencement"
+	}
+	"Disable Auto-Restart"
+	{
+		"en"			"Disable auto restart"
+		"fr"			"Désactiver auto le recommencement"
+	}
+	"Enable Auto-Hide"
+	{
+		"en"			"Enable auto hide"
+		"fr"			"Activer auto cacher les joueurs"
+	}
+	"Disable Auto-Hide"
+	{
+		"en"			"Disable auto hide"
+		"fr"			"Désactiver auto cacher les joueurs"
+	}
+
+
+	"Custom Settings"
+	{
+		"en"			"Menu: Custom settings"
+		"fr"			"Menu: Paramètres personnalisés"
+	}
+	"Enable Auto-Mode"
+	{
+		"en"			"Enable auto mode"
+		"fr"			"Activer auto mode"
+	}
+	"Disable Auto-Mode"
+	{
+		"en"			"Disable auto mode"
+		"fr"			"Désactiver auto mode"
+	}
+	"Enable Jump Height Boost"
+	{
+		"en"			"Enable jump height boost"
+		"fr"			"Activer le boost de saut"
+	}
+	"Disable Jump Height Boost"
+	{
+		"en"			"Disable jump height boost"
+		"fr"			"Désactiver le boost de saut"
+	}
+	"Enable Speed Loss (Stamina)"
+	{
+		"en"			"Enable speed loss (Stamina)"
+		"fr"			"Activer la perte de vitesse (Endurance)"
+	}
+	"Disable Speed Loss (Stamina)"
+	{
+		"en"			"Disable speed loss (Stamina)"
+		"fr"			"Désactiver la perte de vitesse (Endurance)"
+	}
+	"Enable Low Gravity"
+	{
+		"en"			"Enable low gravity"
+		"fr"			"Activer la faible gravité"
+	}
+	"Disable Low Gravity"
+	{
+		"en"			"Disable low gravity"
+		"fr"			"Désactiver la faible gravité"
+	}
+
+}
+

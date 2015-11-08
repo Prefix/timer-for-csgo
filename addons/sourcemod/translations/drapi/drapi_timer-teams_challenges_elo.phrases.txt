@@ -1,0 +1,34 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+
+	"Rating"
+	{
+		"#format"		"{1:N},{2:i},{3:i},{4:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} Rating: {2}. Rank: {3}/{4}"
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} Classement: {2}. Classé: {3}/{4}"
+	}
+
+	"No Rating"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You never played a match. Type !challenge to make match."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous n'avais jamais joué un match. Tapez !challenge pour faire un match."
+	}
+
+	"Win"
+	{
+		"#format"		"{1:N},{2:i},{3:i},{4:N},{5:i},{6:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} {YELLOW}{2}{NORMAL} [+{3}] has beaten {RED}{4}{NORMAL} {YELLOW}{5}{NORMAL} [-{6}] at a challenge."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} {YELLOW}{2}{NORMAL} [+{3}] a battu {RED}{4}{NORMAL} {YELLOW}{5}{NORMAL} [-{6}] à un challenge."
+	}
+	
+}
+

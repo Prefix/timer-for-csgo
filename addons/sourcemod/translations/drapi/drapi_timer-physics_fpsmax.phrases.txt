@@ -1,0 +1,34 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Switch FPS"
+	{
+		"#format"		"{1:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You have been switched to FPSMAX style, if you like to play in NORMAL set fps_max to {1}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Votre FPSMAX a changé par rapport au style, si vous aimez jouer au jeu NORMAL mettez fps_max à {1}."
+	}
+
+	"Switch FPS Higher"
+	{
+		"#format"		"{1:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You have been switched to FPSMAX style, if you like to play in NORMAL set fps_max higher than {1}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Votre FPSMAX a changé par rapport au style, si vous aimez jouer au jeu NORMAL mettez fps_max plus grand que {1}."
+	}
+
+	"Switch FPS Lower"
+	{
+		"#format"		"{1:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You have been switched to FPSMAX style, if you like to play in NORMAL set fps_max lower than {1}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Votre FPSMAX a changé par rapport au style, si vous aimez jouer au jeu NORMAL mettez fps_max plus petit que {1}."
+	}
+
+}
+

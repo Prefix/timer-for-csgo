@@ -1,0 +1,50 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"MenuSkins_TITLE"
+	{
+		"fr"			"Menu: Skins par groupe"
+		"en"			"Menu: Skins per group"
+	}
+
+	"Male"
+	{
+		"fr"			"Homme"
+		"en"			"Male"
+	}
+
+	"Female"
+	{
+		"fr"			"Femme"
+		"en"			"Female"
+	}
+
+	"Monster"
+	{
+		"fr"			"Monstre"
+		"en"			"Monster"
+	}
+
+	"Starwars"
+	{
+		"fr"			"Star Wars"
+		"en"			"Star Wars"
+	}
+
+	"MenuSkinsBySection_TITLE"
+	{
+		"fr"			"Menu: Skins"
+		"en"			"Menu: Skins"
+	}
+
+
+}
+

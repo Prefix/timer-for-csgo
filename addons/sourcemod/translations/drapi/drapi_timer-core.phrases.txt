@@ -1,0 +1,18 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Pause Info"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Timer {YELLOW}paused{NORMAL}. Type {RED}!resume{NORMAL} to restore your timer."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Timer en {YELLOW}pause{NORMAL}. Tapez {RED}!resume{NORMAL} pour continuer."
+	}
+}
+

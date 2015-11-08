@@ -1,0 +1,27 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+
+	"Phrase_Complete_Round_Points"
+	{
+		"#format"	"{1:d},{2:s}"
+		"en"		"[{GREEN}TIMER{NORMAL}] You received {1} points for finishing {2}."
+		"fr"		"[{GREEN}TIMER{NORMAL}] Vous avez reçu {1} des points pour avoir fini {2}."
+	}
+
+	"You could earn"
+	{
+		"#format"	"{1:d},{2:d}"
+		"en"		"[{GREEN}TIMER{NORMAL}] You could earn between {1} and {2} points."
+		"fr"		"[{GREEN}TIMER{NORMAL}] Vous pourriez gagner entre {1} et {2} points."
+	}
+}
+

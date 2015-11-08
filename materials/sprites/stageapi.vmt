@@ -1,0 +1,11 @@
+"Sprite"
+{
+"$spriteorientation" "vp_parallel"
+"$spriteorigin" "[ 0.50 0.50 ]"
+"$basetexture" "sprites/stageapi"
+"$receiveflashlight"0
+"$singlepassflashlight"0
+"$alphatest" 1
+"$translucent" 1
+"$vertexalpha" 1
+}

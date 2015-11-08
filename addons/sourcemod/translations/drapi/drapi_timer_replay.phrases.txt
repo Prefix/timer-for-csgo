@@ -1,0 +1,47 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"WR"
+	{
+		"#format"		"{1:s}"
+		"en"			"WR: <font color='#990ECB'>{1}</font>"
+		"fr"			"RM: <font color='#990ECB'>{1}</font>"
+	}
+
+	"Botname"
+	{
+		"#format"		"{1:s},{2:N}"
+		"en"			"{1} | {2}"
+		"fr"			"{1} | {2}"
+	}
+	
+	"Holdername"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1} | {2}"
+		"fr"			"{1} | {2}"
+	}
+
+	"Jumps"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1} | Jumps: {2}"
+		"fr"			"{1} | Sauts: {2}"
+	}
+
+	"Time"
+	{
+		"#format"		"{1:s},{2:s},{3:5.2f}"
+		"en"			"{1}\nTime: <font color='#00ff00'>{2}</font> | Speed: {3}"
+		"fr"			"{1}\nTemps: <font color='#00ff00'>{2}</font> | Vitesse: {3}"
+	}
+}
+

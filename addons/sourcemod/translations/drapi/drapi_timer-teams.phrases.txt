@@ -1,0 +1,191 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"You are already challenging"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already challenging."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà défié."
+	}
+
+	"You are already in coop mode"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are already in coop mode."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes déjà en mode coopération."
+	}
+
+	"No Target found"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] No Target found."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Aucune cible trouvée."
+	}
+
+	"Invalid target"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Invalid target."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Cible non valide."
+	}
+
+	"You can't be challenged next"
+	{
+		"#format"		"{1:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You can't be challenged next {1}s.."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous ne pouvez pas être defié durant les prochaine {1}s.."
+	}
+
+	"Rejected your challenge request"
+	{
+		"#format"		"{1:N},{2:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1} rejected your challenge request. You have to wait {2}s to ask for a new challenge."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1} a rejeté votre demande de défi. Vous devez attendre {2}s pour demander un nouveau défi."
+	}
+
+	"Rejected your challenge request2"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1} rejected your challenge request."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1} a rejeté votre demande de défi."
+	}
+
+	"Abort challenge"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You have {1}s to abort.."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous avez {1} s pour abandonner.."
+	}
+
+	"Choose your teammate"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Type !coop and choose your teammate to become ranked."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Taper !coop et choississer votre partenaire pour être classé."
+	}
+
+	"You have surrendered this challenge"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You have surrendered this challenge."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous avez abondonné ce défi."
+	}
+
+	"Has surrendered this challenge"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1} has surrendered this challenge."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1} a abondonné ce défi."
+	}
+
+	"You have aborted this challenge"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You have aborted this challenge."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous avez interrompu ce défi."
+	}
+
+	"Has aborted this challenge"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1} has aborted this challenge."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1} a interrompu ce défi."
+	}
+
+	"Coop Win"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1} and {2} have finished as a team!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1} et {2} ont fini comme une équipe!"
+	}
+	
+	"Coop Fail"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1} has canceled coop with {2}!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1} a annulé la coopération avec {2}!"
+	}
+
+
+
+	"BetMenuTitle"
+	{
+		"en"			"Menu: Bet"
+		"fr"			"Menu: Parie"
+	}
+	"Very Low"
+	{
+		"#format"		"{1:i}"
+		"en"			"Very low: {1}"
+		"fr"			"Très faible: {1}"
+	}
+	"Low"
+	{
+		"#format"		"{1:i}"
+		"en"			"Low: {1}"
+		"fr"			"Faible: {1}"
+	}
+	"Mid"
+	{
+		"#format"		"{1:i}"
+		"en"			"Middle: {1}"
+		"fr"			"Moyen: {1}"
+	}
+	"Pro"
+	{
+		"#format"		"{1:i}"
+		"en"			"Pro: {1}"
+		"fr"			"Pro: {1}"
+	}
+	"Match"
+	{
+		"#format"		"{1:i}"
+		"en"			"Match: {1}"
+		"fr"			"Match: {1}"
+	}
+
+
+	"Select your opponent"
+	{
+		"en"			"Menu: Your opponent"
+		"fr"			"Menu: Votre adversaire"
+	}
+
+	"Confirm challenge"
+	{
+		"#format"		"{1:N},{2:i}"
+		"en"			"Menu: Confirm Challenge with {1} for {2} points."
+		"fr"			"Menu: Confirmer le defie avec {1} for {2} points."
+	}
+
+	"Confirm challenge style"
+	{
+		"#format"		"{1:N},{2:s},{3:i}"
+		"en"			"Menu: Confirm Challenge with {1} on style: {2} for {3} points."
+		"fr"			"Menu: Confirmer le défie avec {1} sur le style: {2} for {3} points."
+	}
+	"Yes"
+	{
+		"en"			"Yes"
+		"fr"			"Oui"
+	}
+	"No"
+	{
+		"en"			"No"
+		"fr"			"Non"
+	}
+
+	"CoopMenuTitle"
+	{
+		"en"			"Menu: Coop"
+		"fr"			"Menu: Coopération"
+	}
+	"Confirm Coop"
+	{
+		"#format"		"{1:N}"
+		"en"			"Menu: Confirm coop with {1}."
+		"fr"			"Menu: Confirm coopération avec {1}."
+	}
+}
+

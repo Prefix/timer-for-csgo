@@ -1,0 +1,263 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+
+	"Phrase_Loading"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Your rank information is still loading, please wait!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vos informations de rang est toujours en chargement, s'il vous plaît attendez!"
+	}
+
+	"Phrase_Rank_Not_Enough"
+	{	
+		"#format"		"{1:d},{2:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You must have at least {1} points to be eligible for rankings. You currently have {2}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous devez avoir au moins {1} points pour être éligibles pour les classements. Vous avez actuellement {2}."
+	}
+
+	"Phrase_Info_Rank_Rank"
+	{
+		"#format"		"{1:d},{2:d},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {3}: Available from ranks {1} through {2}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {3}: Disponible à partir rangs {1} à {2}."
+	}
+
+	"Phrase_Info_Rank_Points"
+	{
+		"#format"		"{1:d},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {2}: Requires at least {1} points."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {2}: Nécessite au moins {1} points."
+	}
+
+	"Phrase_Info_Rank_Display_Tag"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}]  - Scoreboard Tag: {1}"
+		"fr"			"[{GREEN}TIMER{NORMAL}]  - Tag tableau des scores: {1}"
+	}
+	"Phrase_Info_Rank_Display_Chat"
+	{
+		"#format"		"{1:s},{2:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}]  - Chat Tag: {1}{2}"
+		"fr"			"[{GREEN}TIMER{NORMAL}]  - Tag chat: {1}{2}"
+	}
+	"Phrase_Info_Rank_Display_Text"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}]  - {1}Chat Color"
+		"fr"			"[{GREEN}TIMER{NORMAL}]  - {1}Couleur du chat"
+	}
+	"Phrase_Info_Rank_Display_Stars"
+	{
+		"#format"		"{1:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}]  - Scoreboard Stars: x{1}"
+		"fr"			"[{GREEN}TIMER{NORMAL}]  - Etoiles du tableau des scores: x{1}"
+	}
+
+	"Phrase_Info_Rank_Remaining"
+	{
+		"#format"		"{1:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] - You will reach this position in {1} points."
+		"fr"			"[{GREEN}TIMER{NORMAL}] - Vous arriverez à cette position dans {1} points."
+	}
+
+	"Phrase_Rank_None"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There is not enough information to determine rankings, please try again later!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas assez d'informations pour déterminer le classement, s'il vous plaît réessayer plus tard!"
+	}
+
+	"Phrase_Next_None"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] There are no players ahead of you!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Il n'y a pas de joueurs devant vous!"
+	}
+
+	"Phrase_Rank_Global"
+	{
+		"#format"		"{1:N},{2:d},{3:d},{4:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1} is ranked {2} of {3} with {4} points!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1} est classé {2} sur {3} avec {4} points!"
+	}
+
+	"Phrase_Rank_Player"
+	{
+		"#format"		"{1:d},{2:d},{3:d}"
+		"en"			"[{GREEN}TIMER{NORMAL}] You are currently ranked {1} of {2} with {3} points!"
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous êtes actuellement classé {1} sur {2} avec {3} points!"
+	}
+
+	"Session started"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Session started. Type {RED}!session{NORMAL} to see your session stats."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Session commencé. Tapez {RED}!session{NORMAL} pour voir vos stats sur les sessions."
+	}
+
+	"Disconnected"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL} disconnected."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL} s'est déconnecté."
+	}
+	"Disconnected2"
+	{
+		"#format"		"{1:s},{2:s},{3:i},{4:s},{5:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL} disconnected with {YELLOW}{3}{NORMAL} points {YELLOW}({4}{5}){NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL} s'est déconnecté avec {YELLOW}{3}{NORMAL} points {YELLOW}({4}{5}){NORMAL}."
+	}
+	"Connected"
+	{
+		"#format"		"{1:s},{2:N},{3:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL} connected from {PINK}{3}{NORMAL}."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL} s'est connecté de {PINK}{3}{NORMAL}."
+	}
+	"Connected2"
+	{
+		"#format"		"{1:s},{2:N},{3:s},{4:i}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL} connected from {PINK}{3}{NORMAL} with {YELLOW}{4}{NORMAL} points."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {1}{BLUE}{2}{NORMAL}  s'est connecté de {PINK}{3}{NORMAL} avec {YELLOW}{4}{NORMAL} points."
+	}
+
+
+
+
+
+
+
+	"Menu_Core_Title"
+	{
+		"en"			"[TIMER] Rankings"
+		"en"			"[TIMER] Classements"
+	}
+
+	"Menu_Title_Cookie"
+	{
+		"en"			"[TIMER] Ranking\n- Position Settings:"
+		"fr"			"[TIMER] Classement\n- Paramètres de position:"
+	}
+
+	"Menu_Option_Selected"
+	{
+			"en"		"[*] "
+	}
+
+	"Menu_Option_Empty"
+	{
+		"en"			"[  ] "
+	}
+
+	"Menu_Cookie_Option_Tag_Default"
+	{
+		"en"			"Scoreboard Tag (When Available)"
+		"fr"			"Tag tableau des scores (si disponible)"
+	}
+	"Menu_Cookie_Option_Tag"
+	{
+		"en"			"Scoreboard Tag"
+		"fr"			"Tag tableau des scores"
+	}
+	"Menu_Cookie_Option_Chat_Default"
+	{
+		"en"			"Chat Tag (When Available)"
+		"fr"			"Tag Chat (si disponible)"
+	}
+	"Menu_Cookie_Option_Chat"
+	{
+		"en"			"Chat Tag"
+		"fr"			"Tag Chat"
+	}
+	"Menu_Cookie_Option_Text_Default"
+	{
+		"en"			"Modified Text Color (When Available)"
+		"fr"			"Modification de couleur du texte (si disponible)"
+	}
+	"Menu_Cookie_Option_Text"
+	{
+		"en"			"Modified Text Color"
+		"fr"			"Modification de couleur du texte"
+	}
+	"Menu_Cookie_Option_Stars_Default"
+	{
+		"en"			"Scoreboard Stars (When Available)"
+		"fr"			"Etoile du tableau des scores (si disponible)"
+	}
+	"Menu_Cookie_Option_Stars"
+	{
+		"en"			"Scoreboard Stars"
+		"fr"			"Etoile du tableau des scores"
+	}
+
+	"Menu_Title_Info"
+	{
+		"en"			"[TIMER] Ranking\n- Rank Positions:"
+		"fr"			"[TIMER] Classement \n- Positions du classement:"
+	}
+
+	"Menu_Title_Top"
+	{
+		"#format"		"{1:d}"
+		"en"			"[TIMER] Ranking\n- Top {1} Players:"
+		"fr"			"[TIMER] Classement \n- Meilleurs {1} Joueurs:"
+	}
+
+	"Menu_Top_Option"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"(#{3}) {1}, {2} Points"
+	}
+
+	"Menu_Title_Next"
+	{
+		"#format"		"{1:d}"
+		"en"			"[TIMER] Ranking\n- Next {1} Players:"
+		"fr"			"[TIMER] Classement \n- Prochain {1} Players:"
+	}
+	"Menu_Next_Option"
+	{
+		"#format"		"{1:s},{2:d},{3:d}"
+		"en"			"(#{3}) {1}, {2} Points"
+	}
+
+	"Menu_Settings_Title"
+	{
+		"en"			"[TIMER] Rankings\n- Features:"
+		"fr"			"[TIMER] Classement \n- Caractéristiques:"
+	}
+
+	"Menu_Settings_Option_Cookie"
+	{
+		"en"			"Position Settings"
+		"fr"			"Paramètres de position"
+	}
+
+	"Menu_Settings_Option_Top"
+	{
+		"en"			"View Top Players"
+		"fr"			"Voir Meilleurs Joueurs"
+	}
+	"Menu_Settings_Option_Next"
+	{
+		"en"			"View Next Players"
+		"fr"			"Voir Prochains Joueurs"
+	}
+	"Menu_Settings_Option_Rank"
+	{
+		"en"			"View Rank"
+		"fr"			"Voir Classement"
+	}
+
+	"Menu_Settings_Option_Positions"
+	{
+		"en"			"View Positions"
+		"fr"			"Voir Positions"
+	}
+}
+

@@ -1,0 +1,109 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"Ban"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] Ban {BLUE}{1}{NORMAL} from ranked styles except AUTO (Reason: Scripter)."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Ban {BLUE}{1}{NORMAL} pour les styles classés (Raison: Scripteur)."
+	}
+
+	"sm_scripter"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] sm_scripter <player> | Bans a player from all ranked styles except AUTO."
+		"fr"			"[{GREEN}TIMER{NORMAL}] sm_scripter <player> | Ban un joueur pour les styles classés sauf AUTO."
+	}
+
+	"Already ban"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} was already banned."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a déjà été ban."
+	}
+
+	"sm_scripterid"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] sm_scripterid <steamid> | Bans a player from all ranked styles except AUTO."
+		"fr"			"[{GREEN}TIMER{NORMAL}] sm_scripterid <steamid> | Ban un joueur pour les styles classés sauf AUTO."
+	}
+
+	"Ban2"
+	{
+		"#format"		"{1:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] Ban {BLUE}{1}{NORMAL} from ranked styles except AUTO (Reason: Scripter)."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Ban {BLUE}{1}{NORMAL} pour les styles classés (Raison: Scripteur)."
+	}
+
+	"Ban3"
+	{
+		"#format"		"{1:N},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} Ban {RED}{2}{NORMAL} from ranked styles except AUTO (Reason: Scripter)."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} Ban {RED}{2}{NORMAL} pour les styles classés (Raison: Scripteur)."
+	}
+
+	"sm_scripter_unban"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] sm_scripter_unban <player> | Unbans a player."
+		"fr"			"[{GREEN}TIMER{NORMAL}] sm_scripter_unban <player> | Deban un joueur."
+	}
+
+	"Already unban"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} wasn't banned."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} n'était pas ban."
+	}
+
+	"Unban"
+	{
+		"#format"		"{1:N},{2:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} Unbanned {RED}{2}{NORMAL} from ranked styles."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a debanni {RED}{2}{NORMAL} pour les styles classés."
+	}
+
+	"sm_scripter_reload"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] sm_scripter_reload <player(s)> | Reload scripters."
+		"fr"			"[{GREEN}TIMER{NORMAL}] sm_scripter_reload <player(s)> | Recharge les scipteurs."
+	}
+
+	"Reloading Scripter"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Reloading scripter(s)."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Rechargements des scripteurs."
+	}
+
+	"Not Allowed"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You are not allowed to play ranked modes except AUTO (Reason: Scripter)."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous n'êtes pas autorisé à jouer des styles classés sauf AUTO (Raison: Scripteur)."
+	}
+
+	"Already DB"
+	{
+		"#format"		"{1:N}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} is already in the scripter db."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} est déjà dans la base de données."
+	}
+
+	"Added DB"
+	{
+		"#format"		"{1:N},{2:s}"
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} (%s) was added manually to the scripter db."
+		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} (%s) a été rajouté manuellement dans la database scipteur."
+	}
+
+	"Timer Management"
+	{
+		"en" 			"Timer Management"
+	}
+}
+

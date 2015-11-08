@@ -1,0 +1,63 @@
+﻿//**********************************************  Valid Colors	***********************************************
+
+// {NORMAL}, {DARKRED}, {PINK}, {YELLOW}, {GREEN}, {LIGHTGREEN}, {RED}, {GRAY}, {BLUE}, {DARKBLUE}, {PURPLE}  *
+
+//*************************************************************************************************************
+
+
+
+"Phrases"
+
+{
+	"No Target found"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] No Target found."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Aucune cible trouvée."
+	}
+
+	"You have to be alive"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] You have to be alive."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Vous devez être en vie."
+	}
+
+	"Teleport disabled by server"
+	{
+		"en"			"[{GREEN}TIMER{NORMAL}] Teleport {RED}disabled{NORMAL} by server."
+		"fr"			"[{GREEN}TIMER{NORMAL}] Teleportation est {RED}désactivée{NORMAL}."
+	}
+
+
+	"TeleMenuTitle"
+	{
+		"en"			"Menu: Teleport"
+		"fr"			"Menu: Téléportation"
+	}
+
+	"Are you sure to quit the Challenge"
+	{
+		"en"			"Menu: Are you sure to quit the Challenge?"
+		"fr"			"Menu: Etes vous sur de vouloir quitter le défi?"
+	}
+	"Are you sure to quit the Coop"
+	{
+		"en"			"Menu: Are you sure to quit the Coop?"
+		"fr"			"Menu: Etes vous sur de vouloir quitter la coopération?"
+	}
+	"Are you sure to quit"
+	{
+		"en"			"Menu: Are you sure to quit?"
+		"fr"			"Menu: Etes vous sur de vouloir quitter?"
+	}
+	"Yes"
+	{
+		"en"			"Yes"
+		"fr"			"Oui"
+	}
+	"No"
+	{
+		"en"			"No"
+		"fr"			"Non"
+	}
+}
+
