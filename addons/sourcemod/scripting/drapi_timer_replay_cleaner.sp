@@ -43,6 +43,8 @@ Handle cvar_active_timer_replay_cleaner_dev;
 Handle cvar_timer_replay_cleaner_os;
 
 Handle g_hSQL 									= INVALID_HANDLE;
+Handle Array_FileToKeep							= INVALID_HANDLE;
+Handle Array_FileToRemove						= INVALID_HANDLE;
 
 //Bool
 bool B_active_timer_replay_cleaner_dev			= false;
@@ -123,15 +125,23 @@ public void OnMapStart()
 	}
 	
 	UpdateState();
-	DeleteFileRec();
+	Array_FileToKeep 	= CreateArray(PLATFORM_MAX_PATH);
+	Array_FileToRemove 	= CreateArray(PLATFORM_MAX_PATH);
+	
+	CreateTimer(10.0, Timer_DeleteFileRec, _, TIMER_FLAG_NO_MAPCHANGE);
 }
 
+public Action Timer_DeleteFileRec(Handle time)
+{
+	DeleteFileRec();
+}
 /***********************************************************/
 /********************** WHEN MAP END ***********************/
 /***********************************************************/
 public void OnMapEnd()
 {
-	DeleteFileRec();
+	ClearArray(Array_FileToKeep);
+	ClearArray(Array_FileToRemove);
 }
 
 /***********************************************************/
@@ -188,6 +198,8 @@ void DeleteFileRec()
 		Format(Query, sizeof(Query), Sql_SelectWrReplay, S_mapname, style, 1);
 		SQL_TQuery(g_hSQL, Sql_DeleteFileRecCallback, Query, _, DBPrio_High);
 	}
+	
+	CreateTimer(2.0, Timer_RemoveFileRecordChecking, _, TIMER_FLAG_NO_MAPCHANGE);
 }
 
 /***********************************************************/
@@ -200,16 +212,71 @@ public void Sql_DeleteFileRecCallback(Handle hOwner, Handle hQuery, const char[]
 		LogError("%s SQL Error: %s", TAG_CHAT, strError);
 	}
 	
-	char S_file[PLATFORM_MAX_PATH];
-	
 	if(SQL_HasResultSet(hQuery))
 	{
-		while(SQL_FetchRow(hQuery))
+		int count = SQL_GetRowCount(hQuery);
+		if(count > 0)
 		{
-			SQL_FetchString(hQuery, 0, S_file, PLATFORM_MAX_PATH);
-			
-			if(!S_file[0]) return;
-			
+			while(SQL_FetchRow(hQuery))
+			{
+				char S_file[PLATFORM_MAX_PATH];
+				
+				SQL_FetchString(hQuery, 0, S_file, PLATFORM_MAX_PATH);
+				
+				char S_mapname[64], S_path[PLATFORM_MAX_PATH];
+				GetCurrentMap(S_mapname, 64);
+				ReplaceString(S_file, PLATFORM_MAX_PATH, S_mapname, "");
+				
+				if(C_timer_replay_cleaner_os == 0)
+				{
+					Format(S_path, PLATFORM_MAX_PATH, "addons/sourcemod/data/botmimic/bhop/wr/%s", S_mapname);
+				}
+				else if(C_timer_replay_cleaner_os == 1)
+				{
+					Format(S_path, PLATFORM_MAX_PATH, "addons\\sourcemod\\data\\botmimic\\bhop\\wr\\%s", S_mapname);
+				
+				}
+				
+				Handle dir = OpenDirectory(S_path);
+				if (dir == INVALID_HANDLE)
+				{
+					return;
+				}
+				
+				char S_pathDir[PLATFORM_MAX_PATH];
+				FileType type;
+				
+				while (ReadDirEntry(dir, S_pathDir, sizeof(S_pathDir), type))
+				{
+					if(StrEqual(S_file[1], S_pathDir))
+					{
+						if(type == FileType_File)
+						{
+							PushArrayString(Array_FileToKeep, S_pathDir);
+							
+							if(B_active_timer_replay_cleaner_dev)
+							{
+								PrintToChatAll("Keep record: %s", S_pathDir);
+							}
+						}
+					}
+					else
+					{
+						if(type == FileType_File)
+						{
+							PushArrayString(Array_FileToRemove, S_pathDir);
+							if(B_active_timer_replay_cleaner_dev)
+							{
+								PrintToChatAll("Delete record: %s", S_pathDir);
+							}
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			char S_file[PLATFORM_MAX_PATH];
 			char S_mapname[64], S_path[PLATFORM_MAX_PATH];
 			GetCurrentMap(S_mapname, 64);
 			ReplaceString(S_file, PLATFORM_MAX_PATH, S_mapname, "");
@@ -228,57 +295,90 @@ public void Sql_DeleteFileRecCallback(Handle hOwner, Handle hQuery, const char[]
 			if (dir == INVALID_HANDLE)
 			{
 				return;
-			}
+			}	
 			
 			char S_pathDir[PLATFORM_MAX_PATH];
 			FileType type;
+			
 			while (ReadDirEntry(dir, S_pathDir, sizeof(S_pathDir), type))
 			{
-				if(StrEqual(S_file[1], S_pathDir))
+				if(type == FileType_File)
 				{
+					PushArrayString(Array_FileToRemove, S_pathDir);
 					if(B_active_timer_replay_cleaner_dev)
 					{
-						PrintToChatAll("Keep record: %s", S_file);
+						PrintToChatAll("Delete record: %s", S_pathDir);
 					}
 				}
-				else
+			}		
+		}
+	}
+}
+
+public Action Timer_RemoveFileRecordChecking(Handle timer)
+{
+
+	int arraySizeFileToKeep = GetArraySize(Array_FileToKeep);
+	int arraySizeFileToRemove = GetArraySize(Array_FileToRemove);
+	
+	if(arraySizeFileToKeep && arraySizeFileToRemove)
+	{
+		char S_FileToKeep[PLATFORM_MAX_PATH], S_FileToRemove[PLATFORM_MAX_PATH];
+		
+		for(int itokeep = 0; itokeep < arraySizeFileToKeep; itokeep++)
+		{
+			GetArrayString(Array_FileToKeep, itokeep, S_FileToKeep, PLATFORM_MAX_PATH);
+			
+			for(int itoremove = 0; itoremove < arraySizeFileToRemove; itoremove++)
+			{
+				GetArrayString(Array_FileToRemove, itoremove, S_FileToRemove, PLATFORM_MAX_PATH);
+				
+				if(StrEqual(S_FileToKeep, S_FileToRemove))
 				{
-					if(type == FileType_File)
+					SetArrayString(Array_FileToRemove, itoremove, "");
+					
+					if(B_active_timer_replay_cleaner_dev)
 					{
-						Handle Array_File = CreateArray(PLATFORM_MAX_PATH);
-						PushArrayString(Array_File, S_pathDir);
-						
-						int arraySizeFile = GetArraySize(Array_File);
-						
-						if(arraySizeFile)
-						{
-							char S_FileToDelete[PLATFORM_MAX_PATH], S_pathToDelete[PLATFORM_MAX_PATH];
-							for(int i = 0; i < arraySizeFile; i++)
-							{
-								GetArrayString(Array_File, i, S_FileToDelete, PLATFORM_MAX_PATH);
-								
-								if(C_timer_replay_cleaner_os == 0)
-								{
-									Format(S_pathToDelete, PLATFORM_MAX_PATH, "addons/sourcemod/data/botmimic/bhop/wr/%s/%s", S_mapname, S_FileToDelete);
-								}
-								else if(C_timer_replay_cleaner_os == 1)
-								{
-									Format(S_pathToDelete, PLATFORM_MAX_PATH, "addons\\sourcemod\\data\\botmimic\\bhop\\wr\\%s\\%s", S_mapname, S_FileToDelete);
-								}
-								
-								DeleteFile(S_pathToDelete);
-								if(B_active_timer_replay_cleaner_dev)
-								{
-									PrintToChatAll("Delete record: %s", S_FileToDelete);
-								}
-							}
-						}
-						
-						ClearArray(Array_File);
+						PrintToChatAll("Remove array: [%i] - %s", itoremove, S_FileToRemove);
 					}
 				}
 			}
+		}
+	}
+	
+	CreateTimer(2.0, Timer_RemoveFileRecord, _, TIMER_FLAG_NO_MAPCHANGE);
+}
+
+public Action Timer_RemoveFileRecord(Handle timer)
+{
+	char S_mapname[64];
+	GetCurrentMap(S_mapname, 64);
+	
+	int arraySizeFileToRemove = GetArraySize(Array_FileToRemove);
+	
+	if(arraySizeFileToRemove)
+	{
+		char S_FileToDelete[PLATFORM_MAX_PATH], S_pathToDelete[PLATFORM_MAX_PATH];
+		
+		for(int itoremove = 0; itoremove < arraySizeFileToRemove; itoremove++)
+		{
+			GetArrayString(Array_FileToRemove, itoremove, S_FileToDelete, PLATFORM_MAX_PATH);
 			
+			if(C_timer_replay_cleaner_os == 0)
+			{
+				Format(S_pathToDelete, PLATFORM_MAX_PATH, "addons/sourcemod/data/botmimic/bhop/wr/%s/%s", S_mapname, S_FileToDelete);
+			}
+			else if(C_timer_replay_cleaner_os == 1)
+			{
+				Format(S_pathToDelete, PLATFORM_MAX_PATH, "addons\\sourcemod\\data\\botmimic\\bhop\\wr\\%s\\%s", S_mapname, S_FileToDelete);
+			}
+			
+			DeleteFile(S_pathToDelete);
+			
+			if(B_active_timer_replay_cleaner_dev)
+			{
+				PrintToChatAll("Remove RECORDS: [%i] - %s", itoremove, S_FileToDelete);
+			}
 		}
 	}
 }
