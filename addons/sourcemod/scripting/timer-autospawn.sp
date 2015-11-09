@@ -103,13 +103,17 @@ public Action Touch(int entity, int other)
 /***********************************************************/
 public Action Command_T(int client, int args)
 {
-	CS_SwitchTeam(client, CS_TEAM_T);
-	CS_RespawnPlayer(client);
-	Timer_SetStyle(client, C_LastStyle[client]);
+	//CS_SwitchTeam(client, CS_TEAM_T);
+	//CS_RespawnPlayer(client);
+	//Timer_SetStyle(client, C_LastStyle[client]);
 	
 	int style = Timer_GetStyle(client);
 	if(g_Physics[style][StylePvP])
 	{
+		CS_SwitchTeam(client, CS_TEAM_T);
+		CS_RespawnPlayer(client);
+		Timer_SetStyle(client, C_LastStyle[client]);
+		
 		int random = GetRandomInt(0, ZonePVP-1);
 		if(F_ZoneStart[random][0] != 0.0 && F_ZoneStart[random][1] != 0.0 && F_ZoneStart[random][2] != 0.0)
 		{
@@ -125,13 +129,17 @@ public Action Command_T(int client, int args)
 /***********************************************************/
 public Action Command_CT(int client, int args)
 {
-	CS_SwitchTeam(client, CS_TEAM_CT);
-	CS_RespawnPlayer(client);
-	Timer_SetStyle(client, C_LastStyle[client]);
+	//CS_SwitchTeam(client, CS_TEAM_CT);
+	//CS_RespawnPlayer(client);
+	//Timer_SetStyle(client, C_LastStyle[client]);
 	
 	int style = Timer_GetStyle(client);
 	if(g_Physics[style][StylePvP])
 	{
+		CS_SwitchTeam(client, CS_TEAM_CT);
+		CS_RespawnPlayer(client);
+		Timer_SetStyle(client, C_LastStyle[client]);
+		
 		int random = GetRandomInt(0, ZonePVP-1);
 		if(F_ZoneStart[random][0] != 0.0 && F_ZoneStart[random][1] != 0.0 && F_ZoneStart[random][2] != 0.0)
 		{
