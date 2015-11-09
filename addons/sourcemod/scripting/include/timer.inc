@@ -6,7 +6,7 @@
 #pragma semicolon 1
 #include <csgocolors>
 
-#define PL_VERSION		"2.4.3.0"
+#define PL_VERSION		"3.0.0.0"
 
 /*** SETTINGS ***/
 #define MAX_STYLES	32 //Max number of styles (default 32 ID:0-31)
