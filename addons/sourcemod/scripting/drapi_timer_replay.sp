@@ -105,7 +105,7 @@ public void OnPluginStart()
 	cvar_active_timer_replay_dev			= AutoExecConfig_CreateConVar("drapi_active_timer_replay_dev", 			"0", 					"Enable/Disable Dev Mod", 				DEFAULT_FLAGS, 		true, 0.0, 		true, 1.0);
 	
 	cvar_timer_os							= AutoExecConfig_CreateConVar("drapi_timer_os", 						"0", 					"OS System, 0 = linux, 1 = windows", 	DEFAULT_FLAGS);
-	cvar_timer_wr_holder_name				= AutoExecConfig_CreateConVar("drapi_timer_wr_holder_name", 			"1", 					"Enable/Disable WR Holder name", 		DEFAULT_FLAGS);
+	cvar_timer_wr_holder_name				= AutoExecConfig_CreateConVar("drapi_timer_wr_holder_name", 			"0", 					"Enable/Disable WR Holder name", 		DEFAULT_FLAGS);
 	
 	HookEventsCvars();
 	
