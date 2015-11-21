@@ -726,7 +726,7 @@ void UpdateHUD_CSGO(int client)
 		
 		if(B_timer_wr_holder_name)
 		{
-			Format(centerText, sizeof(centerText), "%T", "Holdermame", client, centerText, S_FileReplayName[C_StyleTarget[client]]);
+			Format(centerText, sizeof(centerText), "%T", "Holdername", client, centerText, S_FileReplayName[C_StyleTarget[client]]);
 		}
 		else
 		{
