@@ -276,30 +276,30 @@ public int OnTimerRecord(int client, int track, int style, float time, float las
 		{
 			if(NewPersonalRecord && !FirstRecord)
 			{
-				CPrintToChatAll("");
-				CPrintToChatAll("%t", "Header2", name, BonusString);
-				CPrintToChatAll("%t", "Style", StyleString);
-				CPrintToChatAll("%t", "Time", TimeString);
-				CPrintToChatAll("%t", "OldTime", LastTimeString);
-				CPrintToChatAll("");
+				CPrintToChat(client, "");
+				CPrintToChat(client, "%t", "Header2", name, BonusString);
+				CPrintToChat(client, "%t", "Style", StyleString);
+				CPrintToChat(client, "%t", "Time", TimeString);
+				CPrintToChat(client, "%t", "OldTime", LastTimeString);
+				CPrintToChat(client, "");
 				
 			}
 			else
 			{
-				CPrintToChatAll("");
-				CPrintToChatAll("%t", "Header2", name, BonusString);
-				CPrintToChatAll("%t", "Style", StyleString);
-				CPrintToChatAll("%t", "Time", TimeString);
-				CPrintToChatAll("");
+				CPrintToChat(client, "");
+				CPrintToChat(client, "%t", "Header2", name, BonusString);
+				CPrintToChat(client, "%t", "Style", StyleString);
+				CPrintToChat(client, "%t", "Time", TimeString);
+				CPrintToChat(client, "");
 			}
 		}
 		else
 		{
-			CPrintToChatAll("");
-			CPrintToChatAll("%t", "Header3", name, BonusString);
-			CPrintToChatAll("%t", "Style", StyleString);
-			CPrintToChatAll("%t", "Time", TimeString);
-			CPrintToChatAll("");
+			CPrintToChat(client, "");
+			CPrintToChat(client, "%t", "Header3", name, BonusString);
+			CPrintToChat(client, "%t", "Style", StyleString);
+			CPrintToChat(client, "%t", "Time", TimeString);
+			CPrintToChat(client, "");
 		}
 	}
 }
