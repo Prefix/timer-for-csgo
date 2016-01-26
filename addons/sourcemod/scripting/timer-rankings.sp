@@ -47,6 +47,7 @@
 new Handle:g_hEnabled = INVALID_HANDLE;
 new Handle:g_hSQL = INVALID_HANDLE;
 new Handle:g_hDisplayMethod = INVALID_HANDLE;
+new Handle:g_hDisplayMsg = INVALID_HANDLE;
 new Handle:g_hRequiredPoints = INVALID_HANDLE;
 new Handle:g_hGlobalMessage = INVALID_HANDLE;
 new Handle:g_hPositionMethod = INVALID_HANDLE;
@@ -85,6 +86,7 @@ new g_iTotalRanks;
 new g_iTotalPlayers;
 new g_iHighestRank;
 new g_iDisplayMethod;
+new g_iDisplayMsg;
 new g_iRequiredPoints;
 new g_iPositionMethod;
 new g_iLimitTopPlayers;
@@ -182,6 +184,10 @@ public OnPluginStart()
 	g_hDisplayMethod = AutoExecConfig_CreateConVar("timer_ranks_display_method", "15", "Determines what information is displayed by clients. Negative / Positives cannot be combined. Positives will force the feature, negatives will allow clients to toggle it on/off. Values that are left off will be ignored by the plugin. (-1/1 = Scoreboard Tag, -2/2 = Chat Tag, -4/4 = Text Color, -8/8 = Scoreboard Stars)", FCVAR_NONE, true, -15.0, true, 15.0);
 	HookConVarChange(g_hDisplayMethod, OnCVarChange);
 	g_iDisplayMethod = GetConVarInt(g_hDisplayMethod);
+	
+	g_hDisplayMsg = AutoExecConfig_CreateConVar("timer_ranks_display_message", "0", "show/hide message disconnect/connect", FCVAR_NONE, true, -15.0, true, 15.0);
+	HookConVarChange(g_hDisplayMsg, OnCVarChange);
+	g_iDisplayMsg = GetConVarInt(g_hDisplayMsg);
 
 	g_hRequiredPoints = AutoExecConfig_CreateConVar("timer_ranks_minimum_points", "20", "Optional requirement that determines the minimum number of points a client must possess to be in any rankings.", FCVAR_NONE, true, 0.0);
 	HookConVarChange(g_hRequiredPoints, OnCVarChange);
@@ -336,6 +342,10 @@ public OnCVarChange(Handle:cvar, const String:oldvalue[], const String:newvalue[
 				}
 			}
 		}
+	}
+	else if(cvar == g_hDisplayMsg)
+	{
+		g_iDisplayMsg = StringToInt(newvalue);
 	}
 	else if(cvar == g_hRequiredPoints)
 	{
@@ -580,13 +590,16 @@ public OnClientDisconnect(client)
 			GetArrayString(g_hCfgArray_DisplayChat, g_iCurrentIndex[client], sNameBuffer, sizeof(sNameBuffer));
 		}
 		
-		if(g_iPositionMethod == 2)
+		if(g_iDisplayMsg)
 		{
-			CPrintToChatAll("%t", "Disconnected", sNameBuffer, g_sName[client]);
-		}
-		else
-		{
-			CPrintToChatAll("%t", "Disconnected2", sNameBuffer, g_sName[client], points, sPre, points-points_start);
+			if(g_iPositionMethod == 2)
+			{
+				CPrintToChatAll("%t", "Disconnected", sNameBuffer, g_sName[client]);
+			}
+			else
+			{
+				CPrintToChatAll("%t", "Disconnected2", sNameBuffer, g_sName[client], points, sPre, points-points_start);
+			}
 		}
 	}
 	KvRewind(g_hSession);
@@ -1573,13 +1586,16 @@ ShowConnectMsg(client)
 		//LogMessage("Name: %d, Ip: %s, Country: %s", client, s_address, s_Country);
 	}
 	
-	if(g_iPositionMethod == 2)
+	if(g_iDisplayMsg)
 	{
-		CPrintToChatAll("%t", "Connected", sNameBuffer, client, s_Country);
-	}
-	else
-	{
-		CPrintToChatAll("%t", "Connected2", sNameBuffer, client, s_Country, g_iCurrentPoints[client]);
+		if(g_iPositionMethod == 2)
+		{
+			CPrintToChatAll("%t", "Connected", sNameBuffer, client, s_Country);
+		}
+		else
+		{
+			CPrintToChatAll("%t", "Connected2", sNameBuffer, client, s_Country, g_iCurrentPoints[client]);
+		}
 	}
 }
 
