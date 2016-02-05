@@ -1805,6 +1805,46 @@ public Native_GetStyleRecordWRStats(Handle:plugin, numParams)
 	return true;
 }
 
+new g_iBestTimeID[MAXPLAYERS + 1] = {-1, ...};
+
+public OnClientStartTouchZoneType(client, MapZoneType:type)
+{
+	CacheBestRound(client);
+}
+
+public OnClientEndTouchZoneType(client, MapZoneType:type)
+{
+	CacheBestRound(client);
+}
+
+public OnClientApplyDifficultyPre(client, style)
+{
+	CacheBestRound(client);
+}
+
+CacheBestRound(client)
+{
+	g_iBestTimeID[client] = -1;
+	
+	new track = Timer_GetTrack(client);
+	new style = Timer_GetStyle(client);
+	
+	decl String:auth[64];
+	GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
+	
+	if(GetArraySize(g_hCache[style][track]) <= 0)
+		return;
+	
+	for (new i = 0; i < GetArraySize(g_hCache[style][track]); i++)
+	{
+		new nCache[RecordCache];
+		GetArrayArray(g_hCache[style][track], i, nCache[0]);
+		
+		if (StrEqual(nCache[Auth], auth))
+			g_iBestTimeID[client] = i;
+	}
+}
+
 public Native_GetBestRound(Handle:plugin, numParams)
 {
 	new client = GetNativeCell(1);
@@ -1814,21 +1854,13 @@ public Native_GetBestRound(Handle:plugin, numParams)
 	decl String:auth[64];
 	GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
 	
-	if(GetArraySize(g_hCache[style][track]) <= 0)
+	if(g_iBestTimeID[client] == -1)
 		return false;
 	
-	for (new i = 0; i < GetArraySize(g_hCache[style][track]); i++)
-	{
-		new nCache[RecordCache];
-		GetArrayArray(g_hCache[style][track], i, nCache[0]);
-		
-		if (StrEqual(nCache[Auth], auth))
-		{
-			SetNativeCellRef(4, nCache[Time]);
-			SetNativeCellRef(5, nCache[Jumps]);
-			return true;
-		}
-	}
+	new nCache[RecordCache];
+	GetArrayArray(g_hCache[style][track], g_iBestTimeID[client], nCache[0]);
+	SetNativeCellRef(4, nCache[Time]);
+	SetNativeCellRef(5, nCache[Jumps]);
 	
 	return false;
 }
