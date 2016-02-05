@@ -12,19 +12,19 @@
 	"CT"
 	{
 		"#format"		"{1:s}"
-		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {BLUE}CT Team{NORMAL}."
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {BLUE}blue team{NORMAL}."
 		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a rejoint les {BLUE}CT{NORMAL}."
 	}
 	"T"
 	{
 		"#format"		"{1:s}"
-		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {RED}Terro Team{NORMAL}."
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {RED}red team{NORMAL}."
 		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a rejoint les {RED}Terro{NORMAL}."
 	}
 	"SPEC"
 	{
 		"#format"		"{1:s}"
-		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {YELLOW}spectators Team{NORMAL}."
+		"en"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} joined {YELLOW}spectators{NORMAL}."
 		"fr"			"[{GREEN}TIMER{NORMAL}] {BLUE}{1}{NORMAL} a rejoint les {YELLOW}spectateurs{NORMAL}."
 	}
 }
