@@ -1767,27 +1767,6 @@ public Native_ForceReloadCache(Handle:plugin, numParams)
 	RefreshCache();
 }
 
-public Native_GetStyleRank(Handle:plugin, numParams)
-{
-	new client = GetNativeCell(1);
-	new track = GetNativeCell(2);
-	new style = GetNativeCell(3);
-	
-	decl String:auth[64];
-	GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
-	
-	for (new i = 0; i < GetArraySize(g_hCache[style][track]); i++)
-	{
-		new nCache[RecordCache];
-		GetArrayArray(g_hCache[style][track], i, nCache[0]);
-		
-		if (StrEqual(nCache[Auth], auth))
-			return i+1;
-	}
-	
-	return 0;
-}
-
 public Native_GetStyleTotalRank(Handle:plugin, numParams)
 {
 	return GetArraySize(g_hCache[GetNativeCell(1)][GetNativeCell(2)]);
@@ -1855,14 +1834,41 @@ public Native_GetBestRound(Handle:plugin, numParams)
 	GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
 	
 	if(g_iBestTimeID[client] == -1)
-		return false;
+		return;
 	
 	new nCache[RecordCache];
 	GetArrayArray(g_hCache[style][track], g_iBestTimeID[client], nCache[0]);
 	SetNativeCellRef(4, nCache[Time]);
 	SetNativeCellRef(5, nCache[Jumps]);
+}
+
+public Native_GetStyleRank(Handle:plugin, numParams)
+{
+	new client = GetNativeCell(1);
+	new track = GetNativeCell(2);
+	new style = GetNativeCell(3);
 	
-	return false;
+	// Use the cache if available
+	if(track == Timer_GetTrack(client) && style == Timer_GetStyle(client) && g_iBestTimeID[client] != -1)
+	{
+		return g_iBestTimeID[client] + 1;
+	}
+	else
+	{
+		decl String:auth[64];
+		GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
+		
+		for (new i = 0; i < GetArraySize(g_hCache[style][track]); i++)
+		{
+			new nCache[RecordCache];
+			GetArrayArray(g_hCache[style][track], i, nCache[0]);
+			
+			if (StrEqual(nCache[Auth], auth))
+				return i+1;
+		}
+	}
+	
+	return 0;
 }
 
 public Native_GetNewPossibleRank(Handle:plugin, numParams)
@@ -1877,8 +1883,13 @@ public Native_GetNewPossibleRank(Handle:plugin, numParams)
 	if(GetArraySize(g_hCache[style][track]) <= 0)
 		return 1;
 	
+	// 100 is more than ever needed
+	new iMax = GetArraySize(g_hCache[style][track]);
+	if(iMax > 100)
+		iMax = 100;
+	
 	new i = 0;
-	for (i = 0; i < GetArraySize(g_hCache[style][track]); i++)
+	for (i = 0; i < iMax; i++)
 	{
 		new nCache[RecordCache];
 		GetArrayArray(g_hCache[style][track], i, nCache[0]);
