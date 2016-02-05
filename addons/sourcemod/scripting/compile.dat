@@ -175,7 +175,7 @@ Age=1210736150
 [timer-physics_quickcmds.sp]
 Age=1210736150
 [timer-rankings.sp]
-Age=1210736150
+Age=1211802118
 [timer-rankings_points_lite.sp]
 Age=1210736150
 [timer-spec.sp]
@@ -361,7 +361,7 @@ Age=1210736150
 [drapi_timer_checkpoints.sp]
 Age=1191660758
 [drapi_timer_finish_message.sp]
-Age=1210736150
+Age=1211801669
 [drapi_timer_hud_csgo.sp]
 Age=1190176044
 [drapi_timer_replay.sp]
