@@ -1833,13 +1833,30 @@ public Native_GetBestRound(Handle:plugin, numParams)
 	decl String:auth[64];
 	GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
 	
-	if(g_iBestTimeID[client] == -1)
-		return;
+	// Use the cache if available
+	if(track == Timer_GetTrack(client) && style == Timer_GetStyle(client) && g_iBestTimeID[client] != -1)
+	{
+		new nCache[RecordCache];
+		GetArrayArray(g_hCache[style][track], g_iBestTimeID[client], nCache[0]);
+		
+		if (StrEqual(nCache[Auth], auth))
+		{
+			SetNativeCellRef(4, nCache[Time]);
+			SetNativeCellRef(5, nCache[Jumps]);
+			return true;
+		}
+	}
 	
-	new nCache[RecordCache];
-	GetArrayArray(g_hCache[style][track], g_iBestTimeID[client], nCache[0]);
-	SetNativeCellRef(4, nCache[Time]);
-	SetNativeCellRef(5, nCache[Jumps]);
+	for (new i = 0; i < GetArraySize(g_hCache[style][track]); i++)
+	{
+		new nCache[RecordCache];
+		GetArrayArray(g_hCache[style][track], i, nCache[0]);
+		SetNativeCellRef(4, nCache[Time]);
+		SetNativeCellRef(5, nCache[Jumps]);
+		return true;
+	}
+	
+	return false;
 }
 
 public Native_GetStyleRank(Handle:plugin, numParams)
@@ -1848,24 +1865,26 @@ public Native_GetStyleRank(Handle:plugin, numParams)
 	new track = GetNativeCell(2);
 	new style = GetNativeCell(3);
 	
+	decl String:auth[64];
+	GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
+	
 	// Use the cache if available
 	if(track == Timer_GetTrack(client) && style == Timer_GetStyle(client) && g_iBestTimeID[client] != -1)
 	{
-		return g_iBestTimeID[client] + 1;
-	}
-	else
-	{
-		decl String:auth[64];
-		GetClientAuthId(client, AuthId_Steam2, auth, sizeof(auth));
+		new nCache[RecordCache];
+		GetArrayArray(g_hCache[style][track], g_iBestTimeID[client], nCache[0]);
 		
-		for (new i = 0; i < GetArraySize(g_hCache[style][track]); i++)
-		{
-			new nCache[RecordCache];
-			GetArrayArray(g_hCache[style][track], i, nCache[0]);
-			
-			if (StrEqual(nCache[Auth], auth))
-				return i+1;
-		}
+		if (StrEqual(nCache[Auth], auth))
+			return g_iBestTimeID[client] + 1;
+	}
+	
+	for (new i = 0; i < GetArraySize(g_hCache[style][track]); i++)
+	{
+		new nCache[RecordCache];
+		GetArrayArray(g_hCache[style][track], i, nCache[0]);
+		
+		if (StrEqual(nCache[Auth], auth))
+			return i+1;
 	}
 	
 	return 0;
