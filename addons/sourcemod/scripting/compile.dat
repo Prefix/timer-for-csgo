@@ -157,7 +157,7 @@ Age=1210736150
 [timer-maptier.sp]
 Age=1210736150
 [timer-mapzones.sp]
-Age=1210736150
+Age=1212917546
 [timer-mapzones_damage_controller.sp]
 Age=1210736150
 [timer-menu.sp]
@@ -488,3 +488,9 @@ Age=1191624061
 Age=1191677137
 [drapi_timer_replay_cleaner.sp]
 Age=1210736150
+[drapi_timer_mapzones_effects_surf.sp]
+Age=1212916788
+[timer-hud_csgo_surf.sp]
+Age=1212916968
+[timer-mapzones_surf.sp]
+Age=1212917568
