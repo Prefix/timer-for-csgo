@@ -4650,7 +4650,7 @@ public Action:Command_Levels(client, args)
 	
 	for (new zone = 0; zone < g_mapZonesCount; zone++)
 	{
-		if(g_mapZones[zone][Level_Id] < 1 && g_mapZones[zone][Level_Id] == ZtCheckpoint)
+		if(g_mapZones[zone][Level_Id] < 1 && g_mapZones[zone][Level_Id] != ZtCheckpoint)
 		{
 			continue;
 		}
