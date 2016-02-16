@@ -44,9 +44,11 @@
 
 //Handle
 Handle cvar_active_timer_finish_message_dev;
+Handle cvar_timer_finish_message_show;
 
 //Bool
 bool B_active_timer_finish_message_dev					= false;
+bool B_timer_finish_message_show						= false;
 
 bool B_timerPhysics 									= false;
 bool B_timerWorldRecord 								= false;
@@ -71,6 +73,7 @@ public void OnPluginStart()
 	AutoExecConfig_CreateConVar("drapi_timer_finish_message_version", PL_VERSION, "Version", CVARS);
 	
 	cvar_active_timer_finish_message_dev			= AutoExecConfig_CreateConVar("drapi_active_timer_finish_message_dev", 			"0", 					"Enable/Disable Dev Mod", 				DEFAULT_FLAGS, 		true, 0.0, 		true, 1.0);
+	cvar_timer_finish_message_show					= AutoExecConfig_CreateConVar("drapi_timer_finish_message_dev", 				"0", 					"Show personal time to all", 			DEFAULT_FLAGS, 		true, 0.0, 		true, 1.0);
 	
 	HookEventsCvars();
 	
@@ -126,6 +129,7 @@ public void OnLibraryRemoved(const char[] name)
 void HookEventsCvars()
 {
 	HookConVarChange(cvar_active_timer_finish_message_dev, 				Event_CvarChange);
+	HookConVarChange(cvar_timer_finish_message_show, 					Event_CvarChange);
 }
 
 /***********************************************************/
@@ -142,6 +146,7 @@ public void Event_CvarChange(Handle cvar, const char[] oldValue, const char[] ne
 void UpdateState()
 {
 	B_active_timer_finish_message_dev 					= GetConVarBool(cvar_active_timer_finish_message_dev);
+	B_timer_finish_message_show 						= GetConVarBool(cvar_timer_finish_message_show);
 }
 
 /***********************************************************/
@@ -276,30 +281,64 @@ public int OnTimerRecord(int client, int track, int style, float time, float las
 		{
 			if(NewPersonalRecord && !FirstRecord)
 			{
-				CPrintToChat(client, "");
-				CPrintToChat(client, "%t", "Header2", name, BonusString);
-				CPrintToChat(client, "%t", "Style", StyleString);
-				CPrintToChat(client, "%t", "Time", TimeString);
-				CPrintToChat(client, "%t", "OldTime", LastTimeString);
-				CPrintToChat(client, "");
+				if(B_timer_finish_message_show)
+				{
+					CPrintToChatAll("");
+					CPrintToChatAll("%t", "Header2", name, BonusString);
+					CPrintToChatAll("%t", "Style", StyleString);
+					CPrintToChatAll("%t", "Time", TimeString);
+					CPrintToChatAll("%t", "OldTime", LastTimeString);
+					CPrintToChatAll("");				
+				}
+				else
+				{
+					CPrintToChat(client, "");
+					CPrintToChat(client, "%t", "Header2", name, BonusString);
+					CPrintToChat(client, "%t", "Style", StyleString);
+					CPrintToChat(client, "%t", "Time", TimeString);
+					CPrintToChat(client, "%t", "OldTime", LastTimeString);
+					CPrintToChat(client, "");
+				}
 				
 			}
 			else
 			{
-				CPrintToChat(client, "");
-				CPrintToChat(client, "%t", "Header2", name, BonusString);
-				CPrintToChat(client, "%t", "Style", StyleString);
-				CPrintToChat(client, "%t", "Time", TimeString);
-				CPrintToChat(client, "");
+				if(B_timer_finish_message_show)
+				{
+					CPrintToChatAll("");
+					CPrintToChatAll("%t", "Header2", name, BonusString);
+					CPrintToChatAll("%t", "Style", StyleString);
+					CPrintToChatAll("%t", "Time", TimeString);
+					CPrintToChatAll("");
+				}
+				else
+				{
+					CPrintToChat(client, "");
+					CPrintToChat(client, "%t", "Header2", name, BonusString);
+					CPrintToChat(client, "%t", "Style", StyleString);
+					CPrintToChat(client, "%t", "Time", TimeString);
+					CPrintToChat(client, "");				
+				}
 			}
 		}
 		else
 		{
-			CPrintToChat(client, "");
-			CPrintToChat(client, "%t", "Header3", name, BonusString);
-			CPrintToChat(client, "%t", "Style", StyleString);
-			CPrintToChat(client, "%t", "Time", TimeString);
-			CPrintToChat(client, "");
+			if(B_timer_finish_message_show)
+			{
+				CPrintToChat(client, "");
+				CPrintToChat(client, "%t", "Header3", name, BonusString);
+				CPrintToChat(client, "%t", "Style", StyleString);
+				CPrintToChat(client, "%t", "Time", TimeString);
+				CPrintToChat(client, "");
+			}
+			else
+			{
+				CPrintToChatAll("");
+				CPrintToChatAll("%t", "Header3", name, BonusString);
+				CPrintToChatAll("%t", "Style", StyleString);
+				CPrintToChatAll("%t", "Time", TimeString);
+				CPrintToChatAll("");			
+			}
 		}
 	}
 }
