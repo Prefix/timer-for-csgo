@@ -160,7 +160,7 @@ void SetSpawns()
 	}
 	else
 	{
-		return;
+		//return;
 	}
 	
 	for(int i = CTspawns; i <= C_unlock_full_team_ct_spawns ;i++)
