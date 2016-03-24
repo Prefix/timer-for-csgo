@@ -415,6 +415,27 @@ native Timer_GetStatus(client);
 native Timer_GetPauseStatus(client);
 
 /**
+ * Gets if timer plugin is enabled
+ * 
+ * @bool if enabled true else false
+ */
+native bool Timer_IsEnabled();
+
+/**
+ * Sets timer's plugins to be disabled
+ * 
+ * @notreturn
+ */
+native void Timer_SetDisabled();
+
+/**
+ * Sets timer's plugins to be enabled
+ * 
+ * @notreturn
+ */
+native void Timer_SetEnabled();
+
+/**
  * Returns clients active track. (0:normal 1:bonus 2:short)
  *
  * @param client The target client

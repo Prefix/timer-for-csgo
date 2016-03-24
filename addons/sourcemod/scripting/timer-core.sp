@@ -18,6 +18,7 @@
 #include <timer-scripter_db>
 #define MAX_FILE_LEN 128
 
+new bool:g_timerEnabled = true;
 new bool:g_timerLogging = false;
 new bool:g_timerPhysics = false;
 new bool:g_timerStrafes = false;
@@ -113,6 +114,9 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 	CreateNative("Timer_AddPenaltyTime", Native_AddPenaltyTime);
 	CreateNative("Timer_GetClientActiveReplayPath", Native_GetClientActiveReplayPath);
 	CreateNative("Timer_GetClientActiveReplayFileName", Native_GetClientActiveReplayFileName);
+	CreateNative("Timer_IsEnabled", Native_IsEnabled);
+	CreateNative("Timer_SetDisabled", Native_SetDisabled);
+	CreateNative("Timer_SetEnabled", Native_SetEnabled);
 
 	return APLRes_Success;
 }
@@ -274,6 +278,7 @@ public OnMapStart()
 	
 	LoadPhysics();
 	LoadTimerSettings();
+	g_timerEnabled = true;
 }
 /**
  * Events
@@ -1092,6 +1097,21 @@ public Native_GetPauseStatus(Handle:plugin, numParams)
 public Native_IsStyleRanked(Handle:plugin, numParams)
 {
 	return (g_Physics[GetNativeCell(1)][StyleCategory] == MCategory_Ranked);
+}
+
+public Native_IsEnabled(Handle:plugin, numParams)
+{
+	return g_timerEnabled;
+}
+
+public Native_SetDisabled(Handle:plugin, numParams)
+{
+	g_timerEnabled = false;
+}
+
+public Native_SetEnabled(Handle:plugin, numParams)
+{
+	g_timerEnabled = true;
 }
 
 public Native_GetClientActiveReplayPath(Handle:plugin, numParams)

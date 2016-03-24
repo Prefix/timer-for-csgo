@@ -29,6 +29,7 @@
 
 //Include native
 #include <sourcemod>
+#include <timer>
 #pragma newdecls required
 
 //***********************************//
@@ -66,6 +67,7 @@ public void PlayerSpawn_Event(Handle event, const char[] name, bool dB)
 
 public Action Timer_RemoveRadar(Handle timer, any client) 
 {
+	if(!Timer_IsEnabled()) return;
 	if(IsValidEntity(client))
 	{
 		SetEntProp(client, Prop_Send, "m_iHideHUD", GetEntProp(client, Prop_Send, "m_iHideHUD") | HIDE_RADAR_CSGO);
