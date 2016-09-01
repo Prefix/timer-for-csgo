@@ -46,6 +46,8 @@ new Handle:sm_auto_respawn = INVALID_HANDLE;
 new Handle:sm_auto_respawn_time = INVALID_HANDLE;
 new Float:MapChecker[MAXPLAYERS+1];
 
+
+
 public Plugin:myinfo =
 {
 	name = "Auto Respawn",
@@ -73,6 +75,15 @@ public OnPluginStart()
 	LoadTranslations("common.phrases");
 	LoadTranslations("respawn.phrases");
 	AutoExecConfig(true, "respawn");
+}
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
 }
 
 public Action:Command_Respawn(client, args)
@@ -154,7 +165,6 @@ public OnClientDisconnect(client)
 public Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroadcast)
 {
 	if(!Timer_IsEnabled()) return;
-	if(Timer_GetMapzoneCount(ZtStart) == 0) return;
 	
 	new respawnState = GetConVarInt(sm_auto_respawn);
 	if (respawnState > 0)

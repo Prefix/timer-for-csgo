@@ -58,10 +58,19 @@ public OnPluginStart()
 /***********************************************************/
 /********************* WHEN MAP START **********************/
 /***********************************************************/
+public OnMapLoad()
+{
+	DoIt();
+}
 public OnMapZonesLoaded()
 {
+	DoIt();
+}
+
+public DoIt() {
 	// If map has start and end.
 	if(Timer_GetMapzoneCount(ZtStart) > 0 && Timer_GetMapzoneCount(ZtEnd) > 0) {
+		
 		
 		LoadPhysics();
 		LoadTimerSettings();
@@ -121,10 +130,6 @@ public OnMapZonesLoaded()
 			{
 				ServerCommand("mp_ignore_round_win_conditions 1");
 			}
-			else 
-			{
-				ServerCommand("mp_ignore_round_win_conditions 0");
-			}
 			
 			if(g_Settings[sv_enablebunnyhopping]) 
 			{
@@ -144,12 +149,37 @@ public OnMapZonesLoaded()
 		{
 			ServerCommand("sm_teamname_ct %s", g_Settings[TeamNameCT]);
 		}
+		ChangeConVar("cs_enable_player_physics_box","1");
+		ChangeConVar("mp_ct_default_melee","weapon_knife");
+		ChangeConVar("mp_ct_default_secondary","weapon_hkp2000");
+		ChangeConVar("mp_t_default_melee","weapon_knife");
+		ChangeConVar("mp_t_default_secondary","weapon_glock");
+		ChangeConVar("sv_allow_votes","0");
+		ChangeConVar("mp_limitteams","0");
+		ChangeConVar("mp_default_team_winner_no_objective","-1");
 	} else {
 		// I love hardcore.
-		ServerCommand("sm_cvar sv_enablebunnyhopping 1");
-		ServerCommand("mp_ignore_round_win_conditions 0");
-		ServerCommand("mp_death_drop_gun 1");
-		ServerCommand("mp_limitteams 1");
+		ChangeConVar("sm_cvar sv_enablebunnyhopping","1");
+		ChangeConVar("mp_ignore_round_win_conditions","0");
+		ChangeConVar("mp_death_drop_gun","1");
+		ChangeConVar("mp_limitteams","1");
+		ChangeConVar("cs_enable_player_physics_box","1");
+		ChangeConVar("mp_forcecamera","0");
+		ChangeConVar("mp_default_team_winner_no_objective","1");
+		ChangeConVar("sm_cvar phys_pushscale","900");
+		ChangeConVar("sm_cvar phys_timescale","1");
+		ChangeConVar("sm_cvar cs_enable_player_physics_box","1");
+		ChangeConVar("sm_cvar sv_turbophysics","0");
 		
 	}
+	ChangeConVar("sv_allow_votes","0");
+	ChangeConVar("sv_alltalk","1");
+	ChangeConVar("sv_full_alltalk","1");
+	ChangeConVar("mp_default_team_winner_no_objective","1");
+}
+
+public ChangeConVar(char[] cvarname, char[] cvarvalue) {
+	new Handle:convar = FindConVar(cvarname);
+	if(convar != INVALID_HANDLE)
+	SetConVarString(convar, cvarvalue);
 }

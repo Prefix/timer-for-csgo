@@ -5,6 +5,8 @@
 #include <timer>
 #include <timer-stocks>
 #include <timer-mapzones>
+
+new bool:enabled = true;
  
 public Plugin:myinfo =
 {
@@ -20,9 +22,20 @@ public OnPluginStart()
 	AddCommandListener(Command_Say, "say");
 	AddCommandListener(Command_SayTeam, "say_team");
 }
- 
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		enabled = false;
+	}
+}
+
 public Action:Command_Say(client, const String:command[], argc)
 {
+	if(!enabled) return Plugin_Continue;
+	
 	decl String:sText[300];
 	GetCmdArgString(sText, sizeof(sText));
 	StripQuotes(sText);
@@ -46,6 +59,7 @@ public Action:Command_Say(client, const String:command[], argc)
  
 public Action:Command_SayTeam(client, const String:command[], argc)
 {
+	if(!enabled) return Plugin_Continue;
 	decl String:sText[300];
 	GetCmdArgString(sText, sizeof(sText));
 	StripQuotes(sText);

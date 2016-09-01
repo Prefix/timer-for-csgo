@@ -21,6 +21,8 @@ new Float:vLastOrigin[MAXPLAYERS + 1][3];
 new Float:vLastAngles[MAXPLAYERS + 1][3];
 new Float:vLastVelocity[MAXPLAYERS + 1][3];
 
+
+
 public Plugin:myinfo = 
 {
 	name = "[TIMER] Strafe Stats",
@@ -28,6 +30,15 @@ public Plugin:myinfo =
 	description = "[Timer] Strafe stats collection core",
 	version = PL_VERSION,
 	url = "forums.alliedmods.net/showthread.php?p=2074699"
+}
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
 }
 
 public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
@@ -51,6 +62,7 @@ public Native_GetBoostedStrafeCount(Handle:plugin, numParams)
 
 public OnClientPutInServer(client)
 {
+	if(!Timer_IsEnabled()) return;
 	g_PlayerStates[client][bOn] = false;
 }
 
@@ -65,6 +77,7 @@ public bool:WorldFilter(entity, mask)
 
 public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:angles[3], &weapon)
 {
+	if(!Timer_IsEnabled()) return;
 	new bool:ongrund = bool:(GetEntityFlags(client) & FL_ONGROUND);
 	
 	if(!g_PlayerStates[client][bOn])
@@ -143,6 +156,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 
 public OnClientStartTouchZoneType(client, MapZoneType:type)
 {
+	if(!Timer_IsEnabled()) return;
 	if (type != ZtEnd && type != ZtBonusEnd)
 		return;
 	
@@ -151,6 +165,7 @@ public OnClientStartTouchZoneType(client, MapZoneType:type)
 
 public OnClientEndTouchZoneType(client, MapZoneType:type)
 {
+	if(!Timer_IsEnabled()) return;
 	if (type != ZtStart && type != ZtBonusStart)
 		return;
 	

@@ -4,11 +4,14 @@
 #include <timer>
 #include <timer-logging>
 #include <timer-rankings>
+#include <timer-mapzones>
 
 //Handles
 new Handle:g_hDatabase = INVALID_HANDLE;
 //Variables
 new bool:g_bSql;
+
+
 
 public Plugin:myinfo =
 {
@@ -26,8 +29,18 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 	return APLRes_Success;
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnPluginStart()
 {
+	if(!Timer_IsEnabled()) return;
 	RegConsoleCmd("sm_georank", Command_GeoRank);
 	
 	if(g_hDatabase == INVALID_HANDLE)
@@ -36,12 +49,14 @@ public OnPluginStart()
 
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	if(g_hDatabase == INVALID_HANDLE)
 		SQL_TConnect(SQL_Connect_Database, "timer");
 }
 
 public SQL_Connect_Database(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if(!Timer_IsEnabled()) return;
 	ErrorCheck(owner, error, "SQL_Connect_Database.Owner");
 	ErrorCheck(hndl, error, "SQL_Connect_Database.Handle");
 
@@ -86,6 +101,7 @@ ErrorCheck(Handle:owner, const String:error[], const String:callback[] = "")
 
 public OnPlayerGainPoints(client, points)
 {
+	if(!Timer_IsEnabled()) return;
 	new String:sCountry[64]; 
 	GetClientIP(client, sCountry, 64);
 	
@@ -100,6 +116,7 @@ public OnPlayerGainPoints(client, points)
 
 public UpdatePointsCallback(Handle:owner, Handle:hndl, const String:error[], any:client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on UpdatePointsCallback: %s", error);
@@ -109,6 +126,7 @@ public UpdatePointsCallback(Handle:owner, Handle:hndl, const String:error[], any
 
 public Action:Command_GeoRank(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	GetGeoTop(client);
 		
 	return Plugin_Handled;
@@ -116,6 +134,7 @@ public Action:Command_GeoRank(client, args)
 
 public GetGeoTop(client)
 {
+	if(!Timer_IsEnabled()) return;
 	decl String:query[2048];
 	FormatEx(query, sizeof(query), "SELECT `country`,`points` FROM `ranks_geo` WHERE `points` > 0 ORDER BY `points` DESC");
 	SQL_TQuery(g_hDatabase, GetGeoTopCallback, query, client, DBPrio_High);
@@ -154,6 +173,7 @@ public GetGeoTopCallback(Handle:owner, Handle:hndl, const String:error[], any:cl
 
 CreateTopMenu(client, Handle:pack)
 {
+	if(!Timer_IsEnabled()) return;
 	decl String:sBuffer[128], String:sCountry[32];
 	new Handle:hMenu = CreateMenu(MenuHandler_MenuTopPlayers);
 
@@ -180,6 +200,7 @@ CreateTopMenu(client, Handle:pack)
 
 public MenuHandler_MenuTopPlayers(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	switch(action)
 	{
 		case MenuAction_End:

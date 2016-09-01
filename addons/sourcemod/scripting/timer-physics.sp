@@ -147,6 +147,8 @@ new Float:g_fLastTimeLadderUsed[MAXPLAYERS+1];
 //SDK Stuff
 new Handle:g_hSDK_Touch = INVALID_HANDLE;
 
+
+
 public Plugin:myinfo =
 {
     name        = "[TIMER] Physics",
@@ -172,6 +174,15 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 	g_bLateLoaded = late;
 	
 	return APLRes_Success;
+}
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
 }
 
 public OnPluginStart()
@@ -280,12 +291,14 @@ public OnLibraryRemoved(const String:name[])
 
 public Action_OnSettingsChange(Handle:cvar, const String:oldvalue[], const String:newvalue[])
 {
+	if(!Timer_IsEnabled()) return;
 	if (cvar == g_hPlattformColor)
 		ParseColor(newvalue, g_PlattformColor);
 }
 
 public OnPluginPauseChange(bool:pause) 
 {
+	if(!Timer_IsEnabled()) return;
 	if(pause) 
 	{
 		OnPluginEnd();
@@ -298,6 +311,7 @@ public OnPluginPauseChange(bool:pause)
 
 stock ResetMultiBhop()
 {
+	if(!Timer_IsEnabled()) return;
 	g_iBhopDoorCount = 0;
 	g_iBhopButtonCount = 0;
 
@@ -312,11 +326,13 @@ stock ResetMultiBhop()
 
 public Event_RoundStart(Handle:event,const String:name[],bool:dontBroadcast) 
 {
+	if(!Timer_IsEnabled()) return;
 	OnPluginPauseChange(false);
 }
 
 public OnPluginEnd() 
 {
+	if(!Timer_IsEnabled()) return;
 	AlterBhopBlocks(true);
 
 	g_iBhopDoorCount = 0;
@@ -325,6 +341,7 @@ public OnPluginEnd()
 
 public OnClientPutInServer(client)
 {
+	if(!Timer_IsEnabled()) return;
 	g_PlattformColorPlayer[client][0] = GetRandomInt(10, 245);
 	g_PlattformColorPlayer[client][1] = GetRandomInt(10, 245);
 	g_PlattformColorPlayer[client][2] = GetRandomInt(10, 245);
@@ -338,6 +355,7 @@ public OnClientPutInServer(client)
 
 public OnClientEndTouchZoneType(client, MapZoneType:zonetype)
 {
+	if(!Timer_IsEnabled()) return;
 	if(zonetype == ZtStart)
 	{
 		ResetStats(client);
@@ -346,6 +364,7 @@ public OnClientEndTouchZoneType(client, MapZoneType:zonetype)
 
 stock ResetStats(client)
 {
+	if(!Timer_IsEnabled()) return;
 	g_PlattformColorPlayer[client][0] = GetRandomInt(10, 245);
 	g_PlattformColorPlayer[client][1] = GetRandomInt(10, 245);
 	g_PlattformColorPlayer[client][2] = GetRandomInt(10, 245);
@@ -359,7 +378,7 @@ stock ResetStats(client)
 
 Teleport(client, bhop, style)
 {
-	
+	if(!Timer_IsEnabled()) return;
 	decl i;
 	new tele = -1, ent = bhop;
 
@@ -395,6 +414,7 @@ Teleport(client, bhop, style)
 
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 	
@@ -408,6 +428,7 @@ public OnMapStart()
 
 public OnMapEnd()
 {
+	if(!Timer_IsEnabled()) return;
 	AlterBhopBlocks(true);
 
 	g_iBhopDoorCount = 0;
@@ -416,6 +437,7 @@ public OnMapEnd()
 
 public Event_PlayerSpawn(Handle:event, const String:name[], bool:dontBroadcast)
 {
+	if(!Timer_IsEnabled()) return;
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
 	
 	if(0 < client <= MaxClients)
@@ -454,6 +476,8 @@ public Event_PlayerSpawn(Handle:event, const String:name[], bool:dontBroadcast)
 
 public Action:Event_PlayerJump(Handle:event, const String:name[], bool:dontBroadcast)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
 	
 	new Float:time = GetGameTime();
@@ -504,17 +528,22 @@ public Action:Event_PlayerJump(Handle:event, const String:name[], bool:dontBroad
 
 public Action:DelayedSlowDown(Handle:timer, any:client)
 {
-	new style = Timer_GetStyle(client);
-	CheckVelocity(client, 1, g_Physics[style][StyleMaxSpeed]);
+	if(Timer_IsEnabled()) {
+		new style = Timer_GetStyle(client);
+		CheckVelocity(client, 1, g_Physics[style][StyleMaxSpeed]);
+	}
 }
 
 public Action:DelayedSlowDownDefault(Handle:timer, any:client)
 {
-	CheckVelocity(client, 1, 1.0);
+	if(Timer_IsEnabled()) 
+		CheckVelocity(client, 1, 1.0);
 }
 
 public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:angles[3], &weapon, &subtype, &cmdnum, &tickcount, &seed, mouse[2])
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	new iInitialButtons = buttons;
 	
 	if(!IsPlayerAlive(client))
@@ -970,6 +999,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 
 public Action:Command_Difficulty(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	CreateDifficultyMenu(client);
 
 	return Plugin_Handled;
@@ -977,6 +1007,7 @@ public Action:Command_Difficulty(client, args)
 
 CreatePhysicsMenu(client, MCategory:category)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients && g_Settings[MultimodeEnable])
 	{
 		new Handle:menu = CreateMenu(MenuHandler_Physics);
@@ -1050,6 +1081,7 @@ CreatePhysicsMenu(client, MCategory:category)
 
 public MenuHandler_Physics(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1097,6 +1129,7 @@ public MenuHandler_Physics(Handle:menu, MenuAction:action, client, itemNum)
 
 CreateDifficultyMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients && g_Settings[MultimodeEnable])
 	{
 		if(g_StyleCountEnabled > 0)
@@ -1150,6 +1183,7 @@ CreateDifficultyMenu(client)
 
 public MenuHandler_Difficulty(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1194,6 +1228,7 @@ public MenuHandler_Difficulty(Handle:menu, MenuAction:action, client, itemNum)
 
 CreateSettingsMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu = CreateMenu(MenuHandler_Settings);
 
 	char title[256];
@@ -1259,6 +1294,7 @@ CreateSettingsMenu(client)
 //ASDFASFWDGEWRG
 public MenuHandler_Settings(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		if (action == MenuAction_End) 
@@ -1325,6 +1361,7 @@ public MenuHandler_Settings(Handle:menu, MenuAction:action, client, itemNum)
 
 CreateCustomMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu = CreateMenu(MenuHandler_Custom);
 
 	char title[256];
@@ -1389,6 +1426,7 @@ CreateCustomMenu(client)
 
 public MenuHandler_Custom(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		if (action == MenuAction_End) 
@@ -1455,6 +1493,7 @@ public MenuHandler_Custom(Handle:menu, MenuAction:action, client, itemNum)
 
 ApplyDifficulty(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (IsClientInGame(client) && IsClientConnected(client) && !IsClientSourceTV(client))
 	{
 		new style = Timer_GetStyle(client);
@@ -1594,6 +1633,7 @@ stock SetThirdPersonView(client, bool:third)
 
 public Entity_Touch(bhop,client) 
 {
+	if(!Timer_IsEnabled()) return;
 	new doorID = GetBhopDoorID(bhop);
 	new buttonID = GetBhopButtonID(bhop);
 	
@@ -1722,12 +1762,15 @@ public Entity_Touch(bhop,client)
 
 public Action:RemoveColouredBlocks(Handle:timer, any:bhop)
 {
-	new colour[4] = {255,255,255,255};
-	SetEntDataArray(bhop, g_iOffs_clrRender , colour, 4, 1, true);
+	if(Timer_IsEnabled()) {
+		new colour[4] = {255,255,255,255};
+		SetEntDataArray(bhop, g_iOffs_clrRender , colour, 4, 1, true);
+	}
 }
 
 FindBhopBlocks() 
 {
+	if(!Timer_IsEnabled()) return;
 	if(g_Settings[MultiBhopEnable])
 	{
 		decl Float:startpos[3], Float:endpos[3], Float:mins[3], Float:maxs[3], tele;
@@ -1903,6 +1946,7 @@ stock ResetBhopCollect(client)
 
 AlterBhopBlocks(bool:bRevertChanges) 
 {
+	if(!Timer_IsEnabled()) return;
 	if(g_Settings[MultiBhopEnable])
 	{
 		static Float:vecDoorPosition2[sizeof g_iBhopDoorList][3];
@@ -2090,6 +2134,7 @@ AlterBhopBlocks(bool:bRevertChanges)
 
 CustomTraceForTeleports(const Float:startpos[3],Float:endheight,Float:step=1.0) 
 {
+	if(!Timer_IsEnabled()) return -1;
 	decl teleports[512];
 	new tpcount, ent = -1;
 
@@ -2124,6 +2169,7 @@ CustomTraceForTeleports(const Float:startpos[3],Float:endheight,Float:step=1.0)
 
 GetAbsBoundingBox(ent,Float:mins[3],Float:maxs[3]) 
 {
+	if(!Timer_IsEnabled()) return;
 	decl Float:origin[3];
 
 	GetEntDataVector(ent,g_iOffs_vecOrigin,origin);
@@ -2141,6 +2187,7 @@ GetAbsBoundingBox(ent,Float:mins[3],Float:maxs[3])
 
 public Action:Timer_UpdateGravity(Handle:timer)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	for (new client = 1; client <= MaxClients; client++)
 	{
 		if (IsClientInGame(client))
@@ -2174,6 +2221,7 @@ public Action:Timer_UpdateGravity(Handle:timer)
 
 public Action:Timer_CheckNoClip(Handle:timer)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	for (new client = 1; client <= MaxClients; client++)
 	{
 		if (IsClientInGame(client))
@@ -2202,6 +2250,7 @@ public Action:Timer_CheckNoClip(Handle:timer)
 
 ParseColor(const String:color[], result[])
 {
+	if(!Timer_IsEnabled()) return;
 	decl String:buffers[4][4];
 	ExplodeString(color, " ", buffers, sizeof(buffers), sizeof(buffers[]));
 	
@@ -2245,6 +2294,7 @@ stock Client_Push(client, Float:clientEyeAngle[3], Float:power, VelocityOverride
 
 public Action:Command_ReloadConfig(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	LoadPhysics();
 	LoadTimerSettings();
 	
@@ -2255,6 +2305,7 @@ public Action:Command_ReloadConfig(client, args)
 
 public Action:Command_NoclipMe(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	new style = Timer_GetStyle(client);
 	if(g_Physics[style][StylePvP]) return Plugin_Handled;
 	if(client<1||!IsClientInGame(client)||!IsPlayerAlive(client))
@@ -2285,6 +2336,7 @@ public Action:Command_NoclipMe(client, args)
 
 public Action:Command_Colour(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(client<1||!IsClientInGame(client))
 	{
 		return Plugin_Handled;
@@ -2304,6 +2356,7 @@ public Action:Command_Colour(client, args)
 
 public Action:Command_ToggleAuto(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(client<1||!IsClientInGame(client))
 	{
 		return Plugin_Handled;
@@ -2324,6 +2377,7 @@ public Action:Command_ToggleAuto(client, args)
 
 public Action:Timer_Push(Handle:timer, any:client)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	Push_Client(client);
 	
 	return Plugin_Stop;
@@ -2339,6 +2393,7 @@ stock Push_Client(client)
 
 public Action:Timer_Boost(Handle:timer, any:client)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	new style = Timer_GetStyle(client);
 	Client_BoostForward(client, g_Physics[style][StyleBoostForward], g_Physics[style][StyleBoostForwardMax]);
 	
@@ -2347,6 +2402,7 @@ public Action:Timer_Boost(Handle:timer, any:client)
 
 Client_BoostForward(client, Float:scale, Float:maxspeed)
 {
+	if(!Timer_IsEnabled()) return;
 	new Float:fVelocity[3];
 	GetEntPropVector(client, Prop_Data, "m_vecVelocity", fVelocity);
 	
@@ -2361,6 +2417,7 @@ Client_BoostForward(client, Float:scale, Float:maxspeed)
 
 PunishAbuse(client, type = -1)
 {
+	if(!Timer_IsEnabled()) return;
 	new style = Timer_GetStyle(client);
 	
 	if(type == -1)

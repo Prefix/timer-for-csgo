@@ -11,6 +11,8 @@ new Handle:g_hFF;
 
 new bool:g_bHeadshot[MAXPLAYERS+1];
 
+
+
 public Plugin:myinfo =
 {
 	name        = "[TIMER] MapZones - Damage Controller",
@@ -57,18 +59,21 @@ public void OnPluginEnd()
 
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadTimerSettings();
 	LoadPhysics();	
 }
 
 public OnClientPutInServer(client)
 {
+	if(!Timer_IsEnabled()) return;
 	SDKHook(client, SDKHook_OnTakeDamage, Hook_OnTakeDamage);
 	SDKHook(client, SDKHook_TraceAttack, Hook_OnTraceAttack);
 }
 
 public OnClientDisconnect(client)
 {
+	if(!Timer_IsEnabled()) return;
 	SDKUnhook(client, SDKHook_OnTakeDamage, Hook_OnTakeDamage);
 	SDKUnhook(client, SDKHook_TraceAttack, Hook_OnTraceAttack);
 }
@@ -76,6 +81,13 @@ public OnClientDisconnect(client)
 
 public Action:Hook_OnTraceAttack(victim, &attacker, &inflictor, &Float:damage, &damagetype, &ammotype, hitbox, hitgroup)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
+	if(!Timer_GetStatus(victim) && Timer_GetMapzoneCount(ZtStart) > 0) {
+		RemovePunchAngle(victim);
+		damage = 0.0;
+		return Plugin_Handled;
+	}
+	
 	if(victim && victim <= MaxClients)
 		g_bHeadshot[victim] = (hitgroup == 1) ? true : false;
 	
@@ -84,6 +96,7 @@ public Action:Hook_OnTraceAttack(victim, &attacker, &inflictor, &Float:damage, &
 
 public Event_PlayerSpawn(Handle:event, const String:name[], bool:dontBroadcast)
 {
+	if(!Timer_IsEnabled()) return;
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
 	
 	g_bHeadshot[client] = false;
@@ -91,6 +104,7 @@ public Event_PlayerSpawn(Handle:event, const String:name[], bool:dontBroadcast)
 
 public Action:Event_Player_Death(Handle:event, const String:name[], bool:dontBroadcast)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
 	new attacker = GetClientOfUserId(GetEventInt(event, "attacker"));
 	
@@ -121,8 +135,14 @@ public Action:Event_Player_Death(Handle:event, const String:name[], bool:dontBro
 
 public Action:Hook_OnTakeDamage(victim, &attacker, &inflictor, &Float:damage, &damagetype)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	new style_victim = Timer_GetStyle(victim);
-
+	
+	if(!Timer_GetStatus(victim) && Timer_GetMapzoneCount(ZtStart) > 0) {
+		RemovePunchAngle(victim);
+		return Plugin_Handled;
+	}
+	
 	//World damage
 	if (attacker == 0 || attacker >= MaxClients)
 	{
@@ -150,6 +170,8 @@ public Action:Hook_OnTakeDamage(victim, &attacker, &inflictor, &Float:damage, &d
 		if(Timer_IsPlayerTouchingZoneType(victim, ZtArena) && Timer_IsPlayerTouchingZoneType(attacker, ZtArena))
 			return Plugin_Continue;
 	}
+	
+
 
 	//Godmode
 	if (g_Settings[Godmode])

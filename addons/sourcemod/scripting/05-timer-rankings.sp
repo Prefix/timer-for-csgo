@@ -140,7 +140,7 @@ new Handle:g_hSession = INVALID_HANDLE;
 new String:g_sName[MAXPLAYERS + 1][32];
 new bool:g_bCheck[MAXPLAYERS + 1];
 
-new bool:enabled_plugin = true;
+
 
 public Plugin:myinfo =
 {
@@ -305,7 +305,7 @@ public OnMapZonesLoaded()
 	// If map has start and end.
 	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
 		//SetFailState("MapZones start and end points not found! Disabling!");
-		enabled_plugin = false;
+		
 	}
 }
 
@@ -346,7 +346,7 @@ public Menu_Settings(client, CookieMenuAction:action, any:info, String:buffer[],
 
 public OnCVarChange(Handle:cvar, const String:oldvalue[], const String:newvalue[])
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(cvar == g_hEnabled)
 	{
 		g_iEnabled = StringToInt(newvalue);
@@ -419,13 +419,13 @@ public OnCVarChange(Handle:cvar, const String:oldvalue[], const String:newvalue[
 
 public OnConfigsExecuted()
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	Parse_Points();
 }
 
 public OnTimerSqlConnected(Handle:sql)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = sql;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
@@ -433,14 +433,14 @@ public OnTimerSqlConnected(Handle:sql)
 
 public OnTimerSqlStop()
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
 }
 
 ConnectSQL()
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = Handle:Timer_SqlGetConnection();
 	
 	if (g_hSQL == INVALID_HANDLE)
@@ -477,14 +477,14 @@ ConnectSQL()
 
 public Action:Timer_SQLReconnect(Handle:timer, any:data)
 {
-	if(!enabled_plugin) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	ConnectSQL();
 	return Plugin_Stop;
 }
 
 public OnMapStart()
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 	
@@ -499,7 +499,7 @@ public OnMapStart()
 
 public OnMapEnd()
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(!g_iEnabled)
 		return;
 
@@ -508,7 +508,7 @@ public OnMapEnd()
 
 public Action:Timer_Advertisement(Handle:timer)
 {
-	if(!enabled_plugin) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(!g_iEnabled)
 		return Plugin_Continue;
 
@@ -522,7 +522,7 @@ public Action:Timer_Advertisement(Handle:timer)
 
 public OnClientPostAdminCheck(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(!g_iEnabled || IsFakeClient(client))
 		return;
 
@@ -561,7 +561,7 @@ public OnClientPostAdminCheck(client)
 
 public OnClientCookiesCached(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(!g_iEnabled || IsFakeClient(client))
 		return;
 
@@ -571,7 +571,7 @@ public OnClientCookiesCached(client)
 
 LoadClientData(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(g_hDisplayCookie == INVALID_HANDLE)
 		return;
 
@@ -597,7 +597,7 @@ LoadClientData(client)
 
 public OnClientDisconnect(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(!g_iEnabled)
 		return;
 
@@ -657,7 +657,7 @@ public OnClientDisconnect(client)
 //g_iPositionMethod == 1 || g_iPositionMethod == 2
 public Action:Command_Say(client, const String:command[], argc)
 {
-	if(!enabled_plugin) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	g_bNewMsg = true;
 	
 	if(!g_iEnabled || !client || g_bInitalizing)
@@ -715,7 +715,7 @@ public Action:Command_Say(client, const String:command[], argc)
 
 Command_Top(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(g_iPositionMethod == 2)
 	{
 		FakeClientCommand(client, "sm_wr");
@@ -731,7 +731,7 @@ Command_Top(client)
 
 Command_Rank(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(g_iPositionMethod == 2)
 	{
 		FakeClientCommand(client, "sm_rank");
@@ -758,14 +758,14 @@ Command_Rank(client)
 
 Command_View(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(g_iDisplayMethod != 0)
 		CreateInfoMenu(client);
 }
 
 Command_Next(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(g_iPositionMethod == 2)
 	{
 		FakeClientCommand(client, "sm_rank");
@@ -788,7 +788,7 @@ Command_Next(client)
 
 CreateCookieMenu(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	decl String:sBuffer[128];
 	new Handle:hMenu = CreateMenu(MenuHandler_CookieMenu);
 
@@ -844,7 +844,7 @@ CreateCookieMenu(client)
 
 public MenuHandler_CookieMenu(Handle:menu, MenuAction:action, param1, param2)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	switch(action)
 	{
 		case MenuAction_End:
@@ -924,7 +924,7 @@ public MenuHandler_CookieMenu(Handle:menu, MenuAction:action, param1, param2)
 
 CreateInfoMenu(client, item = 0)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(g_iTotalRanks < 0)
 		return;
 
@@ -957,7 +957,7 @@ CreateInfoMenu(client, item = 0)
 
 public MenuHandler_InfoMenu(Handle:menu, MenuAction:action, param1, param2)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	switch(action)
 	{
 		case MenuAction_End:
@@ -1060,7 +1060,7 @@ public MenuHandler_InfoMenu(Handle:menu, MenuAction:action, param1, param2)
 
 public Action:OnChatMessage(&author, Handle:recipients, String:name[], String:message[])
 {
-	if(!enabled_plugin) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(!g_bSimpleChatProcessor)
 		return Plugin_Continue;
 	
@@ -1196,7 +1196,7 @@ public Action:OnChatMessage(&author, Handle:recipients, String:name[], String:me
 
 public Action:Event_OnPlayerSpawn(Handle:event, const String:name[], bool:dontBroadcast)
 {
-	if(!enabled_plugin) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(!g_iEnabled)
 		return Plugin_Continue;
 
@@ -1225,7 +1225,7 @@ public Action:Event_OnPlayerTeam(Handle:event, const String:name[], bool:dontBro
 
 public OnClientSettingsChanged(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(!g_iEnabled || IsFakeClient(client))
 		return;
 
@@ -1239,7 +1239,7 @@ public OnClientSettingsChanged(client)
 
 UpdateClientTag(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(!g_iDisplayMethod)
 		return;
 
@@ -1275,7 +1275,7 @@ UpdateClientTag(client)
 
 UpdateClientStars(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(!g_iDisplayMethod)
 		return;
 
@@ -1562,7 +1562,7 @@ public CallBack_LoadRank(Handle:owner, Handle:hndl, const String:error[], any:us
 
 UpdateRankIndexbyRecordTime(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	new iOutside = FindValueInArray(g_hArray_Positions, -1);
 	
 	g_iCurrentRank[client] = Timer_GetStyleRank(client, TRACK_NORMAL, g_StyleDefault);
@@ -1590,7 +1590,7 @@ ShowConnectMsg(client)
 	if(g_bLateLoad)
 		return;
 	
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	
 	if(IsFakeClient(client))
 		return;
@@ -1654,7 +1654,7 @@ ShowConnectMsg(client)
 
 public CallBack_Top(Handle:owner, Handle:hndl, const String:error[], any:userid)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	ErrorCheck(hndl, error, "CallBack_Top");
 	new client = GetClientOfUserId(userid);
 	if(!client || !IsClientInGame(client))
@@ -1687,7 +1687,7 @@ public CallBack_Top(Handle:owner, Handle:hndl, const String:error[], any:userid)
 
 CreateTopMenu(client, Handle:pack)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	decl String:sBuffer[128], String:sName[32];
 	new Handle:hMenu = CreateMenu(MenuHandler_MenuTopPlayers);
 
@@ -1723,7 +1723,7 @@ public MenuHandler_MenuTopPlayers(Handle:menu, MenuAction:action, param1, param2
 
 public CallBack_Next(Handle:owner, Handle:hndl, const String:error[], any:userid)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	ErrorCheck(hndl, error, "CallBack_Next");
 	new client = GetClientOfUserId(userid);
 	if(!client || !IsClientInGame(client))
@@ -1756,7 +1756,7 @@ public CallBack_Next(Handle:owner, Handle:hndl, const String:error[], any:userid
 
 CreateNextMenu(client, Handle:pack)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	decl String:sBuffer[128], String:sName[32];
 	new Handle:hMenu = CreateMenu(MenuHandler_MenuNextPlayers);
 
@@ -1787,7 +1787,7 @@ CreateNextMenu(client, Handle:pack)
 
 CreateSettingsMenu(client)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	decl String:sBuffer[128];
 	new Handle:hMenu = CreateMenu(MenuHandler_SettingsMenu);
 
@@ -1821,7 +1821,7 @@ CreateSettingsMenu(client)
 
 public MenuHandler_SettingsMenu(Handle:menu, MenuAction:action, param1, param2)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	switch(action)
 	{
 		case MenuAction_End:
@@ -1899,7 +1899,7 @@ public MenuHandler_SettingsMenu(Handle:menu, MenuAction:action, param1, param2)
 
 public MenuHandler_MenuNextPlayers(Handle:menu, MenuAction:action, param1, param2)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	switch(action)
 	{
 		case MenuAction_End:
@@ -1936,7 +1936,7 @@ public CallBack_Rank(Handle:owner, Handle:hndl, const String:error[], any:userid
 
 public PanelHandler_RankMenu(Handle:menu, MenuAction:action, param1, param2)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	switch(action)
 	{
 		case MenuAction_End:
@@ -1959,7 +1959,7 @@ public CallBack_CommandSetMapPointsResult(Handle:owner, Handle:hndl, const Strin
 
 public Action:Command_SetRankPoints(client, args)
 {
-	if(!enabled_plugin) return Plugin_Handled;
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if(!g_iEnabled)
 		return Plugin_Handled;
 
@@ -2035,7 +2035,7 @@ public CallBack_CommandSetRankPoints(Handle:owner, Handle:hndl, const String:err
 
 public Action:Command_ChangeRankPoints(client, args)
 {
-	if(!enabled_plugin) return Plugin_Handled;
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if(!g_iEnabled)
 		return Plugin_Handled;
 
@@ -2121,7 +2121,7 @@ public MenuHandler_ListMapMenu(Handle:menu, MenuAction:action, param1, param2)
 
 public Action:Command_ListRanks(client, args)
 {
-	if(!enabled_plugin) return Plugin_Handled;
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if(!g_iEnabled)
 		return Plugin_Handled;
 
@@ -2178,7 +2178,7 @@ public CallBack_CommandListRanks(Handle:owner, Handle:hndl, const String:error[]
 
 public MenuHandler_ListRankMenu(Handle:menu, MenuAction:action, param1, param2)
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	switch(action)
 	{
 		case MenuAction_End:
@@ -2190,7 +2190,7 @@ public MenuHandler_ListRankMenu(Handle:menu, MenuAction:action, param1, param2)
 
 Parse_Points()
 {
-	if(!enabled_plugin) return;
+	if(!Timer_IsEnabled()) return;
 	if(g_hArray_CfgPoints == INVALID_HANDLE)
 		g_hArray_CfgPoints = CreateArray();
 	else
@@ -2379,7 +2379,7 @@ Parse_Points()
 
 public Action:Command_PrintRanks(args)
 {
-	if(!enabled_plugin) return Plugin_Handled;
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	decl String:sArgument[4];
 	GetCmdArg(1, sArgument, sizeof(sArgument));
 	new iArgument = StringToInt(sArgument);
@@ -2823,7 +2823,7 @@ public Action:Cmd_Session(client, args)
 
 public Action:Cmd_RankingsTest(client, args)
 {
-	if (enabled_plugin) PrintToChat(client, "Pluginas veikia");
+	if (Timer_IsEnabled()) PrintToChat(client, "Pluginas veikia");
 	else PrintToChat(client, "Pluginas neveikia");
 	
 	return Plugin_Handled;
@@ -2870,7 +2870,7 @@ public SessionHandler(Handle:menu, MenuAction:action, param1, param2)
 
 public Action:event_connect(Handle:hEvent, const String:szEventName[], bool:bDontBroadcast)
 {
-	if(!enabled_plugin) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(!bDontBroadcast)
     {
 		decl String:szName[32], String:szNetworkID[22], String:szAddress[26];
@@ -2895,7 +2895,7 @@ public Action:event_connect(Handle:hEvent, const String:szEventName[], bool:bDon
 
 public Action:event_disconnect(Handle:hEvent, const String:szEventName[], bool:bDontBroadcast)
 {
-	if(!enabled_plugin) return Plugin_Continue;
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(!bDontBroadcast)
     {
 		decl String:szReason[22], String:szName[32], String:szNetworkID[22];

@@ -2,19 +2,21 @@
 
 #include <sourcemod>
 #include <timer>
+#include <timer-mapzones>
 #include <timer-config_loader>
 
 public Plugin:myinfo =
 {
-    name        = "[TIMER] Main Menu",
-    author      = "Zipcore, DR. API Improvements",
-    description = "Main menu component for [Timer]",
-    version     = PL_VERSION,
-    url         = "zipcore#googlemail.com"
+	name        = "[TIMER] Main Menu",
+	author      = "Zipcore, DR. API Improvements",
+	description = "Main menu component for [Timer]",
+	version     = PL_VERSION,
+	url         = "zipcore#googlemail.com"
 };
 
 new GameMod:mod;
 new String:g_sCurrentMap[PLATFORM_MAX_PATH];
+
 
 public OnPluginStart()
 {
@@ -40,6 +42,7 @@ public OnMapStart()
 
 public Action:Command_Menu(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	MenuEx(client);
 	
 	return Plugin_Handled;
@@ -47,8 +50,8 @@ public Action:Command_Menu(client, args)
 
 enum eCommand
 {
-    String:eCommand_Info[512],
-    String:eCommand_Plugin[512],
+String:eCommand_Info[512],
+String:eCommand_Plugin[512],
 }
 
 new commandsperpage = 7;
@@ -59,6 +62,7 @@ new maxpage;
 
 public Action:Command_HelpMenu(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	//HelpPanel(client);
 	Init_Commands();
 	g_iCurrentPage[client] = 1;
@@ -67,8 +71,18 @@ public Action:Command_HelpMenu(client, args)
 	return Plugin_Handled;
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public Init_Commands()
 {
+	if(!Timer_IsEnabled()) return;
 	g_iCmdCount = 0;
 	
 	Add_Command("!timer", "timer-core.smx");
@@ -112,6 +126,7 @@ public Init_Commands()
 
 Add_Command(String:info[], String:plugin[], bool:enable = true)
 {
+	if(!Timer_IsEnabled()) return;
 	if(enable && PluginEnabled(plugin))
 	{
 		Format(g_Commands[g_iCmdCount][eCommand_Info], 512, "%s", info);
@@ -123,6 +138,7 @@ Add_Command(String:info[], String:plugin[], bool:enable = true)
 
 public CommandPanel(client)
 {
+	if(!Timer_IsEnabled()) return;
 	new firstcomand = g_iCurrentPage[client]*commandsperpage-commandsperpage;
 	
 	new Handle:panel = CreatePanel();
@@ -144,7 +160,7 @@ public CommandPanel(client)
 	
 	new startkey = 8;
 	if(g_iCurrentPage[client] > 1)
-		startkey = 7;
+	startkey = 7;
 	
 	//Fix CS:GO menu buttons
 	if(mod == MOD_CSGO) SetPanelCurrentKey(panel, startkey);
@@ -183,22 +199,23 @@ public CommandPanel(client)
 
 public CommandPanelHandler (Handle:menu, MenuAction:action,client, param2)
 {
-    if ( action == MenuAction_Select )
-    {
+	if(!Timer_IsEnabled()) return;
+	if ( action == MenuAction_Select )
+	{
 		if(mod == MOD_CSGO) 
 		{
 			switch (param2)
 			{
-				case 7:
+			case 7:
 				{
 					if(g_iCurrentPage[client] > 1)
-						g_iCurrentPage[client]--;
+					g_iCurrentPage[client]--;
 					CommandPanel(client);
 				}
-				case 8:
+			case 8:
 				{
 					if(g_iCurrentPage[client] < maxpage)
-						g_iCurrentPage[client]++;
+					g_iCurrentPage[client]++;
 					CommandPanel(client);
 				}
 			}
@@ -207,32 +224,33 @@ public CommandPanelHandler (Handle:menu, MenuAction:action,client, param2)
 		{
 			switch (param2)
 			{
-				case 8:
+			case 8:
 				{
 					if(g_iCurrentPage[client] > 1)
-						g_iCurrentPage[client]--;
+					g_iCurrentPage[client]--;
 					CommandPanel(client);
 				}
-				case 9:
+			case 9:
 				{
 					if(g_iCurrentPage[client] < maxpage)
-						g_iCurrentPage[client]++;
+					g_iCurrentPage[client]++;
 					CommandPanel(client);
 				}
 			}
 		}
-    }
+	}
 }
 
 MenuEx(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(Handle_Menu);
 		char title[256];
 		Format(title, sizeof(title), "%T", "MainMenuTitle", client);
 		SetMenuTitle(menu, title);		
-			
+		
 		char style[256];
 		Format(style, sizeof(style), "%T", "Style", client);
 		AddMenuItem(menu, "mode", style);	
@@ -270,9 +288,10 @@ MenuEx(client)
 		DisplayMenu(menu, client, MENU_TIME_FOREVER);
 	}
 }
-	
+
 public Handle_Menu(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		decl String:info[100], String:info2[100];
@@ -309,10 +328,11 @@ public Handle_Menu(Handle:menu, MenuAction:action, client, itemNum)
 
 WorldRecordMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(Handle_WorldRecordMenu);
-			
+		
 		char title[256];
 		Format(title, sizeof(title), "%T", "WRMenuTitle", client);
 		SetMenuTitle(menu, title);
@@ -332,9 +352,10 @@ WorldRecordMenu(client)
 		DisplayMenu(menu, client, MENU_TIME_FOREVER);
 	}
 }
-	
+
 public Handle_WorldRecordMenu(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		decl String:info[100], String:info2[100];
@@ -359,10 +380,11 @@ public Handle_WorldRecordMenu(Handle:menu, MenuAction:action, client, itemNum)
 
 TeleportMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(Handle_TeleportMenu);
-				
+		
 		char title[256];
 		Format(title, sizeof(title), "%T", "TPMenuTitle", client);
 		SetMenuTitle(menu, title);
@@ -393,9 +415,10 @@ TeleportMenu(client)
 		DisplayMenu(menu, client, MENU_TIME_FOREVER);
 	}
 }
-	
+
 public Handle_TeleportMenu(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		decl String:info[100], String:info2[100];

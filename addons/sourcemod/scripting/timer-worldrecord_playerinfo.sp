@@ -2,6 +2,7 @@
 #include <timer>
 #include <timer-mysql>
 #include <timer-stocks>
+#include <timer-mapzones>
 #include <timer-config_loader>
 
 new Handle:g_hSQL = INVALID_HANDLE;
@@ -41,6 +42,8 @@ new String:sql_selectPlayerWRs[] = "SELECT * FROM (SELECT * FROM (SELECT `time`,
 new String:sql_selectPlayerWRsBonus[] = "SELECT * FROM (SELECT * FROM (SELECT `time`,`map`,`auth` FROM `round` WHERE `track` = '1' AND `style` = '%d' GROUP BY `round`.`map`, `round`.`time`) AS temp GROUP BY LOWER(`map`)) AS temp2 WHERE `auth` = '%s';";
 new String:sql_selectPlayerMapRecord[] = "SELECT auth, name, jumps, time, date, rank, finishcount, avgspeed, maxspeed, finishspeed FROM round WHERE auth LIKE '%s' AND map = '%s' AND track = '%i' AND `style` = '%d';";
 
+
+
 public Plugin:myinfo = 
 {
 	name = "[TIMER] Worldrecord - PlayerInfo",
@@ -63,8 +66,18 @@ public OnPluginStart()
 	}
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnMapStart()
 {
+	if (!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 	
@@ -83,6 +96,7 @@ public OnMapStart()
 
 public OnTimerSqlConnected(Handle:sql)
 {
+	if (!Timer_IsEnabled()) return;
 	g_hSQL = sql;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
@@ -90,12 +104,14 @@ public OnTimerSqlConnected(Handle:sql)
 
 public OnTimerSqlStop()
 {
+	if (!Timer_IsEnabled()) return;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
 }
 
 ConnectSQL()
 {
+	if (!Timer_IsEnabled()) return;
 	g_hSQL = Handle:Timer_SqlGetConnection();
 	
 	if (g_hSQL == INVALID_HANDLE)
@@ -109,12 +125,14 @@ ConnectSQL()
 
 public Action:Timer_SQLReconnect(Handle:timer, any:data)
 {
+	if (!Timer_IsEnabled()) return Plugin_Continue;
 	ConnectSQL();
 	return Plugin_Stop;
 }
 
 public countmaps()
 {
+	if (!Timer_IsEnabled()) return;
 	decl String:Query[255];
 	Format(Query, 255, sql_selectMaps);
 	SQL_TQuery(g_hSQL, SQL_CountMapCallback, Query, false);
@@ -122,6 +140,7 @@ public countmaps()
 
 public countbonusmaps()
 {
+	if (!Timer_IsEnabled()) return;
 	decl String:Query[255];
 	Format(Query, 255, sql_selectMapsBonus);
 	SQL_TQuery(g_hSQL, SQL_CountMapCallback, Query, true);
@@ -129,6 +148,7 @@ public countbonusmaps()
 
 public SQL_CountMapCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if (!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		return;
@@ -158,13 +178,10 @@ public SQL_CountMapCallback(Handle:owner, Handle:hndl, const String:error[], any
 
 public Action:Client_PlayerInfo(client, args)
 {
+	if (!Timer_IsEnabled()) return Plugin_Handled;
 	if(args < 1)
 	{
-		#if SOURCEMOD_V_MAJOR >= 1 && SOURCEMOD_V_MINOR >= 7
-			GetClientAuthId(client, AuthId_Steam2,g_TargetData[client][eTarget_SteamID], 32);
-		#else
-			GetClientAuthString(client, g_TargetData[client][eTarget_SteamID], 32);
-		#endif
+		GetClientAuthId(client, AuthId_Steam2,g_TargetData[client][eTarget_SteamID], 32);
 		GetClientName(client, g_TargetData[client][eTarget_Name], 256);
 		
 		g_TargetData[client][eTarget_Style] = g_StyleDefault;
@@ -208,6 +225,7 @@ public Action:Client_PlayerInfo(client, args)
 
 StylePanel(client)
 {
+	if (!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(MenuHandler_StylePanel);
@@ -235,6 +253,7 @@ StylePanel(client)
 
 public MenuHandler_StylePanel(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if (!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select) 
 	{
 		decl String:info[8];		
@@ -252,6 +271,7 @@ public MenuHandler_StylePanel(Handle:menu, MenuAction:action, client, itemNum)
 
 public QueryPlayerName(client, String:QueryPlayerName[])
 {
+	if (!Timer_IsEnabled()) return;
 	decl String:Query[255];
 	decl String:szName[MAX_NAME_LENGTH*2+1];
 	SQL_QuoteString(g_hSQL, QueryPlayerName, szName, MAX_NAME_LENGTH*2+1);
@@ -264,6 +284,7 @@ public QueryPlayerName(client, String:QueryPlayerName[])
 new Handle:g_hPlayerSearch[MAXPLAYERS+1] = {INVALID_HANDLE, ...};
 
 public SQL_QueryPlayerNameCallback(Handle:owner, Handle:hndl, const String:error[], any:data){
+	if (!Timer_IsEnabled()) return;
 	if(hndl == INVALID_HANDLE)
 		LogError("Error loading playername (%s)", error);
 		
@@ -329,6 +350,7 @@ public SQL_QueryPlayerNameCallback(Handle:owner, Handle:hndl, const String:error
 
 public Menu_PlayerInfo(client)
 {
+	if (!Timer_IsEnabled()) return;
 	g_TargetData[client][eTarget_Active] = true;
 	
 	g_TargetData[client][eTarget_MainMenu] = CreateMenu(Menu_PlayerInfo_Handler);
@@ -355,6 +377,7 @@ public Menu_PlayerInfo(client)
 
 public SQL_ViewSingleRecordCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if (!Timer_IsEnabled()) return;
 	if(hndl == INVALID_HANDLE)
 		LogError("Error loading single record (%s)", error);
 	
@@ -420,6 +443,8 @@ public SQL_ViewSingleRecordCallback(Handle:owner, Handle:hndl, const String:erro
 }
 
 public SQL_ViewPlayerMapRecordCallback(Handle:owner, Handle:hndl, const String:error[], any:data){
+	
+	if (!Timer_IsEnabled()) return;
 	if(hndl == INVALID_HANDLE)
 		LogError("Error loading single record (%s)", error);
 	
@@ -496,6 +521,7 @@ public SQL_ViewPlayerMapRecordCallback(Handle:owner, Handle:hndl, const String:e
 
 public SQL_PRowCountCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if (!Timer_IsEnabled()) return;
 	if(hndl == INVALID_HANDLE)
 		LogError("Error viewing player point rowcount (%s)", error);
 	
@@ -512,6 +538,7 @@ public SQL_PRowCountCallback(Handle:owner, Handle:hndl, const String:error[], an
 
 public SQL_PlayerPointsCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if (!Timer_IsEnabled()) return;
 	if(hndl == INVALID_HANDLE)
 		LogError("Error loading player points (%s)", error);
 	
@@ -555,6 +582,8 @@ public SQL_PlayerPointsCallback(Handle:owner, Handle:hndl, const String:error[],
 }
 
 public SQL_ViewPlayerMapsCallback(Handle:owner, Handle:hndl, const String:error[], any:data){
+	
+	if (!Timer_IsEnabled()) return;
 	if(hndl == INVALID_HANDLE)
 		LogError("[Timer] Error loading playerinfo (%s)", error);
 	
@@ -639,6 +668,7 @@ public SQL_ViewPlayerMapsCallback(Handle:owner, Handle:hndl, const String:error[
 
 public Menu_PlayerSearch(Handle:menu, MenuAction:action, client, param2)
 {
+	if (!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select)
 	{
 		decl String:SteamID[256];
@@ -667,6 +697,7 @@ public Menu_PlayerSearch(Handle:menu, MenuAction:action, client, param2)
 
 public Menu_PlayerInfo_Handler(Handle:menu, MenuAction:action, client, param2)
 {
+	if (!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		new first_item = GetMenuSelectionPosition();
@@ -761,6 +792,7 @@ public Menu_PlayerInfo_Handler(Handle:menu, MenuAction:action, client, param2)
 
 public Menu_Stock_Handler(Handle:menu, MenuAction:action, client, param2)
 {
+	if (!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		new first_item = GetMenuSelectionPosition();
@@ -778,6 +810,7 @@ public Menu_Stock_Handler(Handle:menu, MenuAction:action, client, param2)
 
 public Menu_Stock_Handler2(Handle:menu, MenuAction:action, client, param2)
 {
+	if (!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		new first_item = GetMenuSelectionPosition();
@@ -795,6 +828,7 @@ public Menu_Stock_Handler2(Handle:menu, MenuAction:action, client, param2)
 
 public MapMenu_Stock_Handler(Handle:menu, MenuAction:action, client, param2)
 {
+	if (!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		g_MenuPos[client] = GetMenuSelectionPosition();
@@ -824,6 +858,7 @@ public MapMenu_Stock_Handler(Handle:menu, MenuAction:action, client, param2)
 
 GetIncompleteMaps(client, String:auth[], track, style)
 {
+	if (!Timer_IsEnabled()) return;
 	new Handle:pack = CreateDataPack();
 	WritePackCell(pack, client);
 	WritePackString(pack, auth);
@@ -840,6 +875,7 @@ GetIncompleteMaps(client, String:auth[], track, style)
 
 public CallBack_IncompleteMaps(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if (!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		return;
@@ -918,6 +954,7 @@ public CallBack_IncompleteMaps(Handle:owner, Handle:hndl, const String:error[], 
 
 public MenuHandler_Incompelte(Handle:menu, MenuAction:action, client, param2)
 {
+	if (!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select)
 	{
 		if(g_TargetData[client][eTarget_MainMenu] != INVALID_HANDLE) Menu_PlayerInfo(client);
@@ -934,11 +971,13 @@ public MenuHandler_Incompelte(Handle:menu, MenuAction:action, client, param2)
 
 public OnClientDisconnect(client)
 {
+	if (!Timer_IsEnabled()) return;
 	ClearClient(client);
 }
 
 ClearClient(client)
 {
+	if (!Timer_IsEnabled()) return;
 	if(g_TargetData[client][eTarget_MainMenu] != INVALID_HANDLE)
 	{
 		CloseHandle(g_TargetData[client][eTarget_MainMenu]);

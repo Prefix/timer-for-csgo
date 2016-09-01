@@ -6,11 +6,13 @@
 #include <smlib>
 #include <timer>
 #include <timer-hide>
+#include <timer-mapzones>
 
 #undef REQUIRE_PLUGIN
 #include <timer-teams>
 
 new bool:g_timerTeams = false;
+new bool:enabled = true;
 
 new bool:g_bHooked;
 new bool:g_bHide[MAXPLAYERS+1] = {false, ...};
@@ -36,6 +38,15 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 	CreateNative("Timer_GetClientHide", Native_GetClientHide);
 
 	return APLRes_Success;
+}
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		enabled = false;
+	}
 }
 
 public OnPluginStart()
@@ -76,6 +87,7 @@ public OnLibraryRemoved(const String:name[])
 
 public OnClientPutInServer(client)
 {
+	if(!Timer_IsEnabled()) return;
 	g_bHide[client] = false;
 	SDKHook(client, SDKHook_SetTransmit, Hook_SetTransmit);
 	SDKHook(client, SDKHook_WeaponEquip, Hook_WeaponEquip);
@@ -85,6 +97,7 @@ public OnClientPutInServer(client)
 
 public OnClientDisconnect_Post(client)
 {
+	if(!Timer_IsEnabled()) return;
 	g_bHide[client] = false;
 	SDKUnhook(client, SDKHook_SetTransmit, Hook_SetTransmit);
 	SDKUnhook(client, SDKHook_WeaponEquip, Hook_WeaponEquip);
@@ -94,6 +107,7 @@ public OnClientDisconnect_Post(client)
 
 public OnEntityCreated(entity, const String:classname[])
 {
+	if(!Timer_IsEnabled()) return;
 	if (entity > MaxClients && entity < 2048)
 	{
 		g_iWeaponOwner[entity] = 0;
@@ -102,6 +116,7 @@ public OnEntityCreated(entity, const String:classname[])
 
 public OnEntityDestroyed(entity)
 {
+	if(!Timer_IsEnabled()) return;
 	if (entity > MaxClients && entity < 2048)
 	{
 		g_iWeaponOwner[entity] = 0;
@@ -110,6 +125,7 @@ public OnEntityDestroyed(entity)
 
 public Hook_WeaponEquip(client, weapon)
 {
+	if(!Timer_IsEnabled()) return;
 	if (weapon > MaxClients && weapon < 2048)
 	{
 		g_iWeaponOwner[weapon] = client;
@@ -119,6 +135,7 @@ public Hook_WeaponEquip(client, weapon)
 
 public Hook_WeaponDrop(client, weapon)
 {
+	if(!Timer_IsEnabled()) return;
 	if (weapon > MaxClients && weapon < 2048)
 	{
 		g_iWeaponOwner[weapon] = 0;
@@ -128,6 +145,7 @@ public Hook_WeaponDrop(client, weapon)
 
 public Action:CSS_Hook_ShotgunShot(const String:te_name[], const Players[], numClients, Float:delay)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (!g_bHooked)
 		return Plugin_Continue;
 	
@@ -173,6 +191,7 @@ public Action:CSS_Hook_ShotgunShot(const String:te_name[], const Players[], numC
 
 public Action:Command_Hide(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if(!IsClientInGame(client))
 		return Plugin_Handled;
 	
@@ -194,6 +213,7 @@ public Action:Command_Hide(client, args)
 
 public Action:Command_UnHide(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if(!IsClientInGame(client))
 		return Plugin_Handled;
 	
@@ -206,6 +226,7 @@ public Action:Command_UnHide(client, args)
 
 CheckHooks()
 {
+	if(!Timer_IsEnabled()) return;
 	new bool:bShouldHook = false;
 	
 	for (new i = 1; i <= MaxClients; i++)
@@ -223,6 +244,7 @@ CheckHooks()
 
 public Action:Hook_SetTransmit(entity, client) 
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	new mate;
 	if(g_timerTeams) 
 	{	
@@ -233,6 +255,7 @@ public Action:Hook_SetTransmit(entity, client)
 
 public Action:Hook_SetTransmitWeapon(entity, client) 
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	new mate;
 	if(g_timerTeams) 
 	{	

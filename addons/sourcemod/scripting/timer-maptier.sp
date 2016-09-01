@@ -19,6 +19,8 @@ new g_stagecount[MAX_TRACKS];
 new Handle:g_OnMapTiersLoaded;
 new Handle:g_hMaps = INVALID_HANDLE;
 
+
+
 public Plugin:myinfo =
 {
     name        = "[TIMER] Map Tier System",
@@ -43,6 +45,15 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 	return APLRes_Success;
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnPluginStart()
 {
 	ConnectSQL();
@@ -57,6 +68,7 @@ public OnPluginStart()
 
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	if(g_hSQL == INVALID_HANDLE)
 	{
 		ConnectSQL();
@@ -80,6 +92,7 @@ public OnMapStart()
 /***********************************************************/
 public int OnTimerSqlConnected(Handle sql)
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = sql;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
@@ -90,6 +103,7 @@ public int OnTimerSqlConnected(Handle sql)
 /***********************************************************/
 public int OnTimerSqlStop()
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
 }
@@ -99,6 +113,7 @@ public int OnTimerSqlStop()
 /***********************************************************/
 void ConnectSQL()
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = view_as<Handle>(Timer_SqlGetConnection());
 	
 	if(g_hSQL == INVALID_HANDLE)
@@ -112,13 +127,15 @@ void ConnectSQL()
 /***********************************************************/
 public Action Timer_SQLReconnect(Handle timer, any data)
 {
-	ConnectSQL();
+	if(Timer_IsEnabled())
+		ConnectSQL();
 	return Plugin_Stop;
 }
 
 
 LoadMapTier()
 {
+	if(!Timer_IsEnabled()) return;
 	if (g_hSQL == INVALID_HANDLE)
 	{
 		ConnectSQL();
@@ -137,6 +154,7 @@ LoadMapTier()
 
 public LoadTierCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on LoadTier: %s", error);
@@ -170,6 +188,7 @@ public LoadTierCallback(Handle:owner, Handle:hndl, const String:error[], any:dat
 
 public LoadTierAllCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on LoadTier: %s", error);
@@ -237,6 +256,7 @@ public LoadTierAllCallback(Handle:owner, Handle:hndl, const String:error[], any:
 
 public InsertTierCallback(Handle:owner, Handle:hndl, const String:error[], any:track)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on InsertTier Map:%s (%d): %s", g_currentMap, track, error);
@@ -248,6 +268,7 @@ public InsertTierCallback(Handle:owner, Handle:hndl, const String:error[], any:t
 
 public Action:Command_MapTier(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (args != 2)
 	{
 		ReplyToCommand(client, "[SM] Usage: sm_maptier [track] [tier]");
@@ -266,6 +287,7 @@ public Action:Command_MapTier(client, args)
 
 public Action:Command_StageCount(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (args != 2)
 	{
 		ReplyToCommand(client, "[SM] Usage: sm_stagecount [track]");
@@ -282,6 +304,7 @@ public Action:Command_StageCount(client, args)
 
 public UpdateTierCallback(Handle:owner, Handle:hndl, const String:error[], any:tier)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on UpdateTier: %s", error);
@@ -293,6 +316,7 @@ public UpdateTierCallback(Handle:owner, Handle:hndl, const String:error[], any:t
 
 public UpdateStageCountCallback(Handle:owner, Handle:hndl, const String:error[], any:tier)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on UpdateStageCount: %s", error);
@@ -397,6 +421,7 @@ public Native_UpdateStageCount(Handle:plugin, numParams)
 
 GetStageCount(track, bool:update_sql = false)
 {
+	//if(!Timer_IsEnabled()) return;
 	if(track == TRACK_NORMAL)
 		g_stagecount[track] = Timer_GetMapzoneCount(ZtLevel)+1;
 	else if(track == TRACK_BONUS)

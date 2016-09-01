@@ -1,5 +1,8 @@
 #include <sourcemod>
 #include <timer>
+#include <timer-mapzones>
+
+new bool:enabled = true;
  
 public Plugin:myinfo =
 {
@@ -15,9 +18,19 @@ public OnPluginStart()
 	AddCommandListener(HideCommands,"say");
 	AddCommandListener(HideCommands,"say_team");
 }
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		enabled = false;
+	}
+}
  
 public Action:HideCommands(client, const String:command[], argc)
 {
+	if(!enabled) return Plugin_Continue;
 	if(IsChatTrigger())
 		return Plugin_Handled;
    

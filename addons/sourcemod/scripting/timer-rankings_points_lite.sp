@@ -8,6 +8,7 @@
 #include <clientprefs>
 #include <timer-config_loader>
 #include <autoexec>
+#include <timer-mapzones>
 
 #undef REQUIRE_PLUGIN
 #include <timer-maptier>
@@ -15,6 +16,8 @@
 #include <timer-worldrecord>
 
 new String:g_sCurrentMap[PLATFORM_MAX_PATH];
+
+
 
 public Plugin:myinfo =
 {
@@ -36,8 +39,18 @@ public OnPluginStart()
 	RegConsoleCmd("sm_points", Command_PointsInfo);
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 	
@@ -46,6 +59,7 @@ public OnMapStart()
 
 public OnTimerRecord(client, track, style, Float:time, Float:lasttime, currentrank, newrank)
 {
+	if(!Timer_IsEnabled()) return;
 	if(IsFakeClient(client))
 		return;
 	
@@ -69,6 +83,7 @@ public OnTimerRecord(client, track, style, Float:time, Float:lasttime, currentra
 
 public Action:Command_PointsInfo(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(Timer_IsStyleRanked(Timer_GetStyle(client)))
 		CPrintToChat(client, "%t", "You could earn", GetMinRecordPoints(client), GetMaxRecordPoints(client));
 

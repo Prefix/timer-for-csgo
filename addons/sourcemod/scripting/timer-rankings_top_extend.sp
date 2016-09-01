@@ -4,6 +4,7 @@
 #include <timer>
 #include <timer-rankings>
 #include <timer-stocks>
+#include <timer-mapzones>
 
 #define EXTEND_MAX 30
 #define LIMIT_TOP 50
@@ -11,6 +12,8 @@
 new Handle:g_hTimelimit = INVALID_HANDLE;
 
 new g_iExtendedTime;
+
+
 
 public Plugin:myinfo = 
 {
@@ -23,17 +26,29 @@ public Plugin:myinfo =
 
 public OnPluginStart()
 {
+	if(!Timer_IsEnabled()) return;
 	g_hTimelimit = FindConVar("mp_timelimit");
 	RegConsoleCmd("sm_extend", Command_Extend);
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	g_iExtendedTime = 0;
 }
 
 public Action:Command_Extend(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if(0 < Timer_GetPointRank(client) <= LIMIT_TOP)
 		Menu_Extend(client);
 	else PrintToChat(client, "[Timer] You have to be at least rank%d by points to use this command.", LIMIT_TOP);
@@ -43,6 +58,7 @@ public Action:Command_Extend(client, args)
 
 Menu_Extend(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if(g_iExtendedTime >= EXTEND_MAX)
 	{
 		PrintToChat(client, "[Timer] Max extend time reached.");
@@ -69,6 +85,7 @@ Menu_Extend(client)
 
 public MenuHandler_Extend(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);

@@ -3,6 +3,7 @@
 
 #undef REQUIRE_PLUGIN
 #include <timer>
+#include <timer-mapzones>
 
 static Handle:g_log_file = INVALID_HANDLE;
 static const String:g_log_level_names[][] = { "     ", "ERROR", "WARN ", "INFO ", "DEBUG", "TRACE" };
@@ -10,6 +11,8 @@ static Timer_LogLevel:g_log_level = Timer_LogLevelNone;
 static Timer_LogLevel:g_log_flush_level = Timer_LogLevelNone;
 static bool:g_log_errors_to_SM = false;
 static String:g_current_date[20];
+
+
 
 public Plugin:myinfo =
 {
@@ -31,6 +34,15 @@ public OnPluginStart()
 		CreateLogFileOrTurnOffLogging();		
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max) 
 {
 	RegPluginLibrary("timer-logging");
@@ -48,6 +60,7 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 
 LoadConfig() 
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:kv = CreateKeyValues("root");
     
 	decl String:path[100];
@@ -68,31 +81,35 @@ LoadConfig()
 
 public OnPluginEnd() 
 {
+	if(!Timer_IsEnabled()) return;
 	if (g_log_file != INVALID_HANDLE)
 		CloseLogFile();
 }
 
 public Action:OnCheckDate(Handle:timer)
 {
-	decl String:new_date[20];
-	FormatTime(new_date, sizeof(new_date), "%Y-%m-%d", GetTime());
-    
-	if (g_log_level > Timer_LogLevelNone && !StrEqual(new_date, g_current_date)) 
-    {
-		strcopy(g_current_date, sizeof(g_current_date), new_date);
-        
-		if (g_log_file != INVALID_HANDLE) 
-        {
-			WriteMessageToLog(INVALID_HANDLE, Timer_LogLevelInfo, "Date changed; switching log file", true);
-			CloseLogFile();
+	if(Timer_IsEnabled()) {
+		decl String:new_date[20];
+		FormatTime(new_date, sizeof(new_date), "%Y-%m-%d", GetTime());
+		
+		if (g_log_level > Timer_LogLevelNone && !StrEqual(new_date, g_current_date)) 
+		{
+			strcopy(g_current_date, sizeof(g_current_date), new_date);
+			
+			if (g_log_file != INVALID_HANDLE) 
+			{
+				WriteMessageToLog(INVALID_HANDLE, Timer_LogLevelInfo, "Date changed; switching log file", true);
+				CloseLogFile();
+			}
+			
+			CreateLogFileOrTurnOffLogging();
 		}
-        
-		CreateLogFileOrTurnOffLogging();
 	}
 }
 
 CloseLogFile() 
 {
+	if(!Timer_IsEnabled()) return;
 	WriteMessageToLog(INVALID_HANDLE, Timer_LogLevelInfo, "Logging stopped");
 	FlushFile(g_log_file);
 	CloseHandle(g_log_file);

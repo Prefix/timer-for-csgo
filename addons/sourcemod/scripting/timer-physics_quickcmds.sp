@@ -5,7 +5,10 @@
 #include <timer>
 #include <timer-logging>
 #include <timer-stocks>
+#include <timer-mapzones>
 #include <timer-config_loader>
+
+
 
 public Plugin:myinfo =
 {
@@ -18,6 +21,7 @@ public Plugin:myinfo =
 
 public OnPluginStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 
@@ -34,8 +38,18 @@ public OnPluginStart()
 	}
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 }
@@ -47,6 +61,7 @@ public Action:Callback_Empty(client, args)
 
 public Action:Hook_Command(client, const String:sCommand[], argc)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (!IsValidClient(client))
 	{
 		return Plugin_Continue;

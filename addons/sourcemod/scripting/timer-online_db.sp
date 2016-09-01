@@ -74,19 +74,23 @@ public Action:Command_RefreshTable(client, args)
 
 RefreshTable()
 {
-	decl String:query[512];
-	Format(query, sizeof(query), "DELETE FROM `online` WHERE `server` = %d", g_iServerID);
-	SQL_TQuery(g_hSQL, DeleteCallback, query, _, DBPrio_High);
-	
-	for(new i = 1; i <= MaxClients; i++)
-	{
-		if(IsClientInGame(i) && !IsFakeClient(i) && !IsClientSourceTV(i))
+	if (g_hSQL == INVALID_HANDLE)
+		ConnectSQL();
+	if (g_hSQL != INVALID_HANDLE) {
+		decl String:query[512];
+		Format(query, sizeof(query), "DELETE FROM `online` WHERE `server` = %d", g_iServerID);
+		SQL_TQuery(g_hSQL, DeleteCallback, query, _, DBPrio_High);
+		
+		for(new i = 1; i <= MaxClients; i++)
 		{
-			g_bAuthed[i] = GetClientAuthId(i, AuthId_Steam2, g_sAuth[i], sizeof(g_sAuth[]));
-			if(g_bAuthed[i])
+			if(IsClientInGame(i) && !IsFakeClient(i) && !IsClientSourceTV(i))
 			{
-				FormatEx(query, sizeof(query), "INSERT INTO `online` (auth, server) VALUES ('%s','%d') ON DUPLICATE KEY server = %d;", g_sAuth[i], g_iServerID, g_iServerID);
-				SQL_TQuery(g_hSQL, InsertCallback, query, _, DBPrio_Normal);
+				g_bAuthed[i] = GetClientAuthId(i, AuthId_Steam2, g_sAuth[i], sizeof(g_sAuth[]));
+				if(g_bAuthed[i])
+				{
+					FormatEx(query, sizeof(query), "INSERT INTO `online` (auth, server) VALUES ('%s','%d') ON DUPLICATE KEY server = %d;", g_sAuth[i], g_iServerID, g_iServerID);
+					SQL_TQuery(g_hSQL, InsertCallback, query, _, DBPrio_Normal);
+				}
 			}
 		}
 	}
@@ -100,6 +104,8 @@ public OnClientPostAdminCheck(client)
 
 	g_bAuthed[client] = GetClientAuthId(client, AuthId_Steam2, g_sAuth[client], sizeof(g_sAuth[]));
 	
+	if (g_hSQL == INVALID_HANDLE)
+		ConnectSQL();
 	if (g_hSQL != INVALID_HANDLE)
 	{
 		if(Client_IsValid(client) && !IsFakeClient(client))
@@ -115,9 +121,13 @@ public OnClientDisconnect_Post(client)
 {
 	if(g_bAuthed[client])
 	{
-		decl String:query[256];
-		Format(query, sizeof(query), "DELETE FROM `online` WHERE `auth` = '%s'", g_sAuth[client]);
-		SQL_TQuery(g_hSQL, InsertCallback, query, _, DBPrio_Normal);
+		if (g_hSQL == INVALID_HANDLE)
+			ConnectSQL();
+		if (g_hSQL != INVALID_HANDLE) {
+			decl String:query[256];
+			Format(query, sizeof(query), "DELETE FROM `online` WHERE `auth` = '%s'", g_sAuth[client]);
+			SQL_TQuery(g_hSQL, InsertCallback, query, _, DBPrio_Normal);
+		}
 	}
 }
 

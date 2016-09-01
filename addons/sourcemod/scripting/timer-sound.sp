@@ -6,6 +6,7 @@
 
 #include <timer>
 #include <timer-logging>
+#include <timer-mapzones>
 
 #define MAX_FILE_LEN 128
 
@@ -26,6 +27,8 @@ new String:SND_TIMER_WORLDRECORD_ALL[MAX_FILE_LEN];
 
 new Handle:Sound_TimerPersonalBest = INVALID_HANDLE;
 new String:SND_TIMER_PERSONALBEST[MAX_FILE_LEN];
+
+
 
 public Plugin:myinfo =
 {
@@ -48,14 +51,25 @@ public OnPluginStart()
 	AutoExecConfig(true, "timer/timer-sounds");
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnConfigsExecuted()
 {
+	if(!Timer_IsEnabled()) return;
 	CacheSounds();
 	Timer_LogTrace("[Sound] Sounds cached OnConfigsExecuted");
 }
 
 public CacheSounds()
 {
+	if(!Timer_IsEnabled()) return;
 	GetConVarString(Sound_TimerFinish, SND_TIMER_FINISH, sizeof(SND_TIMER_FINISH));
 	PrepareSound(SND_TIMER_FINISH);
 	
@@ -77,6 +91,7 @@ public CacheSounds()
 
 public PrepareSound(String: sound[MAX_FILE_LEN])
 {
+	if(!Timer_IsEnabled()) return;
 	decl String:fileSound[MAX_FILE_LEN];
 
 	FormatEx(fileSound, MAX_FILE_LEN, "sound/%s", sound);
@@ -91,16 +106,19 @@ public PrepareSound(String: sound[MAX_FILE_LEN])
 
 public OnTimerPaused(client)
 {
+	if(!Timer_IsEnabled()) return;
 	EmitSoundToClientAny(client, SND_TIMER_PAUSE);
 }
 
 public OnTimerResumed(client)
 {
+	if(!Timer_IsEnabled()) return;
 	EmitSoundToClientAny(client, SND_TIMER_RESUME);
 }
 
 public OnTimerWorldRecord(client)
 {
+	if(!Timer_IsEnabled()) return;
 	//Stop the sound first
 	EmitSoundToAllAny(SND_TIMER_WORLDRECORD_ALL, _, _, _, SND_STOPLOOPING);
 	
@@ -109,10 +127,12 @@ public OnTimerWorldRecord(client)
 
 public OnTimerPersonalRecord(client)
 {
+	if(!Timer_IsEnabled()) return;
 	EmitSoundToClientAny(client, SND_TIMER_PERSONALBEST);
 }
 
 public OnTimerRecord(client)
 {
+	if(!Timer_IsEnabled()) return;
 	EmitSoundToClientAny(client, SND_TIMER_FINISH);
 }

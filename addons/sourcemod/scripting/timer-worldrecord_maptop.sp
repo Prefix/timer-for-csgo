@@ -6,8 +6,11 @@
 #include <timer-mysql>
 #include <timer-stocks>
 #include <timer-config_loader>
+#include <timer-mapzones>
 
 #define MAPTOP_LIMIT 100
+
+
 
 public Plugin:myinfo = 
 {
@@ -39,8 +42,18 @@ public OnPluginStart()
 	}
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 	
@@ -52,6 +65,7 @@ public OnMapStart()
 
 public OnTimerSqlConnected(Handle:sql)
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = sql;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
@@ -59,12 +73,14 @@ public OnTimerSqlConnected(Handle:sql)
 
 public OnTimerSqlStop()
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
 }
 
 ConnectSQL()
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = Handle:Timer_SqlGetConnection();
 	
 	if (g_hSQL == INVALID_HANDLE)
@@ -73,6 +89,7 @@ ConnectSQL()
 
 public Action:Timer_SQLReconnect(Handle:timer, any:data)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	ConnectSQL();
 	return Plugin_Stop;
 }
@@ -81,6 +98,7 @@ public Action:Timer_SQLReconnect(Handle:timer, any:data)
 
 public Action:Cmd_MapTop_Record(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(args < 1)
 	{
 		if(g_Settings[MultimodeEnable])
@@ -133,6 +151,7 @@ public Action:Cmd_MapTop_Record(client, args)
 
 TopStylePanel(client, String:sMapName[64])
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(MenuHandler_TopStylePanel);
@@ -163,6 +182,7 @@ TopStylePanel(client, String:sMapName[64])
 
 public MenuHandler_TopStylePanel(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -180,6 +200,7 @@ public MenuHandler_TopStylePanel(Handle:menu, MenuAction:action, client, itemNum
 
 public Action:Cmd_MapBonusTop_Record(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(args < 1)
 	{
 		if(g_Settings[MultimodeEnable]) CPrintToChat(client, "%t", "Usage");
@@ -223,6 +244,7 @@ public Action:Cmd_MapBonusTop_Record(client, args)
 
 BonusTopStylePanel(client, String:sMapName[64])
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(MenuHandler_BonusTopStylePanel);
@@ -253,6 +275,7 @@ BonusTopStylePanel(client, String:sMapName[64])
 
 public MenuHandler_BonusTopStylePanel(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -268,6 +291,7 @@ public MenuHandler_BonusTopStylePanel(Handle:menu, MenuAction:action, client, it
 
 public SQL_TopPanel(client, String:sMapName[64], style, track)
 {
+	if(!Timer_IsEnabled()) return;
 	decl String:sQuery[255];
 	
 	Format(sQuery, sizeof(sQuery), sql_select, sMapName, track, style, MAPTOP_LIMIT);
@@ -282,6 +306,7 @@ public SQL_TopPanel(client, String:sMapName[64], style, track)
 
 public SQL_SelectTopCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if(!Timer_IsEnabled()) return;
 	if(hndl == INVALID_HANDLE)
 		LogError("Error loading SQL_SelectTopCallback (%s)", error);
 	
@@ -346,6 +371,7 @@ public SQL_SelectTopCallback(Handle:owner, Handle:hndl, const String:error[], an
 //Empty menu handler only to close open menu handle
 public MenuHandler_Empty(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select)
 	{
 

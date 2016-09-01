@@ -64,7 +64,7 @@ new bool:g_timerWorldRecord = false;
 new bool:spec[MAXPLAYERS+1];
 new bool:hidemyass[MAXPLAYERS+1];
 new bool:B_IsJump[MAXPLAYERS + 1];
-new bool:B_show_hud = true;
+//new bool:B_show_hud = true;
 
 new g_iButtonsPressed[MAXPLAYERS+1] = {0,...};
 new g_iJumps[MAXPLAYERS+1] = {0,...};
@@ -98,6 +98,10 @@ new Handle:cookieHudSidePointsPref;
 
 new hudSettings[Hud][MAXPLAYERS+1];
 Panel panel[MAXPLAYERS+1];
+
+
+
+
 public Plugin:myinfo =
 {
 	name		= "[TIMER] HUD",
@@ -237,7 +241,16 @@ public OnMapStart()
 	
 	
 	RestartMapTimer();
-	B_show_hud = true;
+	//B_show_hud = true;
+}
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
 }
 
 public OnMapEnd()
@@ -270,12 +283,12 @@ public OnClientCookiesCached(client)
 
 public int OnMapVoteStart()
 {
-	B_show_hud = false;
+	//B_show_hud = false;
 }
 
 public int OnMapVoteEnd(const String:map[])
 {
-	B_show_hud = true;
+	//B_show_hud = true;
 }
 
 loadClientCookiesFor(client)
@@ -1343,6 +1356,7 @@ UpdateHUD_CSGO(client)
 	{
 		return;
 	}
+	if (!Timer_IsEnabled()) return;
 	
 	new iClientToShow, iObserverMode;
 	//new iButtons;
@@ -1803,7 +1817,7 @@ UpdateHUD_CSGO(client)
 		}
 	}
 	
-	if(g_Settings[HUDSideEnable] && hudSettings[Side][client] && B_show_hud)
+	/*if(g_Settings[HUDSideEnable] && hudSettings[Side][client] && B_show_hud)
 	{
 		if(iObserverMode == SPECMODE_FIRSTPERSON || iObserverMode == SPECMODE_3RDPERSON)
 		{
@@ -1821,7 +1835,7 @@ UpdateHUD_CSGO(client)
 					BuildSideHud(client, iClientToShow, points, g_currentMap, style, g_Physics[style][StyleName], time, RecordTime, rank, sRankTotal, currentLevel, stagecount, bestbuffer, g_iMap_TimeLeft, auth, speccount, speclist, keys);
 				}		
 		}
-	}
+	}*/
 }
 
 void BuildSideHud(int client, target, int points, char[] map, int style, char[] stylename, float time, float wrtime, int rank, char[] ranktotal, int currentlevel, int stagecount, char[] pb, int timeleft, char[] auth, int speccount, char[] speclist, char[] keys)

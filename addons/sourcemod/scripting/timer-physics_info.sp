@@ -3,6 +3,9 @@
 #include <sourcemod>
 #include <timer>
 #include <timer-config_loader>
+#include <timer-mapzones>
+
+
 
 public Plugin:myinfo =
 {
@@ -15,6 +18,7 @@ public Plugin:myinfo =
 
 public OnPluginStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadTranslations("drapi/drapi_timer-physics_info.phrases");
 	RegConsoleCmd("sm_styleinfo", Command_Info);
 	
@@ -23,11 +27,13 @@ public OnPluginStart()
 
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 }
 
 public Action:Command_Info(client, args) 
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if(IsClientConnected(client) && IsClientInGame(client))
 	{
 		CreateInfoMenu(client);
@@ -37,6 +43,7 @@ public Action:Command_Info(client, args)
 
 CreateInfoMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(MenuHandler_Info);
@@ -64,6 +71,7 @@ CreateInfoMenu(client)
 
 public MenuHandler_Info(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -77,8 +85,18 @@ public MenuHandler_Info(Handle:menu, MenuAction:action, client, itemNum)
 	}
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 CreateInfoDetailMenu(client, style)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(MenuHandler_InfoDetail);
@@ -173,6 +191,7 @@ CreateInfoDetailMenu(client, style)
 
 public MenuHandler_InfoDetail(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);

@@ -94,6 +94,8 @@ new bool:g_timerPhysics = false;
 
 new Handle:g_OnRecordCacheLoaded;
 
+
+
 public Plugin:myinfo =
 {
     name        = "[TIMER] World Record",
@@ -128,6 +130,15 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 	CreateNative("Timer_GetRecordCustom3", Native_GetCustom3);
 
 	return APLRes_Success;
+}
+
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
 }
 
 public OnPluginStart()
@@ -249,6 +260,7 @@ public OnLibraryRemoved(const String:name[])
 
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	GetCurrentMap(g_currentMap, sizeof(g_currentMap));
 	
 	LoadPhysics();
@@ -260,11 +272,13 @@ public OnMapStart()
 
 public OnMapEnd()
 {
+	if(!Timer_IsEnabled()) return;
 	UpdateRanks();
 }
 
 UpdateRanks()
 {
+	if(!Timer_IsEnabled()) return;
 	if (g_hSQL == INVALID_HANDLE)
 		return;
 	
@@ -289,6 +303,7 @@ UpdateRanks()
 
 public UpdateRanksCallback(Handle:owner, Handle:hndl, const String:error[], any:client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on UpdateRanks: %s", error);
@@ -298,6 +313,7 @@ public UpdateRanksCallback(Handle:owner, Handle:hndl, const String:error[], any:
 
 public Action:Command_WorldRecord(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if (g_timerPhysics && g_Settings[MultimodeEnable])
 		CreateRankedWRMenu(client);
 	else
@@ -308,6 +324,7 @@ public Action:Command_WorldRecord(client, args)
 
 public Action:Command_BonusWorldRecord(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if (g_timerPhysics && g_Settings[MultimodeEnable])
 		CreateRankedBWRMenu(client, 1);
 	else
@@ -318,6 +335,7 @@ public Action:Command_BonusWorldRecord(client, args)
 
 public Action:Command_Bonus2WorldRecord(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if (g_timerPhysics && g_Settings[MultimodeEnable])
 		CreateRankedBWRMenu(client, 2);
 	else
@@ -328,6 +346,7 @@ public Action:Command_Bonus2WorldRecord(client, args)
 
 public Action:Command_Bonus3WorldRecord(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if (g_timerPhysics && g_Settings[MultimodeEnable])
 		CreateRankedBWRMenu(client, 3);
 	else
@@ -338,6 +357,7 @@ public Action:Command_Bonus3WorldRecord(client, args)
 
 public Action:Command_Bonus4WorldRecord(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if (g_timerPhysics && g_Settings[MultimodeEnable])
 		CreateRankedBWRMenu(client, 4);
 	else
@@ -348,6 +368,7 @@ public Action:Command_Bonus4WorldRecord(client, args)
 
 public Action:Command_Bonus5WorldRecord(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	if (g_timerPhysics && g_Settings[MultimodeEnable])
 		CreateRankedBWRMenu(client, 5);
 	else
@@ -358,6 +379,7 @@ public Action:Command_Bonus5WorldRecord(client, args)
 
 public Action:Hook_WrCommands(client, const String:sCommand[], argc)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (!IsValidClient(client))
 	{
 		return Plugin_Continue;
@@ -412,12 +434,14 @@ public Action:Callback_Empty(client, args)
 
 public Action:Command_Delete(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	CreateDeleteMenu(client, client, g_currentMap);
 	return Plugin_Handled;
 }
 
 public Action:Command_PersonalRecord(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	new argsCount = GetCmdArgs();
 	new target = -1;
 	
@@ -471,12 +495,14 @@ public Action:Command_PersonalRecord(client, args)
 
 public Action:Command_ReloadCache(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	RefreshCache();
 	return Plugin_Handled;
 }
 
 public Action:Command_DeletePlayerRecord_All(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (args < 1)
 	{
 		ReplyToCommand(client, "Usage: sm_deleterecord_all <steamid>");
@@ -496,6 +522,7 @@ public Action:Command_DeletePlayerRecord_All(client, args)
 
 public Action:Command_DeletePlayerRecord_Map(client, args)
 {	
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (args < 1)
 	{
 		ReplyToCommand(client, "Usage: sm_deleterecord_map <steamid>");
@@ -515,6 +542,7 @@ public Action:Command_DeletePlayerRecord_Map(client, args)
 
 public Action:Command_DeletePlayerRecord_ID(client, args)
 {	
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (args < 1)
 	{
 		ReplyToCommand(client, "Usage: sm_deleterecord <recordid>");
@@ -534,6 +562,7 @@ public Action:Command_DeletePlayerRecord_ID(client, args)
 
 public Action:Command_DeleteMapRecords_All(client, args)
 {	
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (args < 1)
 	{
 		ReplyToCommand(client, "Usage: sm_deleterecord <mapname>");
@@ -553,6 +582,7 @@ public Action:Command_DeleteMapRecords_All(client, args)
 
 public DeleteRecordsCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on DeleteRecord: %s", error);
@@ -564,6 +594,7 @@ public DeleteRecordsCallback(Handle:owner, Handle:hndl, const String:error[], an
 
 public OnAdminMenuReady(Handle:topmenu)
 {
+	if(!Timer_IsEnabled()) return;
 	// Block this from being called twice
 	if (topmenu == hTopMenu) {
 		return;
@@ -594,6 +625,7 @@ public AdminMenu_CategoryHandler(Handle:topmenu,
 			String:buffer[],
 			maxlength)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == TopMenuAction_DisplayTitle) {
 		FormatEx(buffer, maxlength, "Timer Records");
 	} else if (action == TopMenuAction_DisplayOption) {
@@ -608,6 +640,7 @@ public AdminMenu_DeleteMapRecords(Handle:topmenu,
 			String:buffer[],
 			maxlength)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == TopMenuAction_DisplayOption) {
 		FormatEx(buffer, maxlength, "Delete Records");
 	} else if (action == TopMenuAction_SelectOption) {
@@ -626,6 +659,7 @@ public AdminMenu_ReloadCache(Handle:topmenu,
 			String:buffer[],
 			maxlength)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == TopMenuAction_DisplayOption) 
 	{
 		FormatEx(buffer, maxlength, "Refresh Cache");
@@ -643,6 +677,7 @@ public AdminMenu_DeleteRecord(Handle:topmenu,
 			String:buffer[],
 			maxlength)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == TopMenuAction_DisplayOption) 
 	{
 		FormatEx(buffer, maxlength, "Delete Single Record");
@@ -655,6 +690,7 @@ public AdminMenu_DeleteRecord(Handle:topmenu,
 
 DeleteMapRecordsMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(Handle_DeleteMapRecordsMenu);
@@ -675,6 +711,7 @@ DeleteMapRecordsMenu(client)
 	
 public Handle_DeleteMapRecordsMenu(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		decl String:info[100], String:info2[100];
@@ -693,6 +730,7 @@ public Handle_DeleteMapRecordsMenu(Handle:menu, MenuAction:action, client, itemN
 
 CreateAdminModeSelection(client)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu = CreateMenu(MenuHandler_AdminModeSelection);
 
 	SetMenuTitle(menu, "Select Style");
@@ -721,6 +759,7 @@ CreateAdminModeSelection(client)
 
 public MenuHandler_AdminModeSelection(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		RefreshCache();
@@ -737,6 +776,7 @@ public MenuHandler_AdminModeSelection(Handle:menu, MenuAction:action, client, it
 
 CreateAdminTrackSelection(client)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu = CreateMenu(MenuHandler_AdminTrackSelection);
 
 	SetMenuTitle(menu, "Select Style");
@@ -759,6 +799,7 @@ CreateAdminTrackSelection(client)
 
 public MenuHandler_AdminTrackSelection(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		RefreshCache();
@@ -775,6 +816,7 @@ public MenuHandler_AdminTrackSelection(Handle:menu, MenuAction:action, client, i
 
 CreateAdminRecordSelection(client, style, track)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu = CreateMenu(MenuHandler_SelectPlayer);
 
 	SetMenuTitle(menu, "Select Record");
@@ -814,6 +856,7 @@ CreateAdminRecordSelection(client, style, track)
 
 public MenuHandler_SelectPlayer(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -834,6 +877,7 @@ public MenuHandler_SelectPlayer(Handle:menu, MenuAction:action, client, itemNum)
 
 public DeletePlayersRecordCallback(Handle:owner, Handle:hndl, const String:error[], any:client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on DeletePlayerRecord: %s", error);
@@ -846,6 +890,7 @@ public DeletePlayersRecordCallback(Handle:owner, Handle:hndl, const String:error
 
 DeleteMapRecords(const String:map[]) 
 {
+	if(!Timer_IsEnabled()) return;
 	decl String:query[128];
 	FormatEx(query, sizeof(query), "DELETE FROM `round` WHERE map = '%s'", map);	
 
@@ -854,6 +899,7 @@ DeleteMapRecords(const String:map[])
 
 RefreshCache()
 {
+	if(!Timer_IsEnabled()) return;
 	if (g_hSQL == INVALID_HANDLE)
 	{
 		ConnectSQL(true);
@@ -898,6 +944,7 @@ RefreshCache()
 
 CollectCache(track, style, Handle:hndl)
 {
+	if(!Timer_IsEnabled()) return;
 	CacheResetSingle(track, style);
 	
 	while (SQL_FetchRow(hndl))
@@ -945,6 +992,7 @@ CollectCache(track, style, Handle:hndl)
 
 public RefreshCacheCallback(Handle:owner, Handle:hndl, const String:error[], any:style)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on RefreshCache: %s", error);
@@ -956,6 +1004,7 @@ public RefreshCacheCallback(Handle:owner, Handle:hndl, const String:error[], any
 
 public RefreshBonusCacheCallback(Handle:owner, Handle:hndl, const String:error[], any:style)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on RefreshBonusCache: %s", error);
@@ -978,6 +1027,7 @@ public RefreshBonus2CacheCallback(Handle:owner, Handle:hndl, const String:error[
 
 public RefreshBonus3CacheCallback(Handle:owner, Handle:hndl, const String:error[], any:style)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on RefreshBonus3Cache: %s", error);
@@ -989,6 +1039,7 @@ public RefreshBonus3CacheCallback(Handle:owner, Handle:hndl, const String:error[
 
 public RefreshBonus4CacheCallback(Handle:owner, Handle:hndl, const String:error[], any:style)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on RefreshBonus4Cache: %s", error);
@@ -1000,6 +1051,7 @@ public RefreshBonus4CacheCallback(Handle:owner, Handle:hndl, const String:error[
 
 public RefreshBonus5CacheCallback(Handle:owner, Handle:hndl, const String:error[], any:style)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on RefreshBonus5Cache: %s", error);
@@ -1011,6 +1063,7 @@ public RefreshBonus5CacheCallback(Handle:owner, Handle:hndl, const String:error[
 
 CollectBestCache(track, any:style)
 {
+	if(!Timer_IsEnabled()) return;
 	g_cachestats[style][track][RecordStatsCount] = 0;
 	g_cachestats[style][track][RecordStatsID] = 0;
 	g_cachestats[style][track][RecordStatsBestTime] = 0.0;
@@ -1039,6 +1092,7 @@ CollectBestCache(track, any:style)
 
 ConnectSQL(bool:refreshCache)
 {
+	if(!Timer_IsEnabled()) return;
 	if (g_hSQL != INVALID_HANDLE)
 	{
 		CloseHandle(g_hSQL);
@@ -1058,6 +1112,7 @@ ConnectSQL(bool:refreshCache)
 
 public ConnectSQLCallback(Handle:owner, Handle:hndl, const String:error[], any:data)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("Connection to SQL database has failed, Reason: %s", error);
@@ -1089,6 +1144,7 @@ public ConnectSQLCallback(Handle:owner, Handle:hndl, const String:error[], any:d
 
 CreateRankedWRMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(MenuHandler_RankedWR);
@@ -1147,6 +1203,7 @@ CreateRankedWRMenu(client)
 
 public MenuHandler_RankedWR(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1162,6 +1219,7 @@ public MenuHandler_RankedWR(Handle:menu, MenuAction:action, client, itemNum)
 
 CreateRankedBWRMenu(client, track)
 {
+	if(!Timer_IsEnabled()) return;
 	if(0 < client < MaxClients)
 	{
 		new Handle:menu;
@@ -1240,6 +1298,7 @@ CreateRankedBWRMenu(client, track)
 
 public MenuHandler_RankedBWR(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1270,6 +1329,7 @@ public MenuHandler_RankedB2WR(Handle:menu, MenuAction:action, client, itemNum)
 
 public MenuHandler_RankedB3WR(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1300,6 +1360,7 @@ public MenuHandler_RankedB4WR(Handle:menu, MenuAction:action, client, itemNum)
 
 public MenuHandler_RankedB5WR(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1315,6 +1376,7 @@ public MenuHandler_RankedB5WR(Handle:menu, MenuAction:action, client, itemNum)
 
 public MenuHandler_RankedSWR(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1330,6 +1392,7 @@ public MenuHandler_RankedSWR(Handle:menu, MenuAction:action, client, itemNum)
 
 CreateWRMenu(client, style, track)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu;
 
 	new total = GetArraySize(g_hCache[style][track]);
@@ -1428,6 +1491,7 @@ CreateWRMenu(client, style, track)
 
 public MenuHandler_WR(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1450,6 +1514,7 @@ public MenuHandler_WR(Handle:menu, MenuAction:action, param1, param2)
 
 public MenuHandler_BonusWR(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1473,6 +1538,7 @@ public MenuHandler_BonusWR(Handle:menu, MenuAction:action, param1, param2)
 
 public MenuHandler_Bonus2WR(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1496,6 +1562,7 @@ public MenuHandler_Bonus2WR(Handle:menu, MenuAction:action, param1, param2)
 
 public MenuHandler_Bonus3WR(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1519,6 +1586,7 @@ public MenuHandler_Bonus3WR(Handle:menu, MenuAction:action, param1, param2)
 
 public MenuHandler_Bonus4WR(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1542,6 +1610,7 @@ public MenuHandler_Bonus4WR(Handle:menu, MenuAction:action, param1, param2)
 
 public MenuHandler_Bonus5WR(Handle:menu, MenuAction:action, param1, param2)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		CloseHandle(menu);
@@ -1565,6 +1634,7 @@ public MenuHandler_Bonus5WR(Handle:menu, MenuAction:action, param1, param2)
 
 CreatePlayerInfoMenu(client, id, track)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu;
 
 	if(track == TRACK_NORMAL)
@@ -1653,6 +1723,7 @@ CreatePlayerInfoMenu(client, id, track)
 
 CreateDeleteMenu(client, target, String:targetmap[64], ignored = -1)
 {	
+	if(!Timer_IsEnabled()) return;
 	decl String:buffer[128];
 	if(ignored != -1) 
 		FormatEx(buffer, sizeof(buffer), " AND NOT id = '%d'", ignored);
@@ -1687,6 +1758,7 @@ CreateDeleteMenu(client, target, String:targetmap[64], ignored = -1)
 
 public CreateDeleteMenuCallback(Handle:owner, Handle:hndl, const String:error[], any:client)
 {	
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on CreateDeleteMenu: %s", error);
@@ -1734,6 +1806,7 @@ public CreateDeleteMenuCallback(Handle:owner, Handle:hndl, const String:error[],
 
 public MenuHandler_DeleteRecord(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_End) 
 	{
 		RefreshCache();
@@ -1757,6 +1830,7 @@ public MenuHandler_DeleteRecord(Handle:menu, MenuAction:action, client, itemNum)
 
 public DeleteRecordCallback(Handle:owner, Handle:hndl, const String:error[], any:client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		Timer_LogError("SQL Error on DeleteRecord: %s", error);
@@ -1788,21 +1862,25 @@ public Native_GetStyleRecordWRStats(Handle:plugin, numParams)
 
 public OnClientStartTouchZoneType(client, MapZoneType:type)
 {
+	if(!Timer_IsEnabled()) return;
 	CacheBestRound(client);
 }
 
 public OnClientEndTouchZoneType(client, MapZoneType:type)
 {
+	if(!Timer_IsEnabled()) return;
 	CacheBestRound(client);
 }
 
 public OnClientApplyDifficultyPre(client, style)
 {
+	if(!Timer_IsEnabled()) return;
 	CacheBestRound(client);
 }
 
 CacheBestRound(client)
 {
+	if(!Timer_IsEnabled()) return;
 	g_iBestTimeID[client] = -1;
 	
 	new track = Timer_GetTrack(client);
@@ -2280,6 +2358,7 @@ public Native_GetCustom3(Handle:plugin, numParams)
 
 CacheReset()
 {
+	if(!Timer_IsEnabled()) return;
 	nCacheTemplate[Ignored] = false; //Just to get rid of a warning, it's just a template
 	
 	// Init world record cache
@@ -2298,6 +2377,7 @@ CacheReset()
 
 CacheResetSingle(track, style)
 {
+	if(!Timer_IsEnabled()) return;
 	if(g_hCache[style][track] != INVALID_HANDLE)
 		ClearArray(g_hCache[style][track]);
 	else g_hCache[style][track] = CreateArray(sizeof(nCacheTemplate));

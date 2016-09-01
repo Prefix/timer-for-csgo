@@ -6,6 +6,7 @@
 #include <timer-mysql>
 #include <timer-stocks>
 #include <timer-config_loader>
+#include <timer-mapzones>
 
 #define RECORD_ANY 0
 #define RECORD_TOP 1
@@ -29,6 +30,8 @@ new Handle:g_hSQL = INVALID_HANDLE;
 
 new g_latestRecords[3][LATEST_LIMIT][Record];
 new g_RecordCount[3];
+
+
 
 public Plugin:myinfo = 
 {
@@ -55,8 +58,18 @@ public OnPluginStart()
 	LoadTimerSettings();
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	if (g_hSQL == INVALID_HANDLE)
 	{
 		ConnectSQL();
@@ -69,6 +82,7 @@ public OnMapStart()
 
 public OnTimerSqlConnected(Handle:sql)
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = sql;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
@@ -76,12 +90,14 @@ public OnTimerSqlConnected(Handle:sql)
 
 public OnTimerSqlStop()
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = INVALID_HANDLE;
 	CreateTimer(0.1, Timer_SQLReconnect, _ , TIMER_FLAG_NO_MAPCHANGE);
 }
 
 ConnectSQL()
 {
+	if(!Timer_IsEnabled()) return;
 	g_hSQL = Handle:Timer_SqlGetConnection();
 	
 	if (g_hSQL == INVALID_HANDLE)
@@ -91,17 +107,20 @@ ConnectSQL()
 
 public Action:Timer_SQLReconnect(Handle:timer, any:data)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	ConnectSQL();
 	return Plugin_Stop;
 }
 
 public OnTimerRecord(client, track, mode, Float:time, Float:lasttime, currentrank, newrank)
 {
+	if(!Timer_IsEnabled()) return;
 	if(lasttime == 0.0 || time < lasttime) LoadLatestRecords();
 }
 
 LoadLatestRecords()
 {
+	if(!Timer_IsEnabled()) return;
 	decl String:sQuery[1024];
 	
 	FormatEx(sQuery, sizeof(sQuery), "SELECT `map`, `track`, `style`, `auth`, `name`, `time`, `rank`, `date` FROM `round` ORDER BY `date` DESC LIMIT %d", LATEST_LIMIT);
@@ -116,6 +135,7 @@ LoadLatestRecords()
 
 public LoadLatestRecordsCallback(Handle:owner, Handle:hndl, const String:error[], any:recordtype)
 {
+	if(!Timer_IsEnabled()) return;
 	if (hndl == INVALID_HANDLE)
 	{
 		PrintToServer("SQL Error on LoadMap: %s", error);
@@ -146,6 +166,7 @@ public LoadLatestRecordsCallback(Handle:owner, Handle:hndl, const String:error[]
 
 public Action:Cmd_LatestChoose(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Continue;
 	if (client)
 	{
 		new Handle:menu = CreateMenu(Handle_LatestChoose);
@@ -174,6 +195,7 @@ public Action:Cmd_LatestChoose(client, args)
 
 public Handle_LatestChoose(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select)
 	{
 		decl String:info[100], String:info2[100];
@@ -202,6 +224,7 @@ public Handle_LatestChoose(Handle:menu, MenuAction:action, client, itemNum)
 
 Menu_Latest(client, type)
 {
+	if(!Timer_IsEnabled()) return;
 	new Handle:menu = INVALID_HANDLE;
 	
 	if(type == RECORD_TOP)
@@ -260,6 +283,7 @@ Menu_Latest(client, type)
 
 public Handle_Latest(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select)
 	{
 		decl String:info[100], String:info2[100];
@@ -303,6 +327,7 @@ public Handle_Latest(Handle:menu, MenuAction:action, client, itemNum)
 
 public Handle_LatestTop(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select)
 	{
 		decl String:info[100], String:info2[100];
@@ -346,6 +371,7 @@ public Handle_LatestTop(Handle:menu, MenuAction:action, client, itemNum)
 
 public Handle_LatestWorld(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if (action == MenuAction_Select)
 	{
 		decl String:info[100], String:info2[100];

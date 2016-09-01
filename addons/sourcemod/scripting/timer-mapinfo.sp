@@ -5,6 +5,7 @@
 #include <timer-mapzones>
 #include <timer-maptier>
 #include <timer-config_loader>
+#include <timer-mapzones>
 
 public Plugin:myinfo =
 {
@@ -17,6 +18,8 @@ public Plugin:myinfo =
 
 new String:g_sCurrentMap[PLATFORM_MAX_PATH];
 
+
+
 public OnPluginStart()
 {
 	LoadPhysics();
@@ -25,8 +28,18 @@ public OnPluginStart()
 	RegConsoleCmd("sm_mapinfo", Command_MapInfo);
 }
 
+public OnMapZonesLoaded()
+{
+	// If map has start and end.
+	if(Timer_GetMapzoneCount(ZtStart) == 0 || Timer_GetMapzoneCount(ZtEnd) == 0) {
+		//SetFailState("MapZones start and end points not found! Disabling!");
+		
+	}
+}
+
 public OnMapStart()
 {
+	if(!Timer_IsEnabled()) return;
 	LoadPhysics();
 	LoadTimerSettings();
 	
@@ -35,6 +48,7 @@ public OnMapStart()
 
 public Action:Command_MapInfo(client, args)
 {
+	if(!Timer_IsEnabled()) return Plugin_Handled;
 	MapInfoMenu(client);
 	
 	return Plugin_Handled;
@@ -42,6 +56,7 @@ public Action:Command_MapInfo(client, args)
 
 MapInfoMenu(client)
 {
+	if(!Timer_IsEnabled()) return;
 	if (0 < client < MaxClients)
 	{
 		new Handle:menu = CreateMenu(Handle_MapInfoMenu);
@@ -93,6 +108,7 @@ MapInfoMenu(client)
 	
 public Handle_MapInfoMenu(Handle:menu, MenuAction:action, client, itemNum)
 {
+	if(!Timer_IsEnabled()) return;
 	if ( action == MenuAction_Select )
 	{
 		decl String:info[100], String:info2[100];

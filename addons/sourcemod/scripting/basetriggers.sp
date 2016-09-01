@@ -244,7 +244,7 @@ public Action:Command_FriendlyFire(client, args)
 
 	if (!IsClientInGame(client))
 		return Plugin_Handled;
-	
+	PrintToChatAll("%N calls for ff", client);
 	ShowFriendlyFire(client);
 
 	return Plugin_Handled;

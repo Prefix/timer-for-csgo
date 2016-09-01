@@ -906,7 +906,7 @@ public UpdateNameCallback(Handle:owner, Handle:hndl, const String:error[], any:p
 		return;
 	}
 
-	if (g_timerWorldRecord) 
+	if (g_timerWorldRecord && Timer_IsEnabled()) 
 	{
 		Timer_ForceReloadCache();
 	}
