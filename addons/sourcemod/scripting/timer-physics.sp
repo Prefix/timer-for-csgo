@@ -298,7 +298,7 @@ public Action_OnSettingsChange(Handle:cvar, const String:oldvalue[], const Strin
 
 public OnPluginPauseChange(bool:pause) 
 {
-	if(!Timer_IsEnabled()) return;
+	//if(!Timer_IsEnabled()) return;
 	if(pause) 
 	{
 		OnPluginEnd();

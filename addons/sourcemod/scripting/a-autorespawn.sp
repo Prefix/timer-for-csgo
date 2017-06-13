@@ -67,10 +67,10 @@ public OnPluginStart()
 	HookEvent("player_death", Event_PlayerDeath);
 
 	new Handle:topmenu;
-	if (LibraryExists("adminmenu") && ((topmenu = GetAdminTopMenu()) != INVALID_HANDLE))
+	/*if (LibraryExists("adminmenu") && ((topmenu = GetAdminTopMenu()) != INVALID_HANDLE))
 	{
 		OnAdminMenuReady(topmenu);
-	}
+	}*/
 
 	LoadTranslations("common.phrases");
 	LoadTranslations("respawn.phrases");
@@ -246,7 +246,7 @@ public OnLibraryRemoved(const String:name[])
 	}
 }
 
-public OnAdminMenuReady(Handle:topmenu)
+/*public OnAdminMenuReady(Handle:topmenu)
 {
 	if (topmenu == hAdminMenu)
 	{
@@ -267,7 +267,7 @@ public OnAdminMenuReady(Handle:topmenu)
 		"sm_respawn",
 		ADMFLAG_SLAY);
 	}
-}
+}*/
 
 public AdminMenu_Respawn( Handle:topmenu, TopMenuAction:action, TopMenuObject:object_id, param, String:buffer[], maxlength )
 {

@@ -194,10 +194,10 @@ public OnPluginStart()
 	AutoExecConfig(true, "timer/timer-worldrecord");
 	
 	new Handle:topmenu;
-	if (LibraryExists("adminmenu") && ((topmenu = GetAdminTopMenu()) != INVALID_HANDLE))
+	/*if (LibraryExists("adminmenu") && ((topmenu = GetAdminTopMenu()) != INVALID_HANDLE))
 	{
 		OnAdminMenuReady(topmenu);
-	}
+	}*/
 	
 	g_OnRecordCacheLoaded = CreateGlobalForward("OnRecordCacheLoaded", ET_Event, Param_Cell, Param_Cell);
 
@@ -592,7 +592,7 @@ public DeleteRecordsCallback(Handle:owner, Handle:hndl, const String:error[], an
 	RefreshCache();
 }
 
-public OnAdminMenuReady(Handle:topmenu)
+/*public OnAdminMenuReady(Handle:topmenu)
 {
 	if(!Timer_IsEnabled()) return;
 	// Block this from being called twice
@@ -616,7 +616,7 @@ public OnAdminMenuReady(Handle:topmenu)
 	
 	AddToTopMenu(hTopMenu, "sm_reloadcache", TopMenuObject_Item,AdminMenu_ReloadCache, 
 	oMapZoneMenu, "sm_reloadcache",ADMFLAG_CHANGEMAP);
-}
+}*/
 
 public AdminMenu_CategoryHandler(Handle:topmenu, 
 			TopMenuAction:action,

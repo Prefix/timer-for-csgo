@@ -102,7 +102,7 @@ public Action TimerOnMapStart(Handle timer)
 	PrintToServer("[SpawnTools7] Map has %i spawn points, %i%s killed, %i custom", g_iMapSpawnsNum, g_bRemoveDefSpawns ? g_iDefSpawnsClearNum : g_iKilledSpawnsNum, g_bRemoveDefSpawns ? " default spawns" : "", g_iCustomSpawnsNum)
 }
 
-public void OnEntityCreated(int entity, const char[] classname)
+public int OnEntityCreated(int entity, const char[] classname)
 {
 	if(!g_bMapStarted)
 	{
