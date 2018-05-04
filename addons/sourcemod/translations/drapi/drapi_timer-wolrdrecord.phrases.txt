@@ -135,7 +135,7 @@
 	"Strafes"
 	{
 		"#format"		"{1:i},{2:0.2f}"
-		"en"			"Strafes: {1} [{1} ⁰⁄₀]"
+		"en"			"Strafes: {1} [{2} ⁰⁄₀]"
 		"fr"			"Movements: {1} [{2} ⁰⁄₀]"
 	}
 	"Style"
