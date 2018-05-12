@@ -1,4 +1,4 @@
-Hello! If you have any issues post it on issues list or pm me https://forums.alliedmods.net/member.php?u=197795
+Plugin is not supported!
 
-
-Old instruction: https://github.com/Zipcore/Timer
+Use this: https://github.com/shavitush/bhoptimer
+It's far better and up-to-date compatable with course maps.
